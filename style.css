@@ -1,58 +1,97 @@
 @charset "UTF-8";
+/* line 2, scss/_base.scss */
+.debug {
+  border: 1px solid red!important;
+}
 
 /* * {
   box-sizing: border-box;
   }*/
-
+/* line 10, scss/_base.scss */
 body {
   width: 120%;
   padding: 0;
-  background-color: darkgreen;
   overflow-x: hidden;
+  background-color: #003300;
+  color: white;
+}
+
+@keyframes nighttime {
+  /* line 21, scss/_base.scss */
+  50% {
+    background-color: black;
   }
 
+  /* line 22, scss/_base.scss */
+  100% {
+    background-color: #003300;
+  }
+}
+
+/* line 25, scss/_base.scss */
 .frame {
   width: 100%;
-  /*border: 2px solid red;*/
   height: 200px;
   margin: auto;
-  background-color: darkgreen;
-  }
+  background-color: transparent;
+}
 
+/* line 1, scss/_roadtrack.scss */
 .roadtrack {
   position: relative;
   display: block;
   width: 100%;
   height: 94px;
-  background-color: rgb(20,20,20);
-  
+  background-color: #141414;
   -webkit-animation: motion 0.1s linear infinite;
-          animation: motion 0.1s linear infinite;
-  }
+  animation: motion 0.1s linear infinite;
+}
+/* line 11, scss/_roadtrack.scss */
+.roadtrack:nth-child(1) {
+  border-top: 4px double yellow;
+}
+/* line 12, scss/_roadtrack.scss */
+.roadtrack:nth-child(2) {
+  border-bottom: 4px double yellow;
+}
 
-@-webkit-keyframes motion {
-  from { left: -10px; }
-  to { left: -35px; }
+/* line 14, scss/_roadtrack.scss */
+.roadtrack-separator {
+  border-bottom: 4px dashed white;
 }
 
 @keyframes motion {
-  from { left: -10px; }
-  to { left: -35px; }
+  /* line 17, scss/_roadtrack.scss */
+  from {
+    left: -10px;
+  }
+
+  /* line 18, scss/_roadtrack.scss */
+  to {
+    left: -35px;
+  }
 }
 
-.roadtrack:nth-child(1) {
-  border-top: 4px double yellow;
-  }
+/* line 21, scss/_roadtrack.scss */
+.pothole {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  top: -50px;
+  right: -2000px;
+  background: black;
+  border-radius: 50%;
+  animation: pothole-motion 16s linear infinite;
+}
 
-.roadtrack:nth-child(2) {
-  border-bottom: 4px double yellow;
+@keyframes pothole-motion {
+  /* line 34, scss/_roadtrack.scss */
+  100% {
+    right: 2000px;
   }
+}
 
-.roadtrack-separator {
-  /*background: purple;*/
-  border-bottom: 4px dashed white;
-  }
-
+/* line 6, scss/style.scss */
 .vehicle {
   position: absolute;
   top: 125px;
@@ -61,19 +100,29 @@ body {
   height: 60px;
   background-color: darkred;
   border-radius: 15px;
-  border: 1px solid transparent;
-  box-shadow:
-    inset 0 0 25px rgba(0,0,0,0.5),
-    inset -14px 0 2px rgba(0,0,0,0.25),
-    inset 10px 0 2px rgba(0,0,0,0.35),
-    0 0 10px 0 rgba(0,0,0,0.5);
+  border: 1px solid darkred;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.5), inset -14px 0 2px rgba(0, 0, 0, 0.25), inset 10px 0 2px rgba(0, 0, 0, 0.35), 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+}
+
+/* line 23, scss/style.scss */
+.vehicle-lights_on {
+  border-right: 1px solid rgba(255, 255, 0, 0.25);
+  border-left: 1px solid rgba(255, 0, 0, 0.5);
+}
+
+/*
+.vehicle-tires {
+  position: absolute;
+  top: -3px;
+  left: 90px;
+  width: 20px;
+  height: 66px;
+  background-color: pink;
+  border-radius: 3px;
   }
-
-  .vehicle-lights_on {
-    border-right: 1px solid rgba(255,255,0,0.25);
-    border-left: 1px solid rgba(255,0,0,0.5);
-    }
-
+*/
+/* line 38, scss/style.scss */
 .vehicle-glass {
   position: relative;
   top: 4px;
@@ -84,11 +133,10 @@ body {
   border-radius: 15px;
   border-right: 2px solid black;
   border-left: 1px solid black;
-  box-shadow:
-    inset 0 0 25px rgba(0,0,0,0.95),
-    5px 0 2px rgba(0,0,0,0.25);
-  }
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.95), 5px 0 2px rgba(0, 0, 0, 0.25);
+}
 
+/* line 53, scss/style.scss */
 .vehicle-roof {
   position: absolute;
   top: 5px;
@@ -99,9 +147,10 @@ body {
   border-radius: 15px;
   border-right: 1px solid black;
   border-left: 1px solid black;
-  box-shadow: inset 0 0 25px rgba(0,0,0,0.5);
-  }
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.5);
+}
 
+/* line 66, scss/style.scss */
 .vehicle-sunroof {
   position: absolute;
   top: 10px;
@@ -110,56 +159,88 @@ body {
   height: 40px;
   background-color: cadetblue;
   border-radius: 5px;
-  box-shadow:
-    inset 0 0 15px rgba(0,0,0,0.75),
-    0 0 15px rgba(0,0,0,0.5);
-  }
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.75), 0 0 15px rgba(0, 0, 0, 0.5);
+}
 
+/* line 79, scss/style.scss */
 .vehicle-headlights {
   position: absolute;
-  width: 5px;
+  width: 8px;
   height: 15px;
   left: 110px;
-  background: rgba(0,0,0,0.5);
-  }
+  background: rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+}
 
-  .vehicle-headlights_on {
-    background: yellow;
-    box-shadow: 80px 0 150px 20px yellow;
-    }
+/* line 88, scss/style.scss */
+.vehicle-headlights_on {
+  width: 3px;
+  left: 108px;
+  background: yellow;
+  border-left: 3px solid black;
+  box-shadow: 150px 0 150px 20px yellow;
+}
 
+/* line 96, scss/style.scss */
 .headlights-left {
   top: 5px;
   border-top-right-radius: 15px;
-  border-bottom-left-radius: 10px;
-  }
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
 
+/* line 103, scss/style.scss */
 .headlights-right {
   top: 40px;
   border-bottom-right-radius: 15px;
-  border-top-left-radius: 10px;
-  }
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
 
+/* line 110, scss/style.scss */
 .vehicle-taillights {
   position: absolute;
   width: 3px;
   height: 10px;
-  background: rgba(0,0,0,0.5);
-  }
+  background: rgba(0, 0, 0, 0.5);
+  transition: 1s;
+}
 
-  .vehicle-taillights_on {
-    background: red;
-    box-shadow: -10px 0 20px 5px red;
-    }
+/* line 118, scss/style.scss */
+.vehicle-taillights_on {
+  background: red;
+  box-shadow: -10px 0 20px 5px red;
+}
 
+/* line 123, scss/style.scss */
 .taillights-left {
   top: 10px;
   left: -2px;
   border-top-left-radius: 15px;
-  }
+}
 
+/* line 129, scss/style.scss */
 .taillights-right {
   top: 40px;
   left: -2px;
   border-bottom-left-radius: 15px;
-  }
+}
+
+/* line 135, scss/style.scss */
+.move-left {
+  top: 34px;
+  transition: 2s;
+}
+
+/* line 139, scss/style.scss */
+.move-right {
+  top: 125px;
+  transition: 2s;
+}
+
+/* line 144, scss/style.scss */
+.auto {
+  transform: rotate(180deg);
+  top: 40px;
+  left: 500px;
+}
