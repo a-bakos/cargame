@@ -1,26 +1,23 @@
-// For debugging or testing purposes.
-.debug {
-  border: 1px solid red!important;
-  }
 
 /* * {
   box-sizing: border-box;
   }*/
 
 body {
-  width: 120%;
+  width: ($hpc + 20%);
   padding: 0;
   overflow-x: hidden;
-  background-color: rgba(0,51,0,1);
-  color: white;
+  @include grass-green(background-color, 1);
+  @include white(color, 1);
+  font-size: 20px;
   //animation: nighttime 60s ease-in-out infinite;
   }
 
 @keyframes nighttime {
   0%    { }
-  50%   { background-color: rgba(0,0,0,1); }
-  100%  { background-color: rgba(0,51,0,1); }
-}
+  50%   { @include black(background-color, 1); }
+  100%  { @include grass-green(background-color, 1); }
+  }
 
 .frame {
   width: 100%;
@@ -28,3 +25,8 @@ body {
   margin: auto;
   background-color: transparent;
   }
+
+p {
+  width: $hpc;
+  font-size: 20px;
+}

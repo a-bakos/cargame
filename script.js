@@ -1,3 +1,4 @@
+
 var vehicle = document.querySelector(".vehicle");
 
 var vehicleHeadLightsLeft = document.querySelector(".headlights-left");
@@ -12,7 +13,6 @@ addEventListener("keydown", function(event) {
     vehicleHeadLightsRight.classList.toggle('vehicle-headlights_on');
     vehicleTailLightsLeft.classList.toggle('vehicle-taillights_on');
     vehicleTailLightsRight.classList.toggle('vehicle-taillights_on');
-    vehicle.classList.toggle('vehicle-lights_on');
     console.log("Lights turned on/off.");
   }
   

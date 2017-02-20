@@ -1,0 +1,38 @@
+// For debugging or testing purposes.
+@mixin debug {
+  outline: 1px solid red!important;
+  }
+
+$duration: 1000ms;
+
+$hpc: 100%;   // Hundred percent
+$hpx: 100px;  // Hundred pixel
+
+$color-black: rgba(0,0,0,1);
+$color-white: rgba(255,255,255,1);
+
+/**
+ * Let's use interpolation on colors, so they aren't dependent on individual
+ * CSS porperties. We are applying RGB colors with an optional opacity value,
+ * therefore if opacity is not given, then it falls back to default value, 1,
+ * which is not transparent at all.
+ */
+@mixin white($property_name, $opacity:1) {
+  #{$property_name}: rgba(255,255,255,$opacity);
+  }
+@mixin black($property_name, $opacity:1) {
+  #{$property_name}: rgba(0,0,0,$opacity);
+  }
+@mixin grass-green($property_name, $opacity:1) {
+  #{$property_name}: rgba(0,51,0,$opacity);
+  }
+@mixin warning-yellow($property_name, $opacity:1) {
+  #{$property_name}: rgba(255,204,0,$opacity);
+  }
+
+@mixin car-color($property_name, $opacity:1) {
+  #{$property_name}: rgba(157,0,0,$opacity);
+  }
+@mixin car-lights($property_name, $opacity:1) {
+  #{$property_name}: rgba(255,255,159,$opacity);
+  }

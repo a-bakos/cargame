@@ -1,17 +1,35 @@
 .roadtrack {
   position: relative;
   display: block;
-  width: 100%;
+  width: $hpc;
   height: 94px;
   background-color: rgb(20,20,20);
+  box-shadow:
+    inset -15px 0 15px 10px rgba(0,0,0,0.85),
+    inset 0 31px 10px rgba(40,40,40,0.75),
+    inset 0 62px 10px rgba(10,10,10,1),
+    inset 0 94px 10px rgba(40,40,40,0.75),
+    0 -2px 5px 0 $color-black,
+    0 2px 5px 0 $color-black;
 
-  -webkit-animation: motion 0.1s linear infinite;
-          animation: motion 0.1s linear infinite;
-
-  &:nth-child(1) { border-top: 4px double yellow; }
-  &:nth-child(2) { border-bottom: 4px double yellow; }
+  &:nth-child(1) {
+    border-top: 5px double;
+    @include warning-yellow(border-top-color, 1);
+    }
+  &:nth-child(2) {
+    border-bottom: 5px double;
+    @include warning-yellow(border-bottom-color, 1);
+    }
   }
-.roadtrack-separator { border-bottom: 4px dashed white; }
+
+.roadtrack-separator {
+  border-bottom: 5px dashed;
+  @include white(border-bottom-color, 0.75);
+  }
+
+.roadtrack-motion {
+  animation: motion ($duration / 10) linear infinite;
+  }
 
   @keyframes motion {
     from  { left: -10px; }
@@ -24,9 +42,9 @@
   height: 30px;
   top: -50px;
   right: -2000px;
-  background: black;
+  background: rgba(0,0,0,0.85);
   border-radius: 50%;
-  animation: pothole-motion 16s linear infinite;
+  animation: pothole-motion 13s linear infinite;
   }
 
 @keyframes pothole-motion {
