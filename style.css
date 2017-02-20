@@ -1,0 +1,165 @@
+@charset "UTF-8";
+
+/* * {
+  box-sizing: border-box;
+  }*/
+
+body {
+  width: 120%;
+  padding: 0;
+  background-color: darkgreen;
+  overflow-x: hidden;
+  }
+
+.frame {
+  width: 100%;
+  /*border: 2px solid red;*/
+  height: 200px;
+  margin: auto;
+  background-color: darkgreen;
+  }
+
+.roadtrack {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 94px;
+  background-color: rgb(20,20,20);
+  
+  -webkit-animation: motion 0.1s linear infinite;
+          animation: motion 0.1s linear infinite;
+  }
+
+@-webkit-keyframes motion {
+  from { left: -10px; }
+  to { left: -35px; }
+}
+
+@keyframes motion {
+  from { left: -10px; }
+  to { left: -35px; }
+}
+
+.roadtrack:nth-child(1) {
+  border-top: 4px double yellow;
+  }
+
+.roadtrack:nth-child(2) {
+  border-bottom: 4px double yellow;
+  }
+
+.roadtrack-separator {
+  /*background: purple;*/
+  border-bottom: 4px dashed white;
+  }
+
+.vehicle {
+  position: absolute;
+  top: 125px;
+  left: 100px;
+  width: 120px;
+  height: 60px;
+  background-color: darkred;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  box-shadow:
+    inset 0 0 25px rgba(0,0,0,0.5),
+    inset -14px 0 2px rgba(0,0,0,0.25),
+    inset 10px 0 2px rgba(0,0,0,0.35),
+    0 0 10px 0 rgba(0,0,0,0.5);
+  }
+
+  .vehicle-lights_on {
+    border-right: 1px solid rgba(255,255,0,0.25);
+    border-left: 1px solid rgba(255,0,0,0.5);
+    }
+
+.vehicle-glass {
+  position: relative;
+  top: 4px;
+  left: 5px;
+  width: 80px;
+  height: 52px;
+  background-color: cadetblue;
+  border-radius: 15px;
+  border-right: 2px solid black;
+  border-left: 1px solid black;
+  box-shadow:
+    inset 0 0 25px rgba(0,0,0,0.95),
+    5px 0 2px rgba(0,0,0,0.25);
+  }
+
+.vehicle-roof {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  width: 60px;
+  height: 50px;
+  background-color: darkred;
+  border-radius: 15px;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  box-shadow: inset 0 0 25px rgba(0,0,0,0.5);
+  }
+
+.vehicle-sunroof {
+  position: absolute;
+  top: 10px;
+  left: 40px;
+  width: 20px;
+  height: 40px;
+  background-color: cadetblue;
+  border-radius: 5px;
+  box-shadow:
+    inset 0 0 15px rgba(0,0,0,0.75),
+    0 0 15px rgba(0,0,0,0.5);
+  }
+
+.vehicle-headlights {
+  position: absolute;
+  width: 5px;
+  height: 15px;
+  left: 110px;
+  background: rgba(0,0,0,0.5);
+  }
+
+  .vehicle-headlights_on {
+    background: yellow;
+    box-shadow: 80px 0 150px 20px yellow;
+    }
+
+.headlights-left {
+  top: 5px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 10px;
+  }
+
+.headlights-right {
+  top: 40px;
+  border-bottom-right-radius: 15px;
+  border-top-left-radius: 10px;
+  }
+
+.vehicle-taillights {
+  position: absolute;
+  width: 3px;
+  height: 10px;
+  background: rgba(0,0,0,0.5);
+  }
+
+  .vehicle-taillights_on {
+    background: red;
+    box-shadow: -10px 0 20px 5px red;
+    }
+
+.taillights-left {
+  top: 10px;
+  left: -2px;
+  border-top-left-radius: 15px;
+  }
+
+.taillights-right {
+  top: 40px;
+  left: -2px;
+  border-bottom-left-radius: 15px;
+  }
