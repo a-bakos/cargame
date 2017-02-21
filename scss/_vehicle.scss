@@ -63,14 +63,14 @@
   width: 8px;
   height: 15px;
   left: 110px;
-  background: rgba(0,0,0,0.5);
+  @include black(background-color, 0.35);
   transition: 0.5s;
   }
 
   .vehicle-headlights_on {
     width: 3px;
     left: 108px;
-    @include car-lights(background-color, 1);
+    @include car-headlights(background-color, 1);
     border-left: 3px solid black;
     box-shadow: 150px 0 150px 20px rgb(255,255,159);
     }
@@ -93,23 +93,53 @@
   position: absolute;
   width: 3px;
   height: 10px;
-  background: rgba(0,0,0,0.5);
+  left: -2px;
+  @include black(background-color, 0.35);
   transition: 1s;
   }
 
   .vehicle-taillights_on {
-    background: red;
-    box-shadow: -10px 0 20px 5px red;
+    @include car-taillights(background-color);
+    box-shadow: -10px 0 20px 2px $color-red;
     }
 
 .taillights-left {
   top: 10px;
-  left: -2px;
   border-top-left-radius: 15px;
   }
 
 .taillights-right {
   top: 40px;
+  border-bottom-left-radius: 15px;
+  }
+
+.vehicle-rear-indicators {
+  position: absolute;
+  width: 3px;
+  height: 5px;
   left: -2px;
+  @include black(background-color, 0);
+  }
+
+  .vehicle-indicators_on {
+    animation: indicator_on 1s ease infinite;
+    }
+
+  @keyframes indicator_on {
+    0% { background-color: transparent; }
+    50% {
+      @include car-indicators(background-color);
+      box-shadow: -10px 0 20px 4px $color-orange;
+      }
+    100% { background-color: transparent; }
+    }
+
+
+.rear-indicator-left {
+  top: 10px;
+  border-top-left-radius: 15px;
+  }
+.rear-indicator-right {
+  top: 45px;
   border-bottom-left-radius: 15px;
   }
