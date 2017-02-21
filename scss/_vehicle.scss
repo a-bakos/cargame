@@ -11,7 +11,7 @@
   @include black(border-color, 0.75);
   box-shadow:
     inset 0 0 25px rgba(0,0,0,0.5),
-    inset -14px 0 2px rgba(0,0,0,0.25),
+    inset -18px 0 2px rgba(0,0,0,0.25),
     inset 10px 0 2px rgba(0,0,0,0.35),
     0 0 10px 0 rgba(0,0,0,0.5);
   transition: ($duration / 2);
@@ -62,7 +62,7 @@
   position: absolute;
   width: 8px;
   height: 15px;
-  left: 110px;
+  left: 106px;
   @include black(background-color, 0.35);
   transition: 0.5s;
   }
@@ -71,14 +71,14 @@
     width: 3px;
     left: 108px;
     @include car-headlights(background-color, 1);
-    border-left: 3px solid black;
+    border-left: 3px solid $color-black;
     box-shadow: 150px 0 150px 20px rgb(255,255,159);
     }
 
 .headlights-left {
   top: 5px;
   border-top-right-radius: 15px;
-  border-top-left-radius: 5px;
+  //border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   }
 
@@ -86,7 +86,7 @@
   top: 40px;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
+  //border-top-left-radius: 5px;
   }
 
 .vehicle-taillights {
@@ -113,6 +113,10 @@
   border-bottom-left-radius: 15px;
   }
 
+/**
+ * Rear indicator lights.
+ */
+
 .vehicle-rear-indicators {
   position: absolute;
   width: 3px;
@@ -121,19 +125,18 @@
   @include black(background-color, 0);
   }
 
-  .vehicle-indicators_on {
-    animation: indicator_on 1s ease infinite;
+  .rear-indicators_on {
+    animation: rear-indicators_on 1s ease infinite;
     }
 
-  @keyframes indicator_on {
+  @keyframes rear-indicators_on {
     0% { background-color: transparent; }
     50% {
       @include car-indicators(background-color);
-      box-shadow: -10px 0 20px 4px $color-orange;
+      box-shadow: -10px 0 40px 8px $color-orange;
       }
     100% { background-color: transparent; }
     }
-
 
 .rear-indicator-left {
   top: 10px;
@@ -142,4 +145,38 @@
 .rear-indicator-right {
   top: 45px;
   border-bottom-left-radius: 15px;
+  }
+
+/**
+ * Front indicator lights.
+ */
+
+.vehicle-front-indicators {
+  position: absolute;
+  width: 2px;
+  height: 10px;
+  left: 116px;
+  @include black(background-color, 0.25);
+  }
+
+  .front-indicators_on {
+    animation: front-indicators_on 1s ease infinite;
+    }
+
+  @keyframes front-indicators_on {
+    0% { background-color: transparent; }
+    50% {
+      @include car-indicators(background-color);
+      box-shadow: 25px 0 50px 10px $color-orange;
+      }
+    100% { background-color: transparent; }
+    }
+
+.front-indicator-left {
+  top: 10px;
+  border-top-right-radius: 15px;
+  }
+.front-indicator-right {
+  top: 40px;
+  border-bottom-right-radius: 15px;
   }

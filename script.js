@@ -5,8 +5,8 @@ var vehicleHeadLightsLeft = document.querySelector(".headlights-left");
 var vehicleHeadLightsRight = document.querySelector(".headlights-right");
 var vehicleTailLightsLeft = document.querySelector(".taillights-left");
 var vehicleTailLightsRight = document.querySelector(".taillights-right");
-var vehicleIndicatorsLeft = document.querySelector(".indicator-left");
-var vehicleIndicatorsRight = document.querySelector(".indicator-right");
+var vehicleIndicatorsLeft = document.querySelectorAll(".front-indicator-left, .rear-indicator-left");
+var vehicleIndicatorsRight = document.querySelectorAll(".front-indicator-right, .rear-indicator-right");
 
 // Turn the light on and off
 addEventListener("keydown", function(event) {
@@ -34,16 +34,20 @@ addEventListener("keydown", function(event) {
   // Indicator light controls
   if (event.keyCode == 81) {
     console.log("Left indicator lights.");
-    vehicleIndicatorsLeft.classList.toggle("vehicle-indicators_on");
+    vehicleIndicatorsLeft[0].classList.toggle("front-indicators_on");
+    vehicleIndicatorsLeft[1].classList.toggle("rear-indicators_on");
   }
   if (event.keyCode == 69) {
     console.log("Right indicator lights.");
-    vehicleIndicatorsRight.classList.toggle("vehicle-indicators_on");
+    vehicleIndicatorsRight[0].classList.toggle("front-indicators_on");
+    vehicleIndicatorsRight[1].classList.toggle("rear-indicators_on");
   }
   if (event.keyCode == 87) {
     console.log("All indicator lights.");
-    vehicleIndicatorsLeft.classList.toggle("vehicle-indicators_on");
-    vehicleIndicatorsRight.classList.toggle("vehicle-indicators_on");
+    vehicleIndicatorsLeft[0].classList.toggle("front-indicators_on");
+    vehicleIndicatorsLeft[1].classList.toggle("rear-indicators_on");
+    vehicleIndicatorsRight[0].classList.toggle("front-indicators_on");
+    vehicleIndicatorsRight[1].classList.toggle("rear-indicators_on");
   }
 
 });
