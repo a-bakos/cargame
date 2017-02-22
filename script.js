@@ -52,3 +52,20 @@ addEventListener("keydown", function(event) {
 
 });
 
+/**
+ * Optional sunroof
+ */
+var extraSunroof = document.getElementById("extra-sunroof");
+var sunroof = document.createElement("div");
+sunroof.className = "vehicle-sunroof";
+
+addEventListener("change", function() {
+  if (extraSunroof.checked) {
+    vehicle.appendChild(sunroof);
+    console.log("Extra sunroof.");
+  }
+  else {
+    vehicle.removeChild(sunroof);
+    console.log("No sunroof.");
+  }
+});
