@@ -1,32 +1,37 @@
+/**
+ * This is the car's base.
+ */
 .vehicle {
   position: absolute;
   top: 125px;
   left: 100px;
   width: 120px;
   height: 60px;
+
   @include car-color(background-color, 1);
+  @include black(border-color, 0.75);
   border-radius: 15px;
   border-width: 1px;
   border-style: solid;
-  @include black(border-color, 0.75);
   box-shadow:
     inset 0 0 25px rgba(0,0,0,0.5),
     inset -18px 0 2px rgba(0,0,0,0.25),
     inset 10px 0 2px rgba(0,0,0,0.35),
     0 0 10px 0 rgba(0,0,0,0.5);
+
   transition: ($duration / 2);
   }
 
 .vehicle-glass {
   position: relative;
-  top: 4px;
+  top: 2px;
   left: 5px;
   width: 80px;
-  height: 52px;
+  height: 56px;
   background-color: cadetblue;
   border-radius: 15px;
-  border-right: 2px solid black;
-  border-left: 1px solid black;
+  border-right: 2px solid rgba(0,0,0,0.75);
+  border-left: 1px solid rgba(0,0,0,0.75);
   box-shadow:
     inset 0 0 25px rgba(0,0,0,0.95),
     5px 0 2px rgba(0,0,0,0.25);
@@ -38,19 +43,24 @@
   left: 15px;
   width: 60px;
   height: 50px;
+
   @include car-color(background-color, 1);
   border-radius: 15px;
-  border-right: 1px solid black;
-  border-left: 1px solid black;
-  box-shadow: inset 0 0 25px rgba(0,0,0,0.5);
+  border-right: 1px solid rgba(0,0,0,0.5);
+  border-left: 1px solid rgba(0,0,0,0.85);
+  box-shadow:
+    inset 0 0 25px rgba(0,0,0,0.5),
+    inset -5px 0 5px 0 rgba(0,0,0,0.25),
+    inset 10px 0 5px 0 rgba(0,0,0,0.25);
   }
 
 .vehicle-sunroof {
   position: absolute;
   top: 10px;
-  left: 40px;
+  left: 45px;
   width: 20px;
   height: 40px;
+
   background-color: cadetblue;
   border-radius: 5px;
   box-shadow:
@@ -58,35 +68,103 @@
     0 0 15px rgba(0,0,0,0.5);
   }
 
+.vehicle-doors {
+  position: absolute;
+  top: 0;
+  left: 35px;
+  width: 30px;
+  height: 2px;
+
+  background-color: $color-red;
+  box-shadow:
+    -1px 0 0 0 rgba(0,0,0,0.5),
+    inset -10px 0 5px 0 rgba(0,0,0,0.5);
+  }
+
+.vehicle-left-door {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 10px;
+
+  //animation: open-left-door 1s ease-out 1 forwards;
+  }
+
+// This animation is for a possible later use.
+/*
+@keyframes open-left-door {
+  10% { border-bottom: 1px solid transparent; }
+  11% { border-bottom: 1px solid cadetblue; }
+  100% {
+    transform: translateY(-3px) translateX(-2px) rotate(70deg);
+    transform-origin: bottom right;
+    border-bottom: 1px solid cadetblue;
+    }
+  }
+*/
+
+.vehicle-right-door {
+  top: 58px;
+
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 10px;
+  }
+
+.vehicle-mirrors {
+  position: absolute;
+  left: 22px;
+  width: 5px;
+  height: 10px;
+
+  background: $color-red;
+  box-shadow:
+    0 0 2px 0 rgba(0,0,0,0.5),
+    inset 2px 0 4px 0 rgba(0,0,0,0.75);
+  }
+.vehicle-left-mirror {
+  top: -6px;
+
+  border-top-right-radius: 10px;
+  border-bottom-left-radius: 50%;
+  border-bottom-right-radius: 50%;
+  }
+.vehicle-right-mirror {
+  top: -2px;
+
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 50%;
+  border-top-right-radius: 50%;
+  }
+
 .vehicle-headlights {
   position: absolute;
   width: 8px;
   height: 15px;
   left: 106px;
+
   @include black(background-color, 0.35);
   transition: 0.5s;
   }
 
+  // The ON state of the headlights. Applied by JS
   .vehicle-headlights_on {
     width: 3px;
     left: 108px;
+
     @include car-headlights(background-color, 1);
     border-left: 3px solid $color-black;
-    box-shadow: 150px 0 150px 20px rgb(255,255,159);
+    box-shadow: 150px 0 150px 20px $color-light-yellow;
     }
 
 .headlights-left {
   top: 5px;
   border-top-right-radius: 15px;
-  //border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   }
-
 .headlights-right {
   top: 40px;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 5px;
-  //border-top-left-radius: 5px;
   }
 
 .vehicle-taillights {
@@ -94,10 +172,12 @@
   width: 3px;
   height: 10px;
   left: -2px;
+
   @include black(background-color, 0.35);
   transition: 1s;
   }
 
+  // The ON state of the taillights. Applied by JS
   .vehicle-taillights_on {
     @include car-taillights(background-color);
     box-shadow: -10px 0 20px 2px $color-red;
@@ -107,7 +187,6 @@
   top: 10px;
   border-top-left-radius: 15px;
   }
-
 .taillights-right {
   top: 40px;
   border-bottom-left-radius: 15px;
@@ -122,13 +201,14 @@
   width: 3px;
   height: 5px;
   left: -2px;
+
   @include black(background-color, 0);
   }
 
+  // The ON state of the rear indicators. Applied by JS
   .rear-indicators_on {
     animation: rear-indicators_on 1s ease infinite;
     }
-
   @keyframes rear-indicators_on {
     0% { background-color: transparent; }
     50% {
@@ -156,20 +236,19 @@
   width: 2px;
   height: 10px;
   left: 116px;
+
   @include black(background-color, 0.25);
   }
 
+  // The ON state of the front indicators. Applied by JS
   .front-indicators_on {
     animation: front-indicators_on 1s ease infinite;
     }
-
   @keyframes front-indicators_on {
-    0% { background-color: transparent; }
     50% {
       @include car-indicators(background-color);
       box-shadow: 25px 0 50px 10px $color-orange;
       }
-    100% { background-color: transparent; }
     }
 
 .front-indicator-left {
