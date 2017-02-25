@@ -3,6 +3,7 @@
   display: block;
   width: $hpc;
   height: 94px;
+
   background-color: rgb(20,20,20);
   box-shadow:
     inset -15px 0 15px 10px rgba(0,0,0,0.85),
@@ -32,8 +33,8 @@
   }
 
   @keyframes motion {
-    from  { left: -10px; }
-    to    { left: -35px; }
+    from  { left: -25px; }
+    to    { left: -55px; }
     }
 
 .pothole {

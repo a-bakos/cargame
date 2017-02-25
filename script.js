@@ -1,5 +1,8 @@
 "use strict";
 
+/**
+ * The main vehicle object aka The Car
+ */
 var vehicle = {
   body:             document.querySelector(".vehicle"),
 
@@ -124,10 +127,10 @@ addEventListener("keydown", function(event) {
  * Optional sunroof -- checkbox
  */
 
-var extraSunroof  = document.querySelector("#extra-sunroof"); // checkbox
+var extraSunroof  = document.querySelector(".extra-sunroof"); // checkbox
 
 // Create the sunroof
-vehicle.sunroof   = document.createElement("div");
+vehicle.sunroof = document.createElement("div");
 vehicle.sunroof.classList.add("vehicle-sunroof");
 
 addEventListener("change", function() {

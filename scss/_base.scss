@@ -4,11 +4,10 @@
   }*/
 
 body {
-  width: ($hpc + 20%);
-  padding: 0;
+  margin: auto;
   overflow-x: hidden;
-  @include grass-green(background-color, 1);
-  @include white(color, 1);
+  background-color: transparent;
+  background-color: wheat;
   font-size: 20px;
   //animation: nighttime 60s ease-in-out infinite;
   }
@@ -19,14 +18,24 @@ body {
   100%  { @include grass-green(background-color, 1); }
   }
 
-.frame {
-  width: 100%;
-  height: 200px;
+.land {
+  width: 120%;
+  left: 0;
+  padding-top: 50px;
+  height: 225px;
   margin: auto;
-  background-color: transparent;
+  @include grass-green(background-color, 1);
+  outline: 20px solid $color-green;
   }
 
 p {
   width: $hpc;
   font-size: 20px;
+  }
+
+.user-panel {
+  width: $hpc;
+  margin-top: 20px; // coz there is an outline of the same size
+  border-top: 5px solid black;
+  padding: 2%;
   }

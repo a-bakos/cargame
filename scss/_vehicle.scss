@@ -3,7 +3,7 @@
  */
 .vehicle {
   position: absolute;
-  top: 125px;
+  top: 170px;
   left: 100px;
   width: 120px;
   height: 60px;
@@ -33,7 +33,8 @@
   border-right: 2px solid rgba(0,0,0,0.75);
   border-left: 1px solid rgba(0,0,0,0.75);
   box-shadow:
-    inset 0 0 25px rgba(0,0,0,0.95),
+    inset -5px 0 10px rgba(0,0,0,0.5),
+    inset 5px 0 10px rgba(0,0,0,0.5),
     5px 0 2px rgba(0,0,0,0.25);
   }
 
@@ -52,20 +53,6 @@
     inset 0 0 25px rgba(0,0,0,0.5),
     inset -5px 0 5px 0 rgba(0,0,0,0.25),
     inset 10px 0 5px 0 rgba(0,0,0,0.25);
-  }
-
-.vehicle-sunroof {
-  position: absolute;
-  top: 10px;
-  left: 45px;
-  width: 20px;
-  height: 40px;
-
-  background-color: cadetblue;
-  border-radius: 5px;
-  box-shadow:
-    inset 0 0 15px rgba(0,0,0,0.75),
-    0 0 15px rgba(0,0,0,0.5);
   }
 
 .vehicle-doors {
@@ -259,3 +246,22 @@
   top: 40px;
   border-bottom-right-radius: 15px;
   }
+
+/**
+ * Extras
+ */
+
+.vehicle-sunroof {
+  position: absolute;
+  top: 10px;
+  left: 45px;
+  width: 20px;
+  height: 40px;
+
+  background-color: cadetblue;
+  border-radius: 5px;
+  box-shadow:
+    inset 0 0 10px rgba(0,0,0,0.75),
+    0 0 15px rgba(0,0,0,0.5);
+  }
+  
