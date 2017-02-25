@@ -1,121 +1,142 @@
-var vehicle = document.querySelector(".vehicle");
+"use strict";
 
-var vehicleHeadLights       = document.querySelectorAll('.vehicle-headlights');
-var vehicleTailLights       = document.querySelectorAll('.vehicle-taillights');
+var vehicle = {
+  body:             document.querySelector(".vehicle"),
 
-var vehicleIndicatorsLeft   = document.querySelectorAll(".front-indicator-left, .rear-indicator-left");
-var vehicleIndicatorsRight  = document.querySelectorAll(".front-indicator-right, .rear-indicator-right");
+  headLights:       document.querySelectorAll(".vehicle-headlights"),
+  tailLights:       document.querySelectorAll(".vehicle-taillights"),
 
+  lightsKey:        76, // keycode for turning the lights on
+  headLightsOn:     "vehicle-headlights_on", // CSS class to toggle
+  tailLightsOn:     "vehicle-taillights_on", // CSS class to toggle
 
-// Turn the lights on and off
-addEventListener("keydown", function(event) {
-  if (event.keyCode == 76) {
-    for (var i = 0; i < vehicleHeadLights.length; i++) {
-      if (vehicleHeadLights[i].classList.contains('vehicle-headlights_on')) {
-        vehicleHeadLights[i].classList.remove('vehicle-headlights_on');
-        console.log("Headlights turned OFF.");
+  leftIndicators:   document.querySelectorAll(".front-indicator-left, .rear-indicator-left"),
+  rightIndicators:  document.querySelectorAll(".front-indicator-right, .rear-indicator-right"),
+
+  leftIndicatorsKey:  81,
+  rightIndicatorsKey: 69,
+
+  frontIndicatorsOn:  "front-indicators_on",
+  rearIndicatorsOn:   "rear-indicators_on",
+
+  moveLeftKey:      37,
+  moveRightKey:     39,
+  moveLeftMotion:   "move-left",  // CSS class to toggle
+  moveRightMotion:  "move-right", // CSS class to toggle
+};
+
+/**
+ * Vehicle lights controls
+ * Function for toggling headlights and tail lights
+ */
+
+function toggleLights(lightsSelector, lightsClass, logLights) {
+  if (event.keyCode == vehicle.lightsKey) {
+
+    for (var i = 0; i < lightsSelector.length; i++) {
+
+      if (lightsSelector[i].classList.contains(lightsClass)) {
+        lightsSelector[i].classList.remove(lightsClass);
+        console.log(logLights + "lights turned off.");
       }
       else {
-        vehicleHeadLights[i].classList.add('vehicle-headlights_on');
-        console.log("Headlights turned ON.");
+        lightsSelector[i].classList.add(lightsClass);
+        console.log(logLights + "lights turned on.");
       }
-    }
-    for (var i = 0; i < vehicleTailLights.length; i++) {
-      if (vehicleTailLights[i].classList.contains('vehicle-taillights_on')) {
-        vehicleTailLights[i].classList.remove('vehicle-taillights_on');
-        console.log("Tail lights turned OFF.");
-      }
-      else {
-        vehicleTailLights[i].classList.add('vehicle-taillights_on');
-        console.log("Tail lights turned ON.");
-      }
+
     }
   }
-});
+}
 
-// Move left -- that is, move upwards on screen
 addEventListener("keydown", function(event) {
-  if (event.keyCode == 38) {
-    console.log("Move left.");
-    vehicle.className = "vehicle";
-    vehicle.classList.toggle("move-left");
-  }
-  // Move right -- that is, move downwards on screen
-  if (event.keyCode == 40) {
-    console.log("Move right.");
-    vehicle.className = "vehicle";
-    vehicle.classList.toggle("move-right");
-  }
-});
-
-// Indicator light controls
-addEventListener("keydown", function(event) {
-  if (event.keyCode == 81) {
-    if (
-      vehicleIndicatorsLeft[0].classList.contains("front-indicators_on") &&
-      vehicleIndicatorsLeft[1].classList.contains("rear-indicators_on"))
-    {
-      console.log("Left indicator lights OFF.");
-      vehicleIndicatorsLeft[0].classList.remove("front-indicators_on");
-      vehicleIndicatorsLeft[1].classList.remove("rear-indicators_on");
-    } else {
-      console.log("Left indicator lights ON.");
-      vehicleIndicatorsLeft[0].classList.add("front-indicators_on");
-      vehicleIndicatorsLeft[1].classList.add("rear-indicators_on");
-    }
-  }
-  if (event.keyCode == 69) {
-    if (
-      vehicleIndicatorsRight[0].classList.contains("front-indicators_on") &&
-      vehicleIndicatorsRight[1].classList.contains("rear-indicators_on"))
-    {
-      console.log("Right indicator lights OFF.");
-      vehicleIndicatorsRight[0].classList.remove("front-indicators_on");
-      vehicleIndicatorsRight[1].classList.remove("rear-indicators_on");
-    } else {
-      console.log("Right indicator lights ON.");
-      vehicleIndicatorsRight[0].classList.add("front-indicators_on");
-      vehicleIndicatorsRight[1].classList.add("rear-indicators_on");
-    }
-  }
-  if (event.keyCode == 87) {
-    if (
-      vehicleIndicatorsLeft[0].classList.contains("front-indicators_on")  &&
-      vehicleIndicatorsLeft[1].classList.contains("rear-indicators_on")   &&
-      vehicleIndicatorsRight[0].classList.contains("front-indicators_on") &&
-      vehicleIndicatorsRight[1].classList.contains("rear-indicators_on"))
-    {
-      console.log("All indicator lights OFF.");
-      vehicleIndicatorsLeft[0].classList.remove("front-indicators_on");
-      vehicleIndicatorsLeft[1].classList.remove("rear-indicators_on");
-      vehicleIndicatorsRight[0].classList.remove("front-indicators_on");
-      vehicleIndicatorsRight[1].classList.remove("rear-indicators_on");
-    } else {
-      console.log("All indicator lights ON.");
-      vehicleIndicatorsLeft[0].classList.add("front-indicators_on");
-      vehicleIndicatorsLeft[1].classList.add("rear-indicators_on");
-      vehicleIndicatorsRight[0].classList.add("front-indicators_on");
-      vehicleIndicatorsRight[1].classList.add("rear-indicators_on");
-    }
-  }
-
+  toggleLights(vehicle.headLights, vehicle.headLightsOn, "Head");
+  toggleLights(vehicle.tailLights, vehicle.tailLightsOn, "Tail ");
 });
 
 /**
- * Optional sunroof
+ * Indicator lights controls
  */
-var extraSunroof  = document.getElementById("extra-sunroof");
-var sunroof       = document.createElement("div");
 
-sunroof.className = "vehicle-sunroof";
+addEventListener("keydown", function(event) {
+  // Left side indicators:
+  if (event.keyCode == vehicle.leftIndicatorsKey) {
+    if (
+      vehicle.leftIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
+      vehicle.leftIndicators[1].classList.contains(vehicle.rearIndicatorsOn))
+    {
+      vehicle.leftIndicators[0].classList.remove(vehicle.frontIndicatorsOn);
+      vehicle.leftIndicators[1].classList.remove(vehicle.rearIndicatorsOn);
+      console.log("Left indicator lights off.");
+    }
+    else {
+      // Turn off the indicators on the other side:
+      vehicle.rightIndicators[0].classList.remove(vehicle.frontIndicatorsOn);
+      vehicle.rightIndicators[1].classList.remove(vehicle.rearIndicatorsOn);
+
+      // Turn on the left side:
+      vehicle.leftIndicators[0].classList.add(vehicle.frontIndicatorsOn);
+      vehicle.leftIndicators[1].classList.add(vehicle.rearIndicatorsOn);
+      console.log("Left indicator lights on.");
+    }
+  } // Left indicators
+
+  // Right side indicators:
+  if (event.keyCode == vehicle.rightIndicatorsKey) {
+    if (
+      vehicle.rightIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
+      vehicle.rightIndicators[1].classList.contains(vehicle.rearIndicatorsOn))
+    {
+      console.log("Right indicator lights off.");
+      vehicle.rightIndicators[0].classList.remove(vehicle.frontIndicatorsOn);
+      vehicle.rightIndicators[1].classList.remove(vehicle.rearIndicatorsOn);
+    }
+    else {
+      // Turn off the indicators on the other side:
+      vehicle.leftIndicators[0].classList.remove(vehicle.frontIndicatorsOn);
+      vehicle.leftIndicators[1].classList.remove(vehicle.rearIndicatorsOn);
+
+      // Turn on the right side:
+      vehicle.rightIndicators[0].classList.add(vehicle.frontIndicatorsOn);
+      vehicle.rightIndicators[1].classList.add(vehicle.rearIndicatorsOn);
+      console.log("Right indicator lights on.");
+    }
+  } // Right indicators
+});
+
+/**
+ * Move the vehicle left and right relative to roadtracks
+ * Function for left and right movements
+ */
+function move(moveVehicle, direction, moveMotion) {
+  if (event.keyCode == moveVehicle) {
+    console.log("Move " + direction + ".");
+    vehicle.body.className = "vehicle";
+    vehicle.body.classList.toggle(moveMotion);
+  }
+}
+
+addEventListener("keydown", function(event) {
+  move(vehicle.moveLeftKey, "left", vehicle.moveLeftMotion);
+  move(vehicle.moveRightKey, "right", vehicle.moveRightMotion);
+});
+
+/**
+ * Optional sunroof -- checkbox
+ */
+
+var extraSunroof  = document.querySelector("#extra-sunroof"); // checkbox
+
+// Create the sunroof
+vehicle.sunroof   = document.createElement("div");
+vehicle.sunroof.classList.add("vehicle-sunroof");
 
 addEventListener("change", function() {
   if (extraSunroof.checked) {
-    vehicle.appendChild(sunroof);
+    vehicle.body.appendChild(vehicle.sunroof);
     console.log("Extra sunroof.");
   }
   else {
-    vehicle.removeChild(sunroof);
+    vehicle.body.removeChild(vehicle.sunroof);
     console.log("No sunroof.");
   }
 });
