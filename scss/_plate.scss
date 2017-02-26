@@ -6,12 +6,13 @@
  * More info on that topic here: http://www.worldlicenseplates.com/
  */
 
-// The plate wrapper
+// The plate wrapper section
 .license-plate {
   margin-top: 5%;
   @include no-select;
   }
 
+// The actual plate
 .plate-base {
   width: 250px;
   height: 125px;
@@ -35,19 +36,20 @@
   text-align: center;
   }
 
+// "Sticker squares"
 .plate-sticker {
   display: inline-table;
   position: relative;
   top: 10px;
   width: 40px;
   height: 20px;
+
   border: 1px solid rgba(0,0,0,0.5);
   border-bottom: 1px solid rgba(255,255,255,0.15);
   box-shadow:
     inset 0 1px 5px 0 rgba(255,255,255,0.1),
     inset 0 0 5px 0 rgba(0,0,0,0.5);
   background-color: transparent;
-  
   color: rgba(110,99,90,0.35);
   text-shadow:
     0 -1px 1px rgba(0,0,0,0.75),
@@ -59,11 +61,13 @@
     }
   }
 
+// State text
 .plate-text {
   display: inline;
   position: relative;
   top: 10px;
-  margin: 0 10px;
+  margin-left: 10px;
+  margin-right: 10px;
 
   color: rgba(240,163,45,1);
   font: {
@@ -77,9 +81,11 @@
     0 -1px 1px rgba(255,255,255,0.65);
   }
 
+// The actual plate letters & numbers
 .plate-identifier {
   margin: 0;
   margin-top: 0px;
+
   color: rgba(240,163,45,1);
   font: {
     size: 70px;
