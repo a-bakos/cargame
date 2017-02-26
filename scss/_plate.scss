@@ -1,0 +1,52 @@
+.license-plate {
+  margin-top: 5%;
+  }
+
+.plate-base {
+  width: 250px;
+  height: 130px;
+
+  background-color: rgb(26,26,28);
+  background-image: linear-gradient(rgba(20,20,20,1),rgba(40,40,40,1),rgba(26,26,28,1));
+  box-shadow:
+    inset 0 0 0 3px rgba(24,19,25,1),
+    inset 0 -1px 0 4px rgba(255,255,255,0.15),
+    inset 0 0 0 5px rgba(30,30,30,1),
+    inset 0 0 10px 5px black,
+    0 2px 15px 4px rgba(0,0,0,0.75);
+  border: {
+    top: 2px solid rgba(255,255,255,0.25);
+    radius: 15px;
+    }
+  text-align: center;
+  }
+
+.plate-text {
+  margin: 0;
+  padding-top: 6px;
+  color: rgba(240,163,45,1);
+  font: {
+    size: 24px;
+    family: "Seattle Sans";
+    weight: bolder;
+  }
+  letter-spacing: 2px;
+  text-shadow:
+    0 2px 1px rgba(0,0,0,1),
+    0 -1px 2px rgba(255,255,255,0.65);
+}
+
+.plate-identifier {
+  margin: 0;
+  margin-top: -15px;
+  color: rgba(240,163,45,1);
+  font: {
+    size: 80px;
+    weight: bolder;
+    family: "Seattle Sans";
+    }
+  text-shadow:
+    0 2px 1px rgba(0,0,0,1),
+    0 -2px 1px rgba(255,255,255,0.65);
+  letter-spacing: 2px;
+  }

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+  <head>
+    <title></title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <section class="land">
+      <div class="roadtrack roadtrack-separator roadtrack-motion"></div>
+      <div class="roadtrack roadtrack-motion"></div>
+      <div class="pothole"></div>
+
+      <div class="vehicle">
+        <div class="vehicle-glass"></div>
+        <div class="vehicle-roof"></div>
+
+        <div class="vehicle-doors vehicle-left-door">
+          <div class="vehicle-mirrors vehicle-left-mirror"></div>
+        </div>
+        <div class="vehicle-doors vehicle-right-door">
+          <div class="vehicle-mirrors vehicle-right-mirror"></div>
+        </div>
+
+        <div class="vehicle-headlights headlights-left"></div>
+        <div class="vehicle-headlights headlights-right"></div>
+        <div class="vehicle-taillights taillights-left"></div>
+        <div class="vehicle-taillights taillights-right"></div>
+        <div class="vehicle-front-indicators front-indicator-left indicator-left"></div>
+        <div class="vehicle-front-indicators front-indicator-right indicator-right"></div>
+        <div class="vehicle-rear-indicators rear-indicator-left indicator-left"></div>
+        <div class="vehicle-rear-indicators rear-indicator-right indicator-right"></div>
+      </div>
+
+    </section>
+    <section class="user-panel">
+
+      <section>
+        <input type="text" maxlength="12" placeholder="Player name" class="player-name">
+        <button type="submit" value="ok">OK</button>
+      </section>
+
+      <section class="license-plate">
+        <div class="plate-base">
+          <p class="plate-text">CALIFORNIA</p>
+          <p class="plate-identifier">AUM 560</p>
+        </div>
+      </section>
+
+      <section>
+        <h1>Extras:</h1>
+        <label for="extra-sunroof">Want sunroof?</label>
+        <input type="checkbox" class="extra-sunroof" id="extra-sunroof">
+      </section>
+
+      <section>
+        <h1>Notes:</h1>
+        <p>- Navigate the car with the left and right arrows.</p>
+        <p>- Press L to turn the lights on/off.</p>
+
+        <p>- Press Q to turn the left indicator lights on/off.</p>
+        <p>- Press E to turn the right indicator lights on/off.</p>
+      </section>
+
+      <section class="budget">
+        <h1>Your wallet:</h1>
+        <p>You have $50,000</p>
+      </section>
+    </section>
+    <script src="script.js"></script>
+  </body>
+</html>
