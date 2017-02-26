@@ -34,6 +34,15 @@
     radius: 10px;
     }
   text-align: center;
+
+  /**
+   * The following rules are needed because there is a pseudo element (:after)
+   * on a child of this element which is positioned by manipulating the local
+   * stacking context. (Z-index only works if position is specified.)
+   * More info at the .plate-identifier declaration block.
+   */
+  position: relative;
+  z-index: 1;
   }
 
 // "Sticker squares"
@@ -77,23 +86,52 @@
   }
   letter-spacing: 4px;
   text-shadow:
-    0 2px 1px rgba(0,0,0,0.75),
-    0 -1px 1px rgba(255,255,255,0.65);
+    0 1px 2px rgba(0,0,0,0.75),
+    0 -1px 1px rgba(255,255,255,0.75);
   }
+
 
 // The actual plate letters & numbers
 .plate-identifier {
+  position: relative;
   margin: 0;
   margin-top: 0px;
 
-  color: rgba(240,163,45,1);
   font: {
     size: 70px;
     weight: bolder;
     family: "Seattle Sans";
     }
+  letter-spacing: 5px;
+  color: rgba(240,163,45,1);
+
+  /**
+   * In order to create text with a gradient effect, the following rules are
+   * needed. Browsers that don't support them will fall back to the above color
+   * property.
+   *
+   * Note: Since background-clip does not work with text-shadow, the :after
+   * pseudo element is utilised, see below.
+   */
+  background-image:
+    linear-gradient(
+      rgba(240,163,45,1) 65%,
+      rgba(87,49,4,1));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// This acts as text shadow
+.plate-identifier:after {
+  position: absolute;
+  width: inherit;
+  content: attr(data-text);
+  left: 0;
+
+  background: none;
   text-shadow:
     0 2px 1px rgba(0,0,0,1),
-    0 -2px 1px rgba(255,255,255,0.65);
-  letter-spacing: 5px;
+    0 -2px 1px rgba(255,255,255,0.5);
+
+  z-index: -1;
   }

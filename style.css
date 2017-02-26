@@ -420,9 +420,17 @@ p {
   border-top: 2px solid rgba(255, 255, 255, 0.25);
   border-radius: 10px;
   text-align: center;
+  /**
+   * The following rules are needed because there is a pseudo element (:after)
+   * on a child of this element which is positioned by manipulating the local
+   * stacking context. (Z-index only works if position is specified.)
+   * More info at the .plate-identifier declaration block.
+   */
+  position: relative;
+  z-index: 1;
 }
 
-/* line 40, scss/_plate.scss */
+/* line 49, scss/_plate.scss */
 .plate-sticker {
   display: inline-table;
   position: relative;
@@ -440,7 +448,7 @@ p {
   font-vertical-align: middle;
 }
 
-/* line 65, scss/_plate.scss */
+/* line 74, scss/_plate.scss */
 .plate-text {
   display: inline;
   position: relative;
@@ -452,17 +460,39 @@ p {
   font-family: "Seattle Sans";
   font-weight: bolder;
   letter-spacing: 4px;
-  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.75), 0 -1px 1px rgba(255, 255, 255, 0.65);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75), 0 -1px 1px rgba(255, 255, 255, 0.75);
 }
 
-/* line 85, scss/_plate.scss */
+/* line 95, scss/_plate.scss */
 .plate-identifier {
+  position: relative;
   margin: 0;
   margin-top: 0px;
-  color: #f0a32d;
   font-size: 70px;
   font-weight: bolder;
   font-family: "Seattle Sans";
-  text-shadow: 0 2px 1px black, 0 -2px 1px rgba(255, 255, 255, 0.65);
   letter-spacing: 5px;
+  color: #f0a32d;
+  /**
+   * In order to create text with a gradient effect, the following rules are
+   * needed. Browsers that don't support them will fall back to the above color
+   * property.
+   *
+   * Note: Since background-clip does not work with text-shadow, the :after
+   * pseudo element is utilised, see below.
+   */
+  background-image: linear-gradient(#f0a32d 65%, #573104);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* line 125, scss/_plate.scss */
+.plate-identifier:after {
+  position: absolute;
+  width: inherit;
+  content: attr(data-text);
+  left: 0;
+  background: none;
+  text-shadow: 0 2px 1px black, 0 -2px 1px rgba(255, 255, 255, 0.5);
+  z-index: -1;
 }
