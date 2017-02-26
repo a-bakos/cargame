@@ -6,6 +6,9 @@
 var vehicle = {
   body:             document.querySelector(".vehicle"),
 
+  plate:            document.querySelector(".plate-identifier"),
+  defaultPlateData: "AUM 560",
+
   headLights:       document.querySelectorAll(".vehicle-headlights"),
   tailLights:       document.querySelectorAll(".vehicle-taillights"),
 
@@ -138,8 +141,86 @@ addEventListener("change", function() {
     vehicle.body.appendChild(vehicle.sunroof);
     console.log("Extra sunroof.");
   }
-  else {
+/*  else {
     vehicle.body.removeChild(vehicle.sunroof);
     console.log("No sunroof.");
-  }
+  }*/
 });
+
+/**
+ * License plate values
+ *
+ * There are two values being used here. One is the actual content of the
+ * .plate-identifier element. The other one is the value of its data-text
+ * attribute. They have to be the same.
+ *
+ * Reason: data-text attribute is a CSS pseudo element used for creating
+ * gradient font color effect. If they are different, that means the text
+ * shadow doesn't match the main text.
+ */
+
+var playerNameField = document.querySelector(".player-name");
+var playerNameValue;
+var enterPlayerName = document.querySelector("#enter-player-name");
+
+// Function for printing license plate data to console.
+function getPlateData() {
+  var plateData;
+  var mainData;
+
+  plateData = vehicle.plate.getAttribute("data-text");
+  mainData = vehicle.plate.innerHTML;
+
+  if (plateData == mainData) {
+    console.log("Plate data: " + mainData);
+  }
+  else {
+    console.log("Warning: data-text and the contents of plate-identifier are not the same!")
+  }
+}
+
+/// Read the player's name from the input field
+function getPlayerName() {
+  playerNameValue = playerNameField.value;
+  if (playerNameValue != "") {
+    console.log("Player's name: " + playerNameValue);
+  }
+}
+
+// Function for changing the license plate's data (both values).
+function changePlateData() {
+  if (playerNameValue != "") {
+    // Slice up the input, only the first 3 characters are needed
+    // Then save them uppercase
+    playerNameValue = playerNameValue.slice(0,3);
+    playerNameValue = playerNameValue.toUpperCase();
+
+    // Append 3 digits after it
+    playerNameValue = playerNameValue + " " + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10);
+
+    // Apply the final plate data as new values
+    vehicle.plate.setAttribute("data-text", playerNameValue);
+    vehicle.plate.innerHTML = playerNameValue;
+
+    // Make the input field and its button disabled to prevent changing their
+    // value, aka the player's name
+    playerNameField = playerNameField.setAttribute("disabled", "");
+    enterPlayerName = enterPlayerName.setAttribute("disabled", "");
+
+    console.log("Plate data has changed to: " + vehicle.plate.innerHTML);
+  }
+  else {
+    // If nothing is entered fall back to default plate data
+    vehicle.plate.setAttribute("data-text", vehicle.defaultPlateData);
+    vehicle.plate.innerHTML = vehicle.defaultPlateData;
+    console.log("Default plate data.");
+  }
+}
+
+// Listen to player's name changes
+enterPlayerName.addEventListener("click", function(event) {
+  getPlayerName();
+  changePlateData();
+});
+
+getPlateData();
