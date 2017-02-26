@@ -5,6 +5,12 @@
  * therefore if opacity is not given, then it falls back to default value, 1,
  * which is not transparent at all.
  */
+@font-face {
+  font-family: "Seattle Sans";
+  src: url("seattle_sans.ttf");
+  format: truetype;
+}
+
 /* * {
   box-sizing: border-box;
   }*/
