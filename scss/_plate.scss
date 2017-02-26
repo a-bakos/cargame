@@ -1,5 +1,6 @@
 .license-plate {
   margin-top: 5%;
+  @include no-select;
   }
 
 .plate-base {
