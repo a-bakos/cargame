@@ -148,20 +148,24 @@ addEventListener("change", function() {
 });
 
 /**
- * License plate values
+ * Display license plate values
  *
  * There are two values being used here. One is the actual content of the
  * .plate-identifier element. The other one is the value of its data-text
- * attribute. They have to be the same.
+ * attribute. They have to be the same!
  *
  * Reason: data-text attribute is a CSS pseudo element used for creating
- * gradient font color effect. If they are different, that means the text
- * shadow doesn't match the main text.
+ * font shadow. If they are different, that means the text shadow doesn't
+ * match the main text.
  */
 
+// Input field:
 var playerNameField = document.querySelector(".player-name");
 var playerNameValue;
+// The OK button:
 var enterPlayerName = document.querySelector("#enter-player-name");
+// Where the player name is displayed:
+var thePlayerNameDisplay = document.querySelector(".the-player-name");
 
 // Function for printing license plate data to console.
 function getPlateData() {
@@ -169,7 +173,7 @@ function getPlateData() {
   var mainData;
 
   plateData = vehicle.plate.getAttribute("data-text");
-  mainData = vehicle.plate.innerHTML;
+  mainData  = vehicle.plate.innerHTML;
 
   if (plateData == mainData) {
     console.log("Plate data: " + mainData);
@@ -190,52 +194,43 @@ function getPlateData() {
  * - No special characters, no spaces
  * - If nothing given, fallback to default value
  */
-
-var allGood = true;
-var thePlayerNameDisplay = document.querySelector(".the-player-name");
-
 function checkPlayerName() {
   var correctInput = /^[a-zA-Z0-9]{1,12}$/;
 
   playerNameValue = playerNameField.value;
+
   if (playerNameValue.length < 1 || !playerNameValue.match(correctInput)) {
 
     // Instead of the temporary alert, a text node insertion would be a better
     // solution that tells the user what's wrong. Also appending additional
     // "error" CSS class to the input field.
-    alert("Incorrect player name input.");
+    alert("Incorrect player name input. Please use only letters and numbers.");
     console.log("Incorrect player name input.");
+
+    setDefaultPlateData();
+
+    playerNameField.value = "";
     playerNameField.focus();
 
-    allGood = false
-    return allGood;
   }
   else {
     if (playerNameValue.match(correctInput)) {
-      thePlayerNameDisplay.innerHTML = "Your name: " + playerNameValue;
+      thePlayerNameDisplay.innerHTML = "Driver: " + playerNameValue;
       console.log("Correct player name input.");
-      return allGood;
-    }
-  }
-}
 
-// Read the player's name from the input field
-function getPlayerName() {
-  playerNameValue = playerNameField.value;
-  if (playerNameValue != "") {
-    console.log("Player's name: " + playerNameValue);
+      changePlateData();
+    }
   }
 }
 
 // Function for changing the license plate's data (both values).
 function changePlateData() {
-  if (allGood != false) {
-    // Slice up the input, only the first 3 characters are needed
-    // Then save them uppercase
+    // Slice up the input, only the first 3 characters are needed on the plate,
+    // then save them as uppercase characters
     playerNameValue = playerNameValue.slice(0,3);
     playerNameValue = playerNameValue.toUpperCase();
 
-    // Append 3 digits after it
+    // Append 3 random digits after it
     playerNameValue = playerNameValue + " " + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10);
 
     // Apply the final plate data as new values
@@ -243,25 +238,24 @@ function changePlateData() {
     vehicle.plate.innerHTML = playerNameValue;
 
     // Make the input field and its button disabled to prevent changing their
-    // value, aka the player's name
+    // value, aka the player's name and the plate can't be changed once set
     playerNameField = playerNameField.setAttribute("disabled", "");
     enterPlayerName = enterPlayerName.setAttribute("disabled", "");
 
     console.log("Plate data has changed to: " + vehicle.plate.innerHTML);
   }
-  else {
-    // If nothing is entered fall back to default plate data
-    vehicle.plate.setAttribute("data-text", vehicle.defaultPlateData);
-    vehicle.plate.innerHTML = vehicle.defaultPlateData;
-    console.log("Default plate data.");
-  }
+
+function setDefaultPlateData() {
+  // If nothing is entered apply default plate data
+  vehicle.plate.setAttribute("data-text", vehicle.defaultPlateData);
+  vehicle.plate.innerHTML = vehicle.defaultPlateData;
+  console.log("Default plate data used.");
 }
 
 // Listen to player's name changes
 enterPlayerName.addEventListener("click", function(event) {
   checkPlayerName();
-  getPlayerName();
-  changePlateData();
+  getPlateData();
 });
 
 getPlateData();
