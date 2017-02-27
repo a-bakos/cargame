@@ -6,9 +6,13 @@
  * which is not transparent at all.
  */
 @font-face {
+  font-family: "Zzyzx";
+  src: url("zzyzx.ttf") format("truetype");
+}
+
+@font-face {
   font-family: "Seattle Sans";
-  src: url("seattle_sans.ttf");
-  format: truetype;
+  src: url("seasans.ttf") format("truetype");
 }
 
 /* * {
@@ -459,13 +463,13 @@ p {
   display: inline;
   position: relative;
   top: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
   color: #f0a32d;
-  font-size: 18px;
-  font-family: "Seattle Sans";
+  font-size: 16px;
+  font-family: "Zzyzx", "Seattle Sans", sans-serif;
   font-weight: bolder;
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75), 0 -1px 1px rgba(255, 255, 255, 0.75);
 }
 
@@ -473,11 +477,11 @@ p {
 .plate-identifier {
   position: relative;
   margin: 0;
-  margin-top: 0px;
-  font-size: 70px;
+  margin-top: 0;
+  font-size: 76px;
   font-weight: bolder;
-  font-family: "Seattle Sans";
-  letter-spacing: 5px;
+  font-family: "Zzyzx", "Seattle Sans", sans-serif;
+  letter-spacing: 4px;
   color: #f0a32d;
   /**
    * In order to create text with a gradient effect, the following rules are

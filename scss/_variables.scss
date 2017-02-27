@@ -51,11 +51,15 @@ $color-green:         rgb(0,51,0);
 
 // Font
 
-// Font-face for license plate
 @font-face {
-  font-family: "Seattle Sans";
-  src: url("seattle_sans.ttf");
-  format: truetype;
+  font-family: "Zzyzx";
+  src: url("zzyzx.ttf") format("truetype");
   }
 
-$plate-font: 'Seattle Sant', sans-serif;
+@font-face {
+  font-family: "Seattle Sans";
+  src: url("seasans.ttf") format("truetype");
+  }
+
+
+$plate-font: "Zzyzx", "Seattle Sans", sans-serif;
