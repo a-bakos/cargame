@@ -179,7 +179,47 @@ function getPlateData() {
   }
 }
 
-/// Read the player's name from the input field
+/**
+ * Function for checking the player's name and make corrections if needed.
+ *
+ * Rules:
+ * - The player name's max length is 12 characters.
+ * - It can contain letters and numbers
+ * - Letters only from the English alphabet
+ * - Can have lowercase and uppercase letters
+ * - No special characters, no spaces
+ * - If nothing given, fallback to default value
+ */
+
+var allGood = true;
+var thePlayerNameDisplay = document.querySelector(".the-player-name");
+
+function checkPlayerName() {
+  var correctInput = /^[a-zA-Z0-9]{1,12}$/;
+
+  playerNameValue = playerNameField.value;
+  if (playerNameValue.length < 1 || !playerNameValue.match(correctInput)) {
+
+    // Instead of the temporary alert, a text node insertion would be a better
+    // solution that tells the user what's wrong. Also appending additional
+    // "error" CSS class to the input field.
+    alert("Incorrect player name input.");
+    console.log("Incorrect player name input.");
+    playerNameField.focus();
+
+    allGood = false
+    return allGood;
+  }
+  else {
+    if (playerNameValue.match(correctInput)) {
+      thePlayerNameDisplay.innerHTML = "Your name: " + playerNameValue;
+      console.log("Correct player name input.");
+      return allGood;
+    }
+  }
+}
+
+// Read the player's name from the input field
 function getPlayerName() {
   playerNameValue = playerNameField.value;
   if (playerNameValue != "") {
@@ -189,7 +229,7 @@ function getPlayerName() {
 
 // Function for changing the license plate's data (both values).
 function changePlateData() {
-  if (playerNameValue != "") {
+  if (allGood != false) {
     // Slice up the input, only the first 3 characters are needed
     // Then save them uppercase
     playerNameValue = playerNameValue.slice(0,3);
@@ -219,6 +259,7 @@ function changePlateData() {
 
 // Listen to player's name changes
 enterPlayerName.addEventListener("click", function(event) {
+  checkPlayerName();
   getPlayerName();
   changePlateData();
 });
