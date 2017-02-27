@@ -4,20 +4,21 @@
  * The main vehicle object aka The Car
  */
 var vehicle = {
-  body:             document.querySelector(".vehicle"),
+  body:               document.querySelector(".vehicle"),
 
-  plate:            document.querySelector(".plate-identifier"),
-  defaultPlateData: "AUM 560",
+  plate:              document.querySelector(".plate-identifier"),
+  defaultPlateData:   "AUM 560",
+  defaultDriverName:  "Murphy",
 
-  headLights:       document.querySelectorAll(".vehicle-headlights"),
-  tailLights:       document.querySelectorAll(".vehicle-taillights"),
+  headLights:         document.querySelectorAll(".vehicle-headlights"),
+  tailLights:         document.querySelectorAll(".vehicle-taillights"),
 
-  lightsKey:        76, // keycode for turning the lights on
-  headLightsOn:     "vehicle-headlights_on", // CSS class to toggle
-  tailLightsOn:     "vehicle-taillights_on", // CSS class to toggle
+  lightsKey:          76, // keycode for turning the lights on
+  headLightsOn:       "vehicle-headlights_on", // CSS class to toggle
+  tailLightsOn:       "vehicle-taillights_on", // CSS class to toggle
 
-  leftIndicators:   document.querySelectorAll(".front-indicator-left, .rear-indicator-left"),
-  rightIndicators:  document.querySelectorAll(".front-indicator-right, .rear-indicator-right"),
+  leftIndicators:     document.querySelectorAll(".front-indicator-left, .rear-indicator-left"),
+  rightIndicators:    document.querySelectorAll(".front-indicator-right, .rear-indicator-right"),
 
   leftIndicatorsKey:  81,
   rightIndicatorsKey: 69,
@@ -25,10 +26,10 @@ var vehicle = {
   frontIndicatorsOn:  "front-indicators_on",
   rearIndicatorsOn:   "rear-indicators_on",
 
-  moveLeftKey:      37,
-  moveRightKey:     39,
-  moveLeftMotion:   "move-left",  // CSS class to toggle
-  moveRightMotion:  "move-right", // CSS class to toggle
+  moveLeftKey:        37,
+  moveRightKey:       39,
+  moveLeftMotion:     "move-left",  // CSS class to toggle
+  moveRightMotion:    "move-right", // CSS class to toggle
 };
 
 /**
@@ -129,23 +130,35 @@ addEventListener("keydown", function(event) {
 /**
  * Optional sunroof -- checkbox
  */
-
 var extraSunroof  = document.querySelector(".extra-sunroof"); // checkbox
 
 // Create the sunroof
 vehicle.sunroof = document.createElement("div");
 vehicle.sunroof.classList.add("vehicle-sunroof");
 
-addEventListener("change", function() {
+extraSunroof.addEventListener("change", function() {
   if (extraSunroof.checked) {
     vehicle.body.appendChild(vehicle.sunroof);
     console.log("Extra sunroof.");
   }
-/*  else {
+  else {
     vehicle.body.removeChild(vehicle.sunroof);
     console.log("No sunroof.");
-  }*/
+  }
 });
+
+/**
+ * PLAYER'S NAME AND LICENSE PLATE THINGS
+ */
+
+// Input field:
+var playerNameField = document.querySelector(".player-name");
+var playerNameValue;
+// The OK button:
+var enterPlayerName = document.querySelector("#enter-player-name");
+// Where the player name is displayed:
+var thePlayerNameDisplay = document.querySelector(".the-player-name");
+thePlayerNameDisplay.innerHTML = "Driver: " + vehicle.defaultDriverName;
 
 /**
  * Display license plate values
@@ -158,16 +171,6 @@ addEventListener("change", function() {
  * font shadow. If they are different, that means the text shadow doesn't
  * match the main text.
  */
-
-// Input field:
-var playerNameField = document.querySelector(".player-name");
-var playerNameValue;
-// The OK button:
-var enterPlayerName = document.querySelector("#enter-player-name");
-// Where the player name is displayed:
-var thePlayerNameDisplay = document.querySelector(".the-player-name");
-
-// Function for printing license plate data to console.
 function getPlateData() {
   var plateData;
   var mainData;
@@ -217,13 +220,16 @@ function checkPlayerName() {
     if (playerNameValue.match(correctInput)) {
       thePlayerNameDisplay.innerHTML = "Driver: " + playerNameValue;
       console.log("Correct player name input.");
+      console.log("Driver: " + playerNameValue);
 
       changePlateData();
     }
   }
 }
 
-// Function for changing the license plate's data (both values).
+/**
+ * Function for changing the license plate's data (both values).
+ */
 function changePlateData() {
     // Slice up the input, only the first 3 characters are needed on the plate,
     // then save them as uppercase characters
@@ -242,9 +248,12 @@ function changePlateData() {
     playerNameField = playerNameField.setAttribute("disabled", "");
     enterPlayerName = enterPlayerName.setAttribute("disabled", "");
 
-    console.log("Plate data has changed to: " + vehicle.plate.innerHTML);
+    console.log("Plate data has changed");
   }
 
+/**
+ * Function for setting default plate data (both values).
+ */
 function setDefaultPlateData() {
   // If nothing is entered apply default plate data
   vehicle.plate.setAttribute("data-text", vehicle.defaultPlateData);
@@ -258,4 +267,5 @@ enterPlayerName.addEventListener("click", function(event) {
   getPlateData();
 });
 
+console.log("Driver: " + vehicle.defaultDriverName);
 getPlateData();
