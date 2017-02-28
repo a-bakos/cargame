@@ -201,6 +201,7 @@ function checkPlayerName() {
   var correctInput = /^[a-zA-Z0-9]{1,12}$/;
 
   playerNameValue = playerNameField.value;
+  playerNameValue = playerNameValue.latinise(); // Remove accents
 
   if (playerNameValue.length < 1 || !playerNameValue.match(correctInput)) {
 
