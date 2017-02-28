@@ -214,10 +214,12 @@ function checkPlayerName() {
 
     playerNameField.value = "";
     playerNameField.focus();
-
   }
   else {
     if (playerNameValue.match(correctInput)) {
+      // Capitalize first letter
+      playerNameValue = playerNameValue.charAt(0).toUpperCase() + playerNameValue.slice(1);
+
       thePlayerNameDisplay.innerHTML = "Driver: " + playerNameValue;
       console.log("Correct player name input.");
       console.log("Driver: " + playerNameValue);
