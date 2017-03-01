@@ -8,7 +8,10 @@ $duration: 1000ms;
 $hpc: 100%;   // Hundred percent
 $hpx: 100px;  // Hundred pixel
 
-$bg-color: wheat; // main bg + some elements use it, like the holes on the license plate
+
+// Colors
+
+$bg-color:            wheat; // main bg + some elements use it, like the holes on the license plate
 
 $color-black:         rgba(0,0,0,1);
 $color-white:         rgba(255,255,255,1);
@@ -49,17 +52,20 @@ $color-green:         rgb(0,51,0);
   #{$property_name}: rgba(254,147,1,$opacity);
   }
 
-// Font
+// Fonts
 
+// Main font for license plate
+// http://www.dafont.com/zzyzx.font
 @font-face {
   font-family: "Zzyzx";
-  src: url("zzyzx.ttf") format("truetype");
+  src: url("fonts/zzyzx.ttf") format("truetype");
   }
 
+// 1st Fallback font for license plate - though it doesn't load on some devices
+// http://www.dafont.com/seattle-sans.font
 @font-face {
   font-family: "Seattle Sans";
-  src: url("seasans.ttf") format("truetype");
+  src: url("fonts/seasans.ttf") format("truetype");
   }
-
 
 $plate-font: "Zzyzx", "Seattle Sans", sans-serif;

@@ -6,7 +6,8 @@
       <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
   </head>
   <body>
-    <section class="land">
+
+    <section class="gameframe">
       <div class="roadtrack roadtrack-separator roadtrack-motion"></div>
       <div class="roadtrack roadtrack-motion"></div>
       <div class="pothole"></div>
@@ -35,41 +36,48 @@
     </section>
     <section class="user-panel">
 
-      <section>
-        <input type="text" maxlength="10" placeholder="Player name" class="player-name" autofocus>
-        <button type="submit" id="enter-player-name">OK</button>
+      <table>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+
+      <section class="game-details">
+        <div class="player-name-display">
+          <h2 class="the-player-name"></h2>
+        </div>
+        <div class="player-wallet">
+          <h2 class="current-money">$50,000</h2>
+        </div>
+
+        <section class="license-plate">
+          <div class="plate-base">
+            <div class="plate-sticker">&nbsp;</div><p class="plate-text">CALIFORNIA</p><div class="plate-sticker">'83</div>
+              <p class="plate-identifier" data-text="AUM 560">AUM 560</p>
+            </div>
+        </section>
       </section>
 
-      <section class="license-plate">
-        <div class="plate-base">
-          <div class="plate-sticker">&nbsp;</div><p class="plate-text">CALIFORNIA</p><div class="plate-sticker">'83</div>
-            <p class="plate-identifier" data-text="AUM 560">AUM 560</p>
-          </div>
+      <section class="player-name-input-area">
+        <input type="text" maxlength="10" placeholder="Player name" class="player-name input-field" autofocus>
+        <button type="submit" class="player-name input-submit" id="enter-player-name">OK</button>
       </section>
 
-      <section class="player-name-display">
-        <h1 class="the-player-name"></h1>
-      </section>
-
-      <section>
-        <h1>Extras:</h1>
+      <section class="extras-section">
         <label for="extra-sunroof">Want sunroof?</label>
         <input type="checkbox" class="extra-sunroof" id="extra-sunroof">
       </section>
 
-      <section>
-        <h1>Notes:</h1>
+      <section class="cheatsheet">
+        <h2>Notes:</h2>
         <p>- Navigate the car with the left and right arrows.</p>
         <p>- Press L to turn the lights on/off.</p>
-
         <p>- Press Q to turn the left indicator lights on/off.</p>
         <p>- Press E to turn the right indicator lights on/off.</p>
       </section>
 
-      <section class="budget">
-        <h1>Your wallet:</h1>
-        <p>You have $50,000</p>
-      </section>
     </section>
     <script src="latinise.min.js"></script>
     <script src="script.js"></script>

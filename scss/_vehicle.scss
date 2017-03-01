@@ -3,7 +3,7 @@
  */
 .vehicle {
   position: absolute;
-  top: 170px;
+  top: 160px;
   left: 100px;
   width: 120px;
   height: 60px;
@@ -25,9 +25,9 @@
 .vehicle-glass {
   position: relative;
   top: 2px;
-  left: 5px;
+  left: 6px;
   width: 80px;
-  height: 56px;
+  height: 54px;
   background-color: cadetblue;
   border-radius: 15px;
   border-right: 2px solid rgba(0,0,0,0.75);
@@ -40,7 +40,7 @@
 
 .vehicle-roof {
   position: absolute;
-  top: 5px;
+  top: 4px;
   left: 15px;
   width: 60px;
   height: 50px;
@@ -90,7 +90,7 @@
 */
 
 .vehicle-right-door {
-  top: 58px;
+  top: 56px;
 
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
@@ -139,12 +139,12 @@
     left: 108px;
 
     @include car-headlights(background-color, 1);
-    border-left: 3px solid $color-black;
+    border-left: 1px solid $color-black;
     box-shadow: 250px 0 250px 35px $color-light-yellow;
     }
 
 .headlights-left {
-  top: 5px;
+  top: 3px;
   border-top-right-radius: 15px;
   border-bottom-left-radius: 5px;
   }
@@ -206,7 +206,7 @@
     }
 
 .rear-indicator-left {
-  top: 10px;
+  top: 8px;
   border-top-left-radius: 15px;
   }
 .rear-indicator-right {
@@ -253,8 +253,8 @@
 
 .vehicle-sunroof {
   position: absolute;
-  top: 10px;
-  left: 45px;
+  top: 9px;
+  left: 42px;
   width: 20px;
   height: 40px;
 

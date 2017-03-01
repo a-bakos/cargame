@@ -7,39 +7,47 @@
  */
 @font-face {
   font-family: "Zzyzx";
-  src: url("zzyzx.ttf") format("truetype");
+  src: url("fonts/zzyzx.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Seattle Sans";
-  src: url("seasans.ttf") format("truetype");
+  src: url("fonts/seasans.ttf") format("truetype");
 }
 
 /* * {
   box-sizing: border-box;
   }*/
-/* line 6, scss/_base.scss */
+/* line 8, scss/_base.scss */
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+/* line 12, scss/_base.scss */
 body {
   margin: auto;
+  height: 100vh;
   overflow-x: hidden;
   background-color: wheat;
   font-size: 20px;
 }
 
 @keyframes nighttime {
-  /* line 16, scss/_base.scss */
+  /* line 24, scss/_base.scss */
   50% {
     background-color: black;
   }
 
-  /* line 17, scss/_base.scss */
+  /* line 25, scss/_base.scss */
   100% {
     background-color: #003300;
   }
 }
 
-/* line 20, scss/_base.scss */
-.land {
+/* line 28, scss/_base.scss */
+.gameframe {
   width: 120%;
   left: 0;
   padding-top: 50px;
@@ -49,18 +57,52 @@ body {
   outline: 20px solid #003300;
 }
 
-/* line 30, scss/_base.scss */
+/* line 38, scss/_base.scss */
 p {
   width: 100%;
-  font-size: 20px;
+  font-size: 12px;
 }
 
-/* line 35, scss/_base.scss */
+/**
+ * User panel is the section that contains and displays all the information
+ * needed for the user.
+ */
+/* line 47, scss/_base.scss */
 .user-panel {
   width: 100%;
   margin-top: 20px;
   border-top: 5px solid black;
-  padding: 2%;
+}
+
+/* line 57, scss/_base.scss */
+.game-details {
+  outline: 1px solid red!important;
+  width: 100%;
+  margin: 0;
+  box-shadow: inset 0 0 0 5px red;
+}
+
+/* line 64, scss/_base.scss */
+h2 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: normal;
+  margin: 0;
+}
+
+/* line 74, scss/_base.scss */
+.player-name-input-area {
+  clear: both;
+  display: block;
+  width: auto;
+  padding: 15px;
+  border: 1px solid blue;
+  background: pink;
+}
+
+/* line 87, scss/_base.scss */
+.player-name {
+  font-size: 20px;
 }
 
 /* line 1, scss/_roadtrack.scss */
@@ -131,7 +173,7 @@ p {
 /* line 4, scss/_vehicle.scss */
 .vehicle {
   position: absolute;
-  top: 170px;
+  top: 160px;
   left: 100px;
   width: 120px;
   height: 60px;
@@ -148,9 +190,9 @@ p {
 .vehicle-glass {
   position: relative;
   top: 2px;
-  left: 5px;
+  left: 6px;
   width: 80px;
-  height: 56px;
+  height: 54px;
   background-color: cadetblue;
   border-radius: 15px;
   border-right: 2px solid rgba(0, 0, 0, 0.75);
@@ -161,7 +203,7 @@ p {
 /* line 41, scss/_vehicle.scss */
 .vehicle-roof {
   position: absolute;
-  top: 5px;
+  top: 4px;
   left: 15px;
   width: 60px;
   height: 50px;
@@ -203,7 +245,7 @@ p {
 */
 /* line 92, scss/_vehicle.scss */
 .vehicle-right-door {
-  top: 58px;
+  top: 56px;
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 10px;
@@ -250,13 +292,13 @@ p {
   width: 3px;
   left: 108px;
   background-color: #ffff9f;
-  border-left: 3px solid black;
+  border-left: 1px solid black;
   box-shadow: 250px 0 250px 35px #ffff9f;
 }
 
 /* line 146, scss/_vehicle.scss */
 .headlights-left {
-  top: 5px;
+  top: 3px;
   border-top-right-radius: 15px;
   border-bottom-left-radius: 5px;
 }
@@ -333,7 +375,7 @@ p {
 
 /* line 208, scss/_vehicle.scss */
 .rear-indicator-left {
-  top: 10px;
+  top: 8px;
   border-top-left-radius: 15px;
 }
 
@@ -386,8 +428,8 @@ p {
 /* line 254, scss/_vehicle.scss */
 .vehicle-sunroof {
   position: absolute;
-  top: 10px;
-  left: 45px;
+  top: 9px;
+  left: 42px;
   width: 20px;
   height: 40px;
   background-color: cadetblue;
@@ -403,7 +445,7 @@ p {
 
 /* line 6, scss/_controls.scss */
 .move-right {
-  top: 170px;
+  top: 160px;
   transition: 2s;
 }
 
@@ -416,11 +458,10 @@ p {
  */
 /* line 10, scss/_plate.scss */
 .license-plate {
-  margin-top: 5%;
   user-select: none;
 }
 
-/* line 16, scss/_plate.scss */
+/* line 15, scss/_plate.scss */
 .plate-base {
   width: 250px;
   height: 125px;
@@ -440,7 +481,7 @@ p {
   z-index: 1;
 }
 
-/* line 49, scss/_plate.scss */
+/* line 48, scss/_plate.scss */
 .plate-sticker {
   display: inline-table;
   position: relative;
@@ -458,7 +499,7 @@ p {
   font-vertical-align: middle;
 }
 
-/* line 74, scss/_plate.scss */
+/* line 73, scss/_plate.scss */
 .plate-text {
   display: inline;
   position: relative;
@@ -473,7 +514,7 @@ p {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75), 0 -1px 1px rgba(255, 255, 255, 0.75);
 }
 
-/* line 95, scss/_plate.scss */
+/* line 94, scss/_plate.scss */
 .plate-identifier {
   position: relative;
   margin: 0;
@@ -496,7 +537,7 @@ p {
   -webkit-text-fill-color: transparent;
 }
 
-/* line 125, scss/_plate.scss */
+/* line 124, scss/_plate.scss */
 .plate-identifier:after {
   position: absolute;
   width: inherit;

@@ -8,7 +8,6 @@
 
 // The plate wrapper section
 .license-plate {
-  margin-top: 5%;
   @include no-select;
   }
 
@@ -75,16 +74,16 @@
   display: inline;
   position: relative;
   top: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
 
   color: rgba(240,163,45,1);
   font: {
-    size: 18px;
-    family: "Seattle Sans";
+    size: 16px;
+    family: $plate-font;
     weight: bolder;
   }
-  letter-spacing: 4px;
+  letter-spacing: 3px;
   text-shadow:
     0 1px 2px rgba(0,0,0,0.75),
     0 -1px 1px rgba(255,255,255,0.75);
@@ -95,14 +94,14 @@
 .plate-identifier {
   position: relative;
   margin: 0;
-  margin-top: 0px;
+  margin-top: 0;
 
   font: {
-    size: 70px;
+    size: 76px;
     weight: bolder;
-    family: "Seattle Sans";
+    family: $plate-font;
     }
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   color: rgba(240,163,45,1);
 
   /**
