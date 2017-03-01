@@ -36,7 +36,6 @@ var vehicle = {
  * Vehicle lights controls
  * Function for toggling headlights and tail lights
  */
-
 function toggleLights(lightsSelector, lightsClass, logLights) {
   if (event.keyCode == vehicle.lightsKey) {
 
@@ -151,6 +150,8 @@ extraSunroof.addEventListener("change", function() {
  * PLAYER'S NAME AND LICENSE PLATE THINGS
  */
 
+// The whole input area, HTML section:
+var inputArea = document.querySelector(".player-name-input-area");
 // Input field:
 var playerNameField = document.querySelector(".player-name");
 var playerNameValue;
@@ -210,7 +211,6 @@ function checkPlayerName() {
     // "error" CSS class to the input field.
     alert("Incorrect player name input. Please use only letters and numbers.");
     console.log("Incorrect player name input.");
-
     setDefaultPlateData();
 
     playerNameField.value = "";
@@ -225,7 +225,10 @@ function checkPlayerName() {
       console.log("Correct player name input.");
       console.log("Driver: " + playerNameValue);
 
+      // Update data:
       changePlateData();
+      // If names are all correctly set, hide the input area:
+      hideElement(inputArea);
     }
   }
 }
@@ -262,6 +265,11 @@ function setDefaultPlateData() {
   vehicle.plate.setAttribute("data-text", vehicle.defaultPlateData);
   vehicle.plate.innerHTML = vehicle.defaultPlateData;
   console.log("Default plate data used.");
+}
+
+// Hiding elements
+function hideElement(elem) {
+  elem.className = "hide-element";
 }
 
 // Listen to player's name changes
