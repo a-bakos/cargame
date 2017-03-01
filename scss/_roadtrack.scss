@@ -4,14 +4,12 @@
   width: $hpc;
   height: 94px;
 
-  background-color: rgb(20,20,20);
+  background-color: rgb(80,80,80);
   box-shadow:
     inset -15px 0 15px 10px rgba(0,0,0,0.85),
-    inset 0 31px 10px rgba(40,40,40,0.75),
-    inset 0 62px 10px rgba(10,10,10,1),
-    inset 0 94px 10px rgba(40,40,40,0.75),
-    0 -2px 5px 0 $color-black,
-    0 2px 5px 0 $color-black;
+    inset 0 35px 10px rgba(20,20,20,0.85),
+    inset 0 62px 10px rgba(60,60,60,0.85),
+    inset 0 94px 10px rgba(20,20,20,0.85);
 
   &:nth-child(1) {
     border-top: 5px double;

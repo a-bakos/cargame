@@ -111,56 +111,56 @@ h2 {
   display: block;
   width: 100%;
   height: 94px;
-  background-color: #141414;
-  box-shadow: inset -15px 0 15px 10px rgba(0, 0, 0, 0.85), inset 0 31px 10px rgba(40, 40, 40, 0.75), inset 0 62px 10px #0a0a0a, inset 0 94px 10px rgba(40, 40, 40, 0.75), 0 -2px 5px 0 black, 0 2px 5px 0 black;
+  background-color: #505050;
+  box-shadow: inset -15px 0 15px 10px rgba(0, 0, 0, 0.75), inset 0 35px 10px rgba(20, 20, 20, 0.75), inset 0 62px 10px rgba(60, 60, 60, 0.85), inset 0 94px 10px rgba(20, 20, 20, 0.75);
 }
-/* line 16, scss/_roadtrack.scss */
+/* line 14, scss/_roadtrack.scss */
 .roadtrack:nth-child(1) {
   border-top: 5px double;
   border-top-color: #ffcc00;
 }
-/* line 20, scss/_roadtrack.scss */
+/* line 18, scss/_roadtrack.scss */
 .roadtrack:nth-child(2) {
   border-bottom: 5px double;
   border-bottom-color: #ffcc00;
 }
 
-/* line 26, scss/_roadtrack.scss */
+/* line 24, scss/_roadtrack.scss */
 .roadtrack-separator {
   border-bottom: 5px dashed;
   border-bottom-color: rgba(255, 255, 255, 0.75);
 }
 
-/* line 31, scss/_roadtrack.scss */
+/* line 29, scss/_roadtrack.scss */
 .roadtrack-motion {
   animation: start 750ms ease-in 1 forwards, motion 100ms linear 750ms infinite;
 }
 
 @keyframes motion {
-  /* line 38, scss/_roadtrack.scss */
+  /* line 36, scss/_roadtrack.scss */
   from {
     left: -25px;
   }
 
-  /* line 39, scss/_roadtrack.scss */
+  /* line 37, scss/_roadtrack.scss */
   to {
     left: -55px;
   }
 }
 
 @keyframes start {
-  /* line 43, scss/_roadtrack.scss */
+  /* line 41, scss/_roadtrack.scss */
   from {
     left: 0;
   }
 
-  /* line 44, scss/_roadtrack.scss */
+  /* line 42, scss/_roadtrack.scss */
   to {
     left: -55px;
   }
 }
 
-/* line 47, scss/_roadtrack.scss */
+/* line 45, scss/_roadtrack.scss */
 .pothole {
   position: relative;
   width: 30px;
@@ -173,7 +173,7 @@ h2 {
 }
 
 @keyframes pothole-motion {
-  /* line 60, scss/_roadtrack.scss */
+  /* line 58, scss/_roadtrack.scss */
   100% {
     right: 2000px;
   }
@@ -194,25 +194,27 @@ h2 {
   border-radius: 15px;
   border-width: 1px;
   border-style: solid;
-  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.5), inset -18px 0 2px rgba(0, 0, 0, 0.25), inset 10px 0 2px rgba(0, 0, 0, 0.35), 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5), inset -15px 0 10px rgba(0, 0, 0, 0.25), inset 10px 0 2px rgba(0, 0, 0, 0.35), inset 0 25px 10px #9d0000, inset 0 30px 25px red, inset 0 55px 10px #9d0000, 0 0 10px 0 rgba(0, 0, 0, 0.5), 0 4px 3px rgba(0, 0, 0, 0.75);
   transition: 500ms;
 }
 
-/* line 25, scss/_vehicle.scss */
+/* line 32, scss/_vehicle.scss */
 .vehicle-glass {
   position: relative;
   top: 2px;
   left: 6px;
   width: 80px;
   height: 54px;
-  background-color: cadetblue;
+  background-color: #053232;
   border-radius: 15px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
   border-right: 2px solid rgba(0, 0, 0, 0.75);
   border-left: 1px solid rgba(0, 0, 0, 0.75);
-  box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.5), inset 5px 0 10px rgba(0, 0, 0, 0.5), 5px 0 2px rgba(0, 0, 0, 0.25);
+  box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.5), inset 5px 0 10px rgba(0, 0, 0, 0.5), 5px 0 10px rgba(0, 0, 0, 0.35), inset 0 20px 10px #053232, inset 0 25px 25px rgba(255, 255, 255, 0.35), inset 0 45px 10px #053232;
 }
 
-/* line 41, scss/_vehicle.scss */
+/* line 55, scss/_vehicle.scss */
 .vehicle-roof {
   position: absolute;
   top: 4px;
@@ -221,12 +223,14 @@ h2 {
   height: 50px;
   background-color: #9d0000;
   border-radius: 15px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
   border-right: 1px solid rgba(0, 0, 0, 0.5);
   border-left: 1px solid rgba(0, 0, 0, 0.85);
-  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.5), inset -5px 0 5px 0 rgba(0, 0, 0, 0.25), inset 10px 0 5px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.5), inset -5px 0 5px 0 rgba(0, 0, 0, 0.25), inset 10px 0 5px 0 rgba(0, 0, 0, 0.25), inset 0 20px 10px #9d0000, inset 0 25px 25px red, inset 0 50px 10px #9d0000;
 }
 
-/* line 58, scss/_vehicle.scss */
+/* line 79, scss/_vehicle.scss */
 .vehicle-doors {
   position: absolute;
   top: 0;
@@ -237,7 +241,7 @@ h2 {
   box-shadow: -1px 0 0 0 rgba(0, 0, 0, 0.5), inset -10px 0 5px 0 rgba(0, 0, 0, 0.5);
 }
 
-/* line 71, scss/_vehicle.scss */
+/* line 92, scss/_vehicle.scss */
 .vehicle-left-door {
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -255,7 +259,7 @@ h2 {
     }
   }
 */
-/* line 92, scss/_vehicle.scss */
+/* line 113, scss/_vehicle.scss */
 .vehicle-right-door {
   top: 56px;
   border-bottom-left-radius: 5px;
@@ -263,7 +267,7 @@ h2 {
   border-top-right-radius: 10px;
 }
 
-/* line 100, scss/_vehicle.scss */
+/* line 121, scss/_vehicle.scss */
 .vehicle-mirrors {
   position: absolute;
   left: 22px;
@@ -273,7 +277,7 @@ h2 {
   box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.5), inset 2px 0 4px 0 rgba(0, 0, 0, 0.75);
 }
 
-/* line 111, scss/_vehicle.scss */
+/* line 132, scss/_vehicle.scss */
 .vehicle-left-mirror {
   top: -6px;
   border-top-right-radius: 10px;
@@ -281,7 +285,7 @@ h2 {
   border-bottom-right-radius: 50%;
 }
 
-/* line 118, scss/_vehicle.scss */
+/* line 139, scss/_vehicle.scss */
 .vehicle-right-mirror {
   top: -2px;
   border-bottom-right-radius: 10px;
@@ -289,7 +293,7 @@ h2 {
   border-top-right-radius: 50%;
 }
 
-/* line 126, scss/_vehicle.scss */
+/* line 147, scss/_vehicle.scss */
 .vehicle-headlights {
   position: absolute;
   width: 8px;
@@ -299,7 +303,7 @@ h2 {
   transition: 0.5s;
 }
 
-/* line 137, scss/_vehicle.scss */
+/* line 158, scss/_vehicle.scss */
 .vehicle-headlights_on {
   width: 3px;
   left: 108px;
@@ -308,21 +312,21 @@ h2 {
   box-shadow: 250px 0 250px 35px #ffff9f;
 }
 
-/* line 146, scss/_vehicle.scss */
+/* line 167, scss/_vehicle.scss */
 .headlights-left {
   top: 3px;
   border-top-right-radius: 15px;
   border-bottom-left-radius: 5px;
 }
 
-/* line 151, scss/_vehicle.scss */
+/* line 172, scss/_vehicle.scss */
 .headlights-right {
   top: 40px;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 5px;
 }
 
-/* line 157, scss/_vehicle.scss */
+/* line 178, scss/_vehicle.scss */
 .vehicle-taillights {
   position: absolute;
   width: 3px;
@@ -332,19 +336,19 @@ h2 {
   transition: 1s;
 }
 
-/* line 168, scss/_vehicle.scss */
+/* line 189, scss/_vehicle.scss */
 .vehicle-taillights_on {
   background-color: #ae0000;
   box-shadow: -10px 0 20px 2px #ae0000;
 }
 
-/* line 173, scss/_vehicle.scss */
+/* line 194, scss/_vehicle.scss */
 .taillights-left {
   top: 10px;
   border-top-left-radius: 15px;
 }
 
-/* line 177, scss/_vehicle.scss */
+/* line 198, scss/_vehicle.scss */
 .taillights-right {
   top: 40px;
   border-bottom-left-radius: 15px;
@@ -353,7 +357,7 @@ h2 {
 /**
  * Rear indicator lights.
  */
-/* line 186, scss/_vehicle.scss */
+/* line 207, scss/_vehicle.scss */
 .vehicle-rear-indicators {
   position: absolute;
   width: 3px;
@@ -362,36 +366,36 @@ h2 {
   background-color: rgba(0, 0, 0, 0);
 }
 
-/* line 196, scss/_vehicle.scss */
+/* line 217, scss/_vehicle.scss */
 .rear-indicators_on {
   animation: rear-indicators_on 1s ease infinite;
 }
 
 @keyframes rear-indicators_on {
-  /* line 200, scss/_vehicle.scss */
+  /* line 221, scss/_vehicle.scss */
   0% {
     background-color: transparent;
   }
 
-  /* line 201, scss/_vehicle.scss */
+  /* line 222, scss/_vehicle.scss */
   50% {
     background-color: #fe9301;
     box-shadow: -10px 0 40px 8px #fe9301;
   }
 
-  /* line 205, scss/_vehicle.scss */
+  /* line 226, scss/_vehicle.scss */
   100% {
     background-color: transparent;
   }
 }
 
-/* line 208, scss/_vehicle.scss */
+/* line 229, scss/_vehicle.scss */
 .rear-indicator-left {
   top: 8px;
   border-top-left-radius: 15px;
 }
 
-/* line 212, scss/_vehicle.scss */
+/* line 233, scss/_vehicle.scss */
 .rear-indicator-right {
   top: 45px;
   border-bottom-left-radius: 15px;
@@ -400,7 +404,7 @@ h2 {
 /**
  * Front indicator lights.
  */
-/* line 221, scss/_vehicle.scss */
+/* line 242, scss/_vehicle.scss */
 .vehicle-front-indicators {
   position: absolute;
   width: 2px;
@@ -409,26 +413,26 @@ h2 {
   background-color: rgba(0, 0, 0, 0.25);
 }
 
-/* line 231, scss/_vehicle.scss */
+/* line 252, scss/_vehicle.scss */
 .front-indicators_on {
   animation: front-indicators_on 1s ease infinite;
 }
 
 @keyframes front-indicators_on {
-  /* line 235, scss/_vehicle.scss */
+  /* line 256, scss/_vehicle.scss */
   50% {
     background-color: #fe9301;
     box-shadow: 25px 0 50px 10px #fe9301;
   }
 }
 
-/* line 241, scss/_vehicle.scss */
+/* line 262, scss/_vehicle.scss */
 .front-indicator-left {
   top: 8px;
   border-top-right-radius: 15px;
 }
 
-/* line 245, scss/_vehicle.scss */
+/* line 266, scss/_vehicle.scss */
 .front-indicator-right {
   top: 40px;
   border-bottom-right-radius: 15px;
@@ -437,16 +441,16 @@ h2 {
 /**
  * Extras
  */
-/* line 254, scss/_vehicle.scss */
+/* line 275, scss/_vehicle.scss */
 .vehicle-sunroof {
   position: absolute;
   top: 9px;
   left: 42px;
   width: 20px;
   height: 40px;
-  background-color: cadetblue;
+  background-color: #053232;
   border-radius: 5px;
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.75), 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.75), 0 0 15px rgba(0, 0, 0, 0.5), inset 0 15px 10px #053232, inset 0 25px 15px rgba(255, 255, 255, 0.25), inset 0 35px 10px #053232;
 }
 
 /* line 1, scss/_controls.scss */
