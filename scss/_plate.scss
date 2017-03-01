@@ -8,6 +8,7 @@
 
 // The plate wrapper section
 .license-plate {
+float: right;
   @include no-select;
   }
 

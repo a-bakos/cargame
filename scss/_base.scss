@@ -46,12 +46,8 @@ p {
  */
 .user-panel {
   width: $hpc;
-  //display: flex;
-  //align-items: center;
-
   margin-top: 20px; // coz there is an outline of the same size
   border-top: 5px solid black;
-  //padding: 2%;
   }
 
 .game-details {
@@ -61,6 +57,24 @@ p {
   box-shadow: inset 0 0 0 5px red;
   }
 
+table {
+  width: $hpc;
+  margin: 0 auto;
+  border-collapse: collapse;
+  //text-align: center;
+}
+
+tr {
+  
+}
+
+td {
+  width: ($hpc / 3);
+  margin: 0;
+  border: 1px solid blue;
+  }
+
+
 h2 {
   font-size: 16px;
   font-weight: bold;
@@ -69,7 +83,12 @@ h2 {
   }
 
 .the-player-name {}
-.player-wallet {}
+.current-money {}
+
+.dashboard-area {
+  border-radius: 15px;
+  background-color: forestgreen;
+  }
 
 .player-name-input-area {
   clear: both;

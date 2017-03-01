@@ -74,7 +74,7 @@ p {
   border-top: 5px solid black;
 }
 
-/* line 57, scss/_base.scss */
+/* line 53, scss/_base.scss */
 .game-details {
   outline: 1px solid red!important;
   width: 100%;
@@ -82,7 +82,21 @@ p {
   box-shadow: inset 0 0 0 5px red;
 }
 
-/* line 64, scss/_base.scss */
+/* line 60, scss/_base.scss */
+table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+/* line 71, scss/_base.scss */
+td {
+  width: 33.33333%;
+  margin: 0;
+  border: 1px solid blue;
+}
+
+/* line 78, scss/_base.scss */
 h2 {
   font-size: 16px;
   font-weight: bold;
@@ -90,7 +104,13 @@ h2 {
   margin: 0;
 }
 
-/* line 74, scss/_base.scss */
+/* line 88, scss/_base.scss */
+.dashboard-area {
+  border-radius: 15px;
+  background-color: forestgreen;
+}
+
+/* line 93, scss/_base.scss */
 .player-name-input-area {
   clear: both;
   display: block;
@@ -100,7 +120,7 @@ h2 {
   background: pink;
 }
 
-/* line 87, scss/_base.scss */
+/* line 106, scss/_base.scss */
 .player-name {
   font-size: 20px;
 }
@@ -513,10 +533,11 @@ h2 {
  */
 /* line 10, scss/_plate.scss */
 .license-plate {
+  float: right;
   user-select: none;
 }
 
-/* line 15, scss/_plate.scss */
+/* line 16, scss/_plate.scss */
 .plate-base {
   width: 250px;
   height: 125px;
@@ -536,7 +557,7 @@ h2 {
   z-index: 1;
 }
 
-/* line 48, scss/_plate.scss */
+/* line 49, scss/_plate.scss */
 .plate-sticker {
   display: inline-table;
   position: relative;
@@ -554,7 +575,7 @@ h2 {
   font-vertical-align: middle;
 }
 
-/* line 73, scss/_plate.scss */
+/* line 74, scss/_plate.scss */
 .plate-text {
   display: inline;
   position: relative;
@@ -569,7 +590,7 @@ h2 {
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75), 0 -1px 1px rgba(255, 255, 255, 0.75);
 }
 
-/* line 94, scss/_plate.scss */
+/* line 95, scss/_plate.scss */
 .plate-identifier {
   position: relative;
   margin: 0;
@@ -592,7 +613,7 @@ h2 {
   -webkit-text-fill-color: transparent;
 }
 
-/* line 124, scss/_plate.scss */
+/* line 125, scss/_plate.scss */
 .plate-identifier:after {
   position: absolute;
   width: inherit;
