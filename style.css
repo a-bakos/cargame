@@ -133,22 +133,34 @@ h2 {
 
 /* line 31, scss/_roadtrack.scss */
 .roadtrack-motion {
-  animation: motion 100ms linear infinite;
+  animation: start 750ms ease-in 1 forwards, motion 100ms linear 750ms infinite;
 }
 
 @keyframes motion {
-  /* line 36, scss/_roadtrack.scss */
+  /* line 38, scss/_roadtrack.scss */
   from {
     left: -25px;
   }
 
-  /* line 37, scss/_roadtrack.scss */
+  /* line 39, scss/_roadtrack.scss */
   to {
     left: -55px;
   }
 }
 
-/* line 40, scss/_roadtrack.scss */
+@keyframes start {
+  /* line 43, scss/_roadtrack.scss */
+  from {
+    left: 0;
+  }
+
+  /* line 44, scss/_roadtrack.scss */
+  to {
+    left: -55px;
+  }
+}
+
+/* line 47, scss/_roadtrack.scss */
 .pothole {
   position: relative;
   width: 30px;
@@ -161,7 +173,7 @@ h2 {
 }
 
 @keyframes pothole-motion {
-  /* line 53, scss/_roadtrack.scss */
+  /* line 60, scss/_roadtrack.scss */
   100% {
     right: 2000px;
   }

@@ -29,12 +29,19 @@
   }
 
 .roadtrack-motion {
-  animation: motion ($duration / 10) linear infinite;
+  animation:
+    start 750ms ease-in 1 forwards,
+    motion ($duration / 10) linear 750ms infinite;
   }
 
   @keyframes motion {
     from  { left: -25px; }
     to    { left: -55px; }
+    }
+
+  @keyframes start {
+    from { left: 0; }
+    to { left: -55px; }
     }
 
 .pothole {
