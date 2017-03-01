@@ -81,7 +81,7 @@
   top: 0;
   left: 35px;
   width: 30px;
-  height: 2px;
+  height: 3px;
 
   background-color: $color-red;
   box-shadow:
@@ -93,22 +93,7 @@
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 10px;
-
-  //animation: open-left-door 1s ease-out 1 forwards;
   }
-
-// This animation is for a possible later use.
-/*
-@keyframes open-left-door {
-  10% { border-bottom: 1px solid transparent; }
-  11% { border-bottom: 1px solid cadetblue; }
-  100% {
-    transform: translateY(-3px) translateX(-2px) rotate(70deg);
-    transform-origin: bottom right;
-    border-bottom: 1px solid cadetblue;
-    }
-  }
-*/
 
 .vehicle-right-door {
   top: 56px;
@@ -116,6 +101,36 @@
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 10px;
+  }
+
+// This animation is for a possible later use.
+.open-left-door { animation: open-left-door 1s ease-out infinite forwards; }
+.open-right-door { animation: open-right-door 1s ease-out infinite forwards; }
+
+@keyframes open-left-door {
+  10% {
+    border-bottom: 1px solid transparent;
+    transform: translateY(-3px);
+    }
+  11% { border-bottom: 1px solid rgb(5,50,50); }
+  100% {
+    transform: translateY(-2px) translateX(-2px) rotate(70deg);
+    transform-origin: bottom right;
+    border-bottom: 1px solid rgb(5,50,50);
+    }
+  }
+
+@keyframes open-right-door {
+  10% {
+    border-bottom: 1px solid transparent;
+    transform: translateY(3px);
+    }
+  11% { border-bottom: 1px solid rgb(5,50,50); }
+  100% {
+    transform: translateX(-2px) rotate(-70deg);
+    transform-origin: bottom right;
+    border-bottom: 1px solid rgb(5,50,50);
+    }
   }
 
 .vehicle-mirrors {
