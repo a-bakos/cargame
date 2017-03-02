@@ -254,9 +254,52 @@ h2 {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   box-shadow: 0 35px 175px 25px yellow;
+  animation: lamp-light-color 41s linear infinite;
 }
 
-/* line 89, scss/_roadtrack.scss */
+@keyframes lamp-light-color {
+  /* line 93, scss/_roadtrack.scss */
+  17% {
+    box-shadow: 0 35px 175px 25px yellow;
+  }
+
+  /* line 94, scss/_roadtrack.scss */
+  17.05% {
+    box-shadow: none;
+  }
+
+  /* line 95, scss/_roadtrack.scss */
+  17.1% {
+    box-shadow: 0 35px 175px 25px yellow;
+  }
+
+  /* line 96, scss/_roadtrack.scss */
+  18% {
+    box-shadow: 0 15px 100px 15px yellow;
+  }
+
+  /* line 97, scss/_roadtrack.scss */
+  18.1% {
+    box-shadow: 0 35px 175px 25px yellow;
+  }
+
+  /* line 98, scss/_roadtrack.scss */
+  50% {
+    box-shadow: 0 35px 175px 25px yellow;
+  }
+
+  /* line 99, scss/_roadtrack.scss */
+  51% {
+    box-shadow: 0 60px 200px 30px blue;
+  }
+
+  /* line 100, scss/_roadtrack.scss */
+  100% {
+    box-shadow: 0 60px 200px 30px blue;
+  }
+}
+
+/* line 103, scss/_roadtrack.scss */
 .head-support {
   margin: auto;
   width: 5px;
@@ -264,7 +307,7 @@ h2 {
   background: green;
 }
 
-/* line 95, scss/_roadtrack.scss */
+/* line 109, scss/_roadtrack.scss */
 .post-elem {
   margin: auto;
   width: 10px;
