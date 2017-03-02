@@ -15,88 +15,184 @@
   src: url("fonts/seasans.ttf") format("truetype");
 }
 
-/* * {
-  box-sizing: border-box;
-  }*/
-/* line 8, scss/_base.scss */
+/**
+ * Animation for setting night time on the elements of the gameframe.
+ * Currently inactive, and needs elaboration.
+ */
+/*
+.gameframe {
+  //animation: nighttime 20s ease-in-out infinite
+  }
+
+@keyframes nighttime {
+  0%    {}
+  50%   { @include black(background-color, 1); }
+  100%  { @include grass-green(background-color, 1); }
+  }
+*/
+/**
+ * Roadtrack animations.
+ */
+/* line 22, scss/_animations.scss */
+.roadtrack-motion {
+  animation-name: start, motion;
+  animation-duration: 750ms, 100ms;
+  animation-timing-function: ease-in, linear;
+  animation-delay: 0ms, 750ms;
+  animation-iteration-count: 1, infinite;
+}
+
+@keyframes start {
+  /* line 31, scss/_animations.scss */
+  from {
+    left: 0;
+  }
+
+  /* line 32, scss/_animations.scss */
+  to {
+    left: -55px;
+  }
+}
+
+@keyframes motion {
+  /* line 36, scss/_animations.scss */
+  from {
+    left: -25px;
+  }
+
+  /* line 37, scss/_animations.scss */
+  to {
+    left: -55px;
+  }
+}
+
+/**
+ * Pothole or sewer, whatever you want.
+ */
+/* line 45, scss/_animations.scss */
+.pothole {
+  animation-name: pothole-motion;
+  animation-duration: 13s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes pothole-motion {
+  /* line 54, scss/_animations.scss */
+  100% {
+    right: 2000px;
+  }
+}
+
+/**
+ * Lamp post animations.
+ */
+/* line 60, scss/_animations.scss */
+.lamp-post {
+  animation-name: lamp-post-motion;
+  animation-duration: 19.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes lamp-post-motion {
+  /* line 69, scss/_animations.scss */
+  100% {
+    right: 3000px;
+  }
+}
+
+/* line 72, scss/_animations.scss */
+.lamp-head {
+  animation: 41s linear infinite;
+  animation-name: lamp-light-color;
+  animation-duration: 39s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes lamp-light-color {
+  /* line 84, scss/_animations.scss */
+  17% {
+    box-shadow: 0 35px 175px 50px #ffb442;
+  }
+
+  /* line 85, scss/_animations.scss */
+  17.05% {
+    box-shadow: none;
+  }
+
+  /* line 86, scss/_animations.scss */
+  17.1% {
+    box-shadow: 0 35px 175px 25px #ffb442;
+  }
+
+  /* line 87, scss/_animations.scss */
+  18% {
+    box-shadow: 0 15px 100px 15px #ffb442;
+  }
+
+  /* line 88, scss/_animations.scss */
+  18.1% {
+    box-shadow: 0 35px 175px 50px #ffb442;
+  }
+
+  /* line 91, scss/_animations.scss */
+  50% {
+    box-shadow: 0 35px 175px 50px #ffb442;
+  }
+
+  /* line 92, scss/_animations.scss */
+  51% {
+    box-shadow: 0 60px 220px 60px #e05e07;
+  }
+
+  /* line 93, scss/_animations.scss */
+  100% {
+    box-shadow: 0 60px 220px 60px #e05e07;
+  }
+}
+
+/* line 3, scss/_base.scss */
 *,
 *:after,
 *:before {
   box-sizing: border-box;
 }
 
-/* line 12, scss/_base.scss */
+/* line 7, scss/_base.scss */
 body {
   margin: auto;
   height: 100vh;
   overflow-x: hidden;
-  background-color: #6f5245;
+  background-color: wheat;
   font-size: 20px;
 }
 
-@keyframes nighttime {
-  /* line 24, scss/_base.scss */
-  50% {
-    background-color: black;
-  }
-
-  /* line 25, scss/_base.scss */
-  100% {
-    background-color: #003300;
-  }
-}
-
-/* line 28, scss/_base.scss */
+/* line 16, scss/_base.scss */
 .gameframe {
   width: 120%;
+  height: 225px;
   left: 0;
   padding-top: 0px;
-  height: 225px;
   margin: auto;
   background-color: #003300;
-  outline: 20px solid #003300;
+}
+
+/* line 27, scss/_base.scss */
+p {
+  width: 100%;
+  font-family: "Ubuntu Condensed", sans-serif;
+  font-size: 20px;
+}
+
+/* line 33, scss/_base.scss */
+.hide-element {
+  display: none;
+  transition: 500ms;
 }
 
 /* line 38, scss/_base.scss */
-p {
-  width: 100%;
-  font-size: 12px;
-}
-
-/**
- * User panel is the section that contains and displays all the information
- * needed for the user.
- */
-/* line 47, scss/_base.scss */
-.user-panel {
-  width: 100%;
-  margin-top: 20px;
-  border-top: 5px solid black;
-}
-
-/* line 53, scss/_base.scss */
-.game-details {
-  outline: 1px solid red!important;
-  width: 100%;
-  margin: 0;
-  box-shadow: inset 0 0 0 5px red;
-}
-
-/* line 60, scss/_base.scss */
-table {
-  width: 100%;
-  margin: 0 auto;
-  border-collapse: collapse;
-}
-
-/* line 68, scss/_base.scss */
-td {
-  width: 33.33333%;
-  margin: 0;
-  border: 1px solid blue;
-}
-
-/* line 75, scss/_base.scss */
 h2 {
   font-size: 16px;
   font-weight: bold;
@@ -104,13 +200,59 @@ h2 {
   margin: 0;
 }
 
-/* line 82, scss/_base.scss */
+/**
+ * User panel is the section that contains and displays all the information
+ * needed for the user.
+ */
+/* line 6, scss/_user-panel.scss */
+.user-panel {
+  width: 100%;
+  margin-top: 20px;
+  border-top: 5px solid black;
+  background: purple;
+}
+
+/* line 15, scss/_user-panel.scss */
+.game-details {
+  background: blue;
+  width: 100%;
+  margin: 0;
+  box-shadow: inset 0 0 0 1px red;
+}
+
+/* line 22, scss/_user-panel.scss */
+table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+/* line 30, scss/_user-panel.scss */
+td {
+  width: 33.33333%;
+  margin: 0;
+  border: 1px solid blue;
+}
+
+/* line 36, scss/_user-panel.scss */
+.small-heading {
+  margin: 0;
+  line-height: normal;
+  font-family: "Teko", sans-serif;
+  font-size: 20px;
+}
+
+/* line 45, scss/_user-panel.scss */
 .the-player-name {
   font-size: 50px;
   font-weight: bolder;
+  font-family: "Passion One", cursive;
 }
 
-/* line 91, scss/_base.scss */
+/**
+ * Dashboard
+ */
+/* line 59, scss/_user-panel.scss */
 .dashboard-area {
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
@@ -118,16 +260,20 @@ h2 {
   border-top-right-radius: 50%;
   background-color: #433937;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.75), 0 10px 10px 0 rgba(0, 0, 0, 0.75), inset 0 25px 15px 0 rgba(0, 0, 0, 0.3), inset 0 -30px 30px 0 rgba(255, 255, 255, 0.1), inset 0 0 30px 0 black;
+  user-select: none;
 }
 
-/* line 107, scss/_base.scss */
+/* line 77, scss/_user-panel.scss */
 .odometer {
-  font-family: monospace;
+  text-align: center;
+  font-size: 36px;
+  font-family: "VT323", monospace;
   font-font-weight: bold;
   color: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(0, 0, 0, 0.65);
 }
 
-/* line 115, scss/_base.scss */
+/* line 88, scss/_user-panel.scss */
 .player-name-input-area {
   clear: both;
   display: block;
@@ -138,13 +284,7 @@ h2 {
   background: pink;
 }
 
-/* line 126, scss/_base.scss */
-.hide-element {
-  display: none;
-  transition: 500ms;
-}
-
-/* line 134, scss/_base.scss */
+/* line 104, scss/_user-panel.scss */
 .player-name {
   font-size: 20px;
 }
@@ -159,54 +299,25 @@ h2 {
   box-shadow: inset -15px 0 15px 10px rgba(0, 0, 0, 0.65), inset 0 35px 10px rgba(30, 30, 30, 0.75), inset 0 62px 10px rgba(60, 60, 60, 0.9), inset 0 -35px 10px rgba(40, 40, 40, 0.95);
 }
 
-/* line 15, scss/_roadtrack.scss */
+/* line 14, scss/_roadtrack.scss */
 .track-left {
   border-top: 5px double;
   border-top-color: #ffcc00;
 }
 
-/* line 19, scss/_roadtrack.scss */
+/* line 18, scss/_roadtrack.scss */
 .track-right {
   border-bottom: 5px double;
   border-bottom-color: #ffcc00;
 }
 
-/* line 24, scss/_roadtrack.scss */
+/* line 23, scss/_roadtrack.scss */
 .roadtrack-separator {
   border-bottom: 5px dashed;
   border-bottom-color: rgba(255, 255, 255, 0.75);
 }
 
-/* line 29, scss/_roadtrack.scss */
-.roadtrack-motion {
-  animation: start 750ms ease-in 1 forwards, motion 100ms linear 750ms infinite;
-}
-
-@keyframes motion {
-  /* line 36, scss/_roadtrack.scss */
-  from {
-    left: -25px;
-  }
-
-  /* line 37, scss/_roadtrack.scss */
-  to {
-    left: -55px;
-  }
-}
-
-@keyframes start {
-  /* line 41, scss/_roadtrack.scss */
-  from {
-    left: 0;
-  }
-
-  /* line 42, scss/_roadtrack.scss */
-  to {
-    left: -55px;
-  }
-}
-
-/* line 45, scss/_roadtrack.scss */
+/* line 1, scss/_pothole.scss */
 .pothole {
   position: relative;
   width: 30px;
@@ -215,17 +326,9 @@ h2 {
   right: -2000px;
   background: rgba(0, 0, 0, 0.85);
   border-radius: 50%;
-  animation: pothole-motion 13s linear infinite;
 }
 
-@keyframes pothole-motion {
-  /* line 58, scss/_roadtrack.scss */
-  100% {
-    right: 2000px;
-  }
-}
-
-/* line 61, scss/_roadtrack.scss */
+/* line 1, scss/_lamp-post.scss */
 .lamp-post {
   position: relative;
   width: 50px;
@@ -233,17 +336,9 @@ h2 {
   top: 15px;
   right: -3000px;
   z-index: 1;
-  animation: lamp-post-motion 20.5s linear infinite;
 }
 
-@keyframes lamp-post-motion {
-  /* line 73, scss/_roadtrack.scss */
-  100% {
-    right: 3000px;
-  }
-}
-
-/* line 76, scss/_roadtrack.scss */
+/* line 10, scss/_lamp-post.scss */
 .lamp-head {
   margin: auto;
   width: 20px;
@@ -254,62 +349,19 @@ h2 {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   box-shadow: 0 35px 175px 25px #ffb442;
-  animation: lamp-light-color 41s linear infinite;
 }
 
-@keyframes lamp-light-color {
-  /* line 93, scss/_roadtrack.scss */
-  17% {
-    box-shadow: 0 35px 175px 50px #ffb442;
-  }
-
-  /* line 94, scss/_roadtrack.scss */
-  17.05% {
-    box-shadow: none;
-  }
-
-  /* line 95, scss/_roadtrack.scss */
-  17.1% {
-    box-shadow: 0 35px 175px 25px #ffb442;
-  }
-
-  /* line 96, scss/_roadtrack.scss */
-  18% {
-    box-shadow: 0 15px 100px 15px #ffb442;
-  }
-
-  /* line 97, scss/_roadtrack.scss */
-  18.1% {
-    box-shadow: 0 35px 175px 50px #ffb442;
-  }
-
-  /* line 98, scss/_roadtrack.scss */
-  50% {
-    box-shadow: 0 35px 175px 50px #ffb442;
-  }
-
-  /* line 99, scss/_roadtrack.scss */
-  51% {
-    box-shadow: 0 60px 220px 60px #e05e07;
-  }
-
-  /* line 100, scss/_roadtrack.scss */
-  100% {
-    box-shadow: 0 60px 220px 60px #e05e07;
-  }
-}
-
-/* line 103, scss/_roadtrack.scss */
+/* line 23, scss/_lamp-post.scss */
 .head-support {
   position: relative;
+  z-index: 1;
   margin: auto;
   width: 5px;
   height: 10px;
   background: #1e1e1e;
-  z-index: 1;
 }
 
-/* line 111, scss/_roadtrack.scss */
+/* line 33, scss/_lamp-post.scss */
 .post-elem {
   position: relative;
   z-index: 1;
@@ -636,18 +688,6 @@ h2 {
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.75), 0 0 15px rgba(0, 0, 0, 0.5), inset 0 15px 10px #053232, inset 0 25px 15px rgba(255, 255, 255, 0.25), inset 0 35px 10px #053232;
 }
 
-/* line 1, scss/_controls.scss */
-.move-left {
-  top: 75px;
-  transition: 2s;
-}
-
-/* line 6, scss/_controls.scss */
-.move-right {
-  top: 165px;
-  transition: 2s;
-}
-
 /**
  * Styling of the generated license plate.
  *
@@ -746,4 +786,16 @@ h2 {
   background: none;
   text-shadow: 0 2px 1px black, 0 -2px 1px rgba(255, 255, 255, 0.5);
   z-index: -1;
+}
+
+/* line 1, scss/_controls.scss */
+.move-left {
+  top: 75px;
+  transition: 2s;
+}
+
+/* line 6, scss/_controls.scss */
+.move-right {
+  top: 165px;
+  transition: 2s;
 }

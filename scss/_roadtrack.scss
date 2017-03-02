@@ -4,7 +4,6 @@
   width: $hpc;
   height: 94px;
 
-  //background-color: rgb(80,80,80);
   background-color: rgba(20,20,20,1);
   box-shadow:
     inset -15px 0 15px 10px rgba(0,0,0,0.65),
@@ -25,98 +24,3 @@
   border-bottom: 5px dashed;
   @include white(border-bottom-color, 0.75);
   }
-
-.roadtrack-motion {
-  animation:
-    start 750ms ease-in 1 forwards,
-    motion ($duration / 10) linear 750ms infinite;
-  }
-
-  @keyframes motion {
-    from  { left: -25px; }
-    to    { left: -55px; }
-    }
-
-  @keyframes start {
-    from { left: 0; }
-    to { left: -55px; }
-    }
-
-.pothole {
-  position: relative;
-  width: 30px;
-  height: 30px;
-  top: -50px;
-  right: -2000px;
-  background: rgba(0,0,0,0.85);
-  border-radius: 50%;
-  animation: pothole-motion 13s linear infinite;
-  }
-
-@keyframes pothole-motion {
-  0% {}
-  100% { right: 2000px; }
-  }
-
-.lamp-post {
-  position: relative;
-  width: 50px;
-  height: 60px;
-  top: 15px;
-  right: -3000px;
-  z-index: 1;
-  animation: lamp-post-motion 20.5s linear infinite;
-  }
-
-@keyframes lamp-post-motion {
-  0% {}
-  100% { right: 3000px; }
-  }
-
-.lamp-head {
-  margin: auto;
-  width: 20px;
-  height: 40px;
-
-  background: rgb(30,30,30);
-  border: 5px solid rgba(0,0,0,0.15);
-  border-radius: 15px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-
-  box-shadow: 0 35px 175px 25px $color-lamp-orange;
-  animation: lamp-light-color 41s linear infinite;
-  }
-  
-@keyframes lamp-light-color {
-  0% {}
-  17%     { box-shadow: 0 35px 175px 50px $color-lamp-orange; }
-  17.05%  { box-shadow: none; }
-  17.1%   { box-shadow: 0 35px 175px 25px $color-lamp-orange; }
-  18%     { box-shadow: 0 15px 100px 15px $color-lamp-orange; }
-  18.1%   { box-shadow: 0 35px 175px 50px $color-lamp-orange; }
-  50%     { box-shadow: 0 35px 175px 50px $color-lamp-orange; }
-  51%     { box-shadow: 0 60px 220px 60px $color-lamp-yellow; }
-  100%    { box-shadow: 0 60px 220px 60px $color-lamp-yellow; }
-  }
-
-.head-support {
-  position: relative;
-  margin: auto;
-  width: 5px;
-  height: 10px;
-  background: rgb(30,30,30);
-  z-index: 1;
-}
-.post-elem {
-  position: relative;
-  z-index: 1;
-  margin: auto;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: rgb(30,30,30);
-  box-shadow:
-    0 -5px 10px 0 rgba(0,0,0,0.5),
-    inset 0 0 5px 0 rgba(0,0,0,0.15);
-}

@@ -1,0 +1,94 @@
+/**
+ * Animation for setting night time on the elements of the gameframe.
+ * Currently inactive, and needs elaboration.
+ */
+/*
+.gameframe {
+  //animation: nighttime 20s ease-in-out infinite
+  }
+
+@keyframes nighttime {
+  0%    {}
+  50%   { @include black(background-color, 1); }
+  100%  { @include grass-green(background-color, 1); }
+  }
+*/
+
+/**
+ * Roadtrack animations.
+ */
+$start-anim: 750ms;
+
+.roadtrack-motion {
+  animation-name: start, motion;
+  animation-duration: $start-anim, ($duration / 10);
+  animation-timing-function: ease-in, linear;
+  animation-delay: 0ms, $start-anim;
+  animation-iteration-count: 1, infinite;
+  }
+
+@keyframes start {
+  from  { left: 0; }
+  to    { left: -55px; }
+  }
+
+@keyframes motion {
+  from  { left: -25px; }
+  to    { left: -55px; }
+  }
+
+/**
+ * Pothole or sewer, whatever you want.
+ */
+$pothole-anim: 13s;
+
+.pothole {
+  animation-name: pothole-motion;
+  animation-duration: $pothole-anim;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  }
+
+@keyframes pothole-motion {
+  0%    {}
+  100%  { right: 2000px; }
+  }
+
+/**
+ * Lamp post animations.
+ */
+.lamp-post {
+  animation-name: lamp-post-motion;
+  animation-duration: $pothole-anim + ($pothole-anim / 2);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  }
+
+@keyframes lamp-post-motion {
+  0%    {}
+  100%  { right: 3000px; }
+  }
+
+.lamp-head {
+  animation: 41s linear infinite;
+  animation-name: lamp-light-color;
+  animation-duration: (($pothole-anim + ($pothole-anim / 2)) * 2);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  }
+
+@keyframes lamp-light-color {
+  0%      {}
+
+  // Uneven light vibration that mimics a dying lightbulb:
+  17%     { box-shadow: 0 35px 175px 50px $color-lamp-orange; }
+  17.05%  { box-shadow: none; }
+  17.1%   { box-shadow: 0 35px 175px 25px $color-lamp-orange; }
+  18%     { box-shadow: 0 15px 100px 15px $color-lamp-orange; }
+  18.1%   { box-shadow: 0 35px 175px 50px $color-lamp-orange; }
+
+  // Changing to a different light color so it seems there are more lamp posts:
+  50%     { box-shadow: 0 35px 175px 50px $color-lamp-orange; }
+  51%     { box-shadow: 0 60px 220px 60px $color-lamp-yellow; }
+  100%    { box-shadow: 0 60px 220px 60px $color-lamp-yellow; }
+  }

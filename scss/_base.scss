@@ -1,8 +1,3 @@
-
-/* * {
-  box-sizing: border-box;
-  }*/
-
 *,
 *:after,
 *:before {
@@ -14,113 +9,25 @@ body {
   height: 100vh;
   //overflow: hidden;
   overflow-x: hidden;
-  background-color: rgb(111,82,69);//$bg-color;
+  background-color: $bg-color;
   font-size: 20px;
-  //animation: nighttime 60s ease-in-out infinite;
-  }
-
-@keyframes nighttime {
-  0%    { }
-  50%   { @include black(background-color, 1); }
-  100%  { @include grass-green(background-color, 1); }
   }
 
 .gameframe {
   width: 120%;
-  left: 0;
-  padding-top: 50px;
   height: 225px;
+  left: 0;
+  padding-top: 0px;
   margin: auto;
+
   @include grass-green(background-color, 1);
-  outline: 20px solid $color-green;
+  //outline: 20px solid $color-green;
   }
 
 p {
   width: $hpc;
-  font-size: 12px;
-  }
-
-/**
- * User panel is the section that contains and displays all the information
- * needed for the user.
- */
-.user-panel {
-  width: $hpc;
-  margin-top: 20px; // coz there is an outline of the same size
-  border-top: 5px solid black;
-  }
-
-.game-details {
-  @include debug;
-  width: 100%;
-  margin: 0;
-  box-shadow: inset 0 0 0 5px red;
-  }
-
-table {
-  width: $hpc;
-  margin: 0 auto;
-  border-collapse: collapse;
-  }
-
-tr {}
-
-td {
-  width: ($hpc / 3);
-  margin: 0;
-  border: 1px solid blue;
-  }
-
-
-h2 {
-  font-size: 16px;
-  font-weight: bold;
-  line-height: normal;
-  margin: 0;
-  }
-
-.the-player-name {
-  font: {
-    size: 50px;
-    weight: bolder;
-    }
-  }
-
-.current-money {}
-
-.dashboard-area {
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
-  //background-color: rgba(53,61,72,1);
-  background-color: rgba(67,57,55,1);
-  
-  box-shadow:
-    0 0 20px 0 rgba(0,0,0,0.75),
-    0 10px 10px 0 rgba(0,0,0,0.75),
-    inset 0 25px 15px 0 rgba(0,0,0,0.3), // upper shadow line
-    inset 0 -30px 30px 0 rgba(255,255,255,0.1),
-    inset 0 0 30px 0 black;
-  }
-
-.odometer {
-  font: {
-    family: monospace;
-    font-weight: bold;
-    }
-  color: rgba(0,0,0,0.65);
-  }
-
-.player-name-input-area {
-  clear: both;
-  display: block;
-  width: auto;
-  height: 125px;
-  padding: 15px;
-  border: 1px solid blue;
-
-  background: pink;
+   font-family: $general-text;
+  font-size: 20px;
   }
 
 .hide-element {
@@ -128,9 +35,9 @@ h2 {
   transition: ($duration / 2);
   }
 
-.input-field {}
-.input-submit {}
-
-.player-name {
-  font-size: 20px;
+h2 {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: normal;
+  margin: 0;
   }

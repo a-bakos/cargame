@@ -1,0 +1,45 @@
+.lamp-post {
+  position: relative;
+  width: 50px;
+  height: 60px;
+  top: 15px;
+  right: -3000px;
+  z-index: 1;
+  }
+
+.lamp-head {
+  margin: auto;
+  width: 20px;
+  height: 40px;
+
+  background: rgb(30,30,30);
+  border: 5px solid rgba(0,0,0,0.15);
+  border-radius: 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 35px 175px 25px $color-lamp-orange;
+  }
+
+.head-support {
+  position: relative;
+  z-index: 1;
+  margin: auto;
+  width: 5px;
+  height: 10px;
+
+  background: rgb(30,30,30);
+  }
+
+.post-elem {
+  position: relative;
+  z-index: 1;
+  margin: auto;
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+  background: rgb(30,30,30);
+  box-shadow:
+    0 -5px 10px 0 rgba(0,0,0,0.5),
+    inset 0 0 5px 0 rgba(0,0,0,0.15);
+  }
