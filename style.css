@@ -50,7 +50,7 @@ body {
 .gameframe {
   width: 120%;
   left: 0;
-  padding-top: 50px;
+  padding-top: 0px;
   height: 225px;
   margin: auto;
   background-color: #003300;
@@ -158,13 +158,15 @@ h2 {
   background-color: #141414;
   box-shadow: inset -15px 0 15px 10px rgba(0, 0, 0, 0.65), inset 0 35px 10px rgba(30, 30, 30, 0.75), inset 0 62px 10px rgba(60, 60, 60, 0.9), inset 0 -35px 10px rgba(40, 40, 40, 0.95);
 }
-/* line 14, scss/_roadtrack.scss */
-.roadtrack:nth-child(1) {
+
+/* line 15, scss/_roadtrack.scss */
+.track-left {
   border-top: 5px double;
   border-top-color: #ffcc00;
 }
-/* line 18, scss/_roadtrack.scss */
-.roadtrack:nth-child(2) {
+
+/* line 19, scss/_roadtrack.scss */
+.track-right {
   border-bottom: 5px double;
   border-bottom-color: #ffcc00;
 }
@@ -221,6 +223,54 @@ h2 {
   100% {
     right: 2000px;
   }
+}
+
+/* line 61, scss/_roadtrack.scss */
+.lamp-post {
+  position: relative;
+  width: 50px;
+  height: 60px;
+  top: 15px;
+  right: -3000px;
+  background: rgba(255, 255, 255, 0.25);
+  z-index: 1;
+  animation: lamp-post-motion 20.5s linear infinite;
+}
+
+@keyframes lamp-post-motion {
+  /* line 74, scss/_roadtrack.scss */
+  100% {
+    right: 3000px;
+  }
+}
+
+/* line 77, scss/_roadtrack.scss */
+.lamp-head {
+  margin: auto;
+  width: 20px;
+  height: 40px;
+  background: red;
+  border-radius: 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  box-shadow: 0 35px 175px 25px yellow;
+}
+
+/* line 89, scss/_roadtrack.scss */
+.head-support {
+  margin: auto;
+  width: 5px;
+  height: 10px;
+  background: green;
+}
+
+/* line 95, scss/_roadtrack.scss */
+.post-elem {
+  margin: auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: blue;
 }
 
 /**

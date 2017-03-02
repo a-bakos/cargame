@@ -11,15 +11,15 @@
     inset 0 35px 10px rgba(30,30,30,0.75),
     inset 0 62px 10px rgba(60,60,60,0.9),
     inset 0 -35px 10px rgba(40,40,40,0.95);
-  &:nth-child(1) {
+  }
+  .track-left {
     border-top: 5px double;
     @include warning-yellow(border-top-color, 1);
     }
-  &:nth-child(2) {
+  .track-right {
     border-bottom: 5px double;
     @include warning-yellow(border-bottom-color, 1);
     }
-  }
 
 .roadtrack-separator {
   border-bottom: 5px dashed;
@@ -56,4 +56,46 @@
 @keyframes pothole-motion {
   0% {}
   100% { right: 2000px; }
+  }
+
+.lamp-post {
+  position: relative;
+  width: 50px;
+  height: 60px;
+  top: 15px;
+  right: -3000px;
+  background: rgba(255,255,255,0.25);
+  z-index: 1;
+animation: lamp-post-motion 20.5s linear infinite;
+  }
+
+@keyframes lamp-post-motion {
+  0% {}
+  100% { right: 3000px; }
+}
+
+.lamp-head {
+  margin: auto;
+  width: 20px;
+  height: 40px;
+
+  background: red;
+  border-radius: 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+  box-shadow: 0 35px 175px 25px yellow;
+}
+.head-support {
+  margin: auto;
+  width: 5px;
+  height: 10px;
+  background: green;
+}
+.post-elem {
+  margin: auto;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: blue;
 }
