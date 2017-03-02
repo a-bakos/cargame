@@ -223,7 +223,7 @@ function checkPlayerName() {
       // Capitalize first letter
       playerNameValue = playerNameValue.charAt(0).toUpperCase() + playerNameValue.slice(1);
 
-      thePlayerNameDisplay.innerHTML = "Driver: " + playerNameValue;
+      thePlayerNameDisplay.innerHTML = playerNameValue;
       console.log("Correct player name input.");
       console.log("Driver: " + playerNameValue);
 
@@ -280,6 +280,46 @@ enterPlayerName.addEventListener("click", function(event) {
   checkPlayerName();
   getPlateData();
 });
+
+/**
+ * Odometer
+ */
+var odometer = document.querySelector(".odometer");
+var distance = 0;
+var timeRunning = false;
+
+function startTime() {
+  if (timeRunning == false) {
+    timeRunning = true;
+    incrementTime();
+  }
+  else {
+    timeRunning == false;
+  }
+}
+
+function incrementTime() {
+  if (timeRunning == true) {
+    setTimeout(function() {
+      distance++;
+      var kms =  Math.floor(distance / 1000);
+      var kilometers = Math.floor(distance / 10);
+      var meters = distance % 10;
+      
+      if (kilometers < 10) {
+        kilometers = "0" + kilometers;
+      }
+      
+      odometer.innerHTML = kms + " " + kilometers + " " + meters;
+      incrementTime();
+    }, 750);
+  }
+}
+
+addEventListener("load", function(event) {
+  startTime();
+});
+
 
 console.log("Driver: " + vehicle.defaultDriverName);
 getPlateData();
