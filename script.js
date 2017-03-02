@@ -157,6 +157,8 @@ var playerNameField = document.querySelector(".player-name");
 var playerNameValue;
 // The OK button:
 var enterPlayerName = document.querySelector("#enter-player-name");
+// Player details area
+var playerDetails = document.querySelector(".player-name-display");
 // Where the player name is displayed:
 var thePlayerNameDisplay = document.querySelector(".the-player-name");
 thePlayerNameDisplay.innerHTML = "Driver: " + vehicle.defaultDriverName;
@@ -229,6 +231,7 @@ function checkPlayerName() {
       changePlateData();
       // If names are all correctly set, hide the input area:
       hideElement(inputArea);
+      playerDetails.classList.remove("hide-element");
     }
   }
 }
