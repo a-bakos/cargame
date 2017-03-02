@@ -20,6 +20,10 @@ $color-orange:        rgba(254,147,1,1);
 $color-light-yellow:  rgb(255,255,159);     // color of the car's front lights
 $color-green:         rgb(0,51,0);
 
+$color-lamp-yellow:   rgba(224,94,7,1);
+$color-lamp-orange:   rgba(255,180,66,1);
+
+
 /**
  * Let's use interpolation on colors, so they aren't dependent on individual
  * CSS porperties. We are applying RGB colors with an optional opacity value,

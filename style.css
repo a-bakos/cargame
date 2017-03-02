@@ -232,35 +232,35 @@ h2 {
   height: 60px;
   top: 15px;
   right: -3000px;
-  background: rgba(255, 255, 255, 0.25);
   z-index: 1;
   animation: lamp-post-motion 20.5s linear infinite;
 }
 
 @keyframes lamp-post-motion {
-  /* line 74, scss/_roadtrack.scss */
+  /* line 73, scss/_roadtrack.scss */
   100% {
     right: 3000px;
   }
 }
 
-/* line 77, scss/_roadtrack.scss */
+/* line 76, scss/_roadtrack.scss */
 .lamp-head {
   margin: auto;
   width: 20px;
   height: 40px;
-  background: red;
+  background: #1e1e1e;
+  border: 5px solid rgba(0, 0, 0, 0.15);
   border-radius: 15px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  box-shadow: 0 35px 175px 25px yellow;
+  box-shadow: 0 35px 175px 25px #ffb442;
   animation: lamp-light-color 41s linear infinite;
 }
 
 @keyframes lamp-light-color {
   /* line 93, scss/_roadtrack.scss */
   17% {
-    box-shadow: 0 35px 175px 25px yellow;
+    box-shadow: 0 35px 175px 50px #ffb442;
   }
 
   /* line 94, scss/_roadtrack.scss */
@@ -270,50 +270,55 @@ h2 {
 
   /* line 95, scss/_roadtrack.scss */
   17.1% {
-    box-shadow: 0 35px 175px 25px yellow;
+    box-shadow: 0 35px 175px 25px #ffb442;
   }
 
   /* line 96, scss/_roadtrack.scss */
   18% {
-    box-shadow: 0 15px 100px 15px yellow;
+    box-shadow: 0 15px 100px 15px #ffb442;
   }
 
   /* line 97, scss/_roadtrack.scss */
   18.1% {
-    box-shadow: 0 35px 175px 25px yellow;
+    box-shadow: 0 35px 175px 50px #ffb442;
   }
 
   /* line 98, scss/_roadtrack.scss */
   50% {
-    box-shadow: 0 35px 175px 25px yellow;
+    box-shadow: 0 35px 175px 50px #ffb442;
   }
 
   /* line 99, scss/_roadtrack.scss */
   51% {
-    box-shadow: 0 60px 200px 30px blue;
+    box-shadow: 0 60px 220px 60px #e05e07;
   }
 
   /* line 100, scss/_roadtrack.scss */
   100% {
-    box-shadow: 0 60px 200px 30px blue;
+    box-shadow: 0 60px 220px 60px #e05e07;
   }
 }
 
 /* line 103, scss/_roadtrack.scss */
 .head-support {
+  position: relative;
   margin: auto;
   width: 5px;
   height: 10px;
-  background: green;
+  background: #1e1e1e;
+  z-index: 1;
 }
 
-/* line 109, scss/_roadtrack.scss */
+/* line 111, scss/_roadtrack.scss */
 .post-elem {
+  position: relative;
+  z-index: 1;
   margin: auto;
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: blue;
+  background: #1e1e1e;
+  box-shadow: 0 -5px 10px 0 rgba(0, 0, 0, 0.5), inset 0 0 5px 0 rgba(0, 0, 0, 0.15);
 }
 
 /**
@@ -322,7 +327,7 @@ h2 {
 /* line 4, scss/_vehicle.scss */
 .vehicle {
   position: absolute;
-  top: 160px;
+  top: 165px;
   left: 100px;
   width: 125px;
   height: 60px;
@@ -633,13 +638,13 @@ h2 {
 
 /* line 1, scss/_controls.scss */
 .move-left {
-  top: 70px;
+  top: 75px;
   transition: 2s;
 }
 
 /* line 6, scss/_controls.scss */
 .move-right {
-  top: 160px;
+  top: 165px;
   transition: 2s;
 }
 
