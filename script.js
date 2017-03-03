@@ -33,6 +33,15 @@ var vehicle = {
 };
 
 /**
+ * "Global" functions
+ */
+
+// Hiding elements
+function hideElement(elem) {
+  elem.className = "hide-element";
+}
+
+/**
  * Vehicle lights controls
  * Function for toggling headlights and tail lights
  */
@@ -54,6 +63,7 @@ function toggleLights(lightsSelector, lightsClass, logLights) {
   }
 }
 
+// (!) Global eventlistener for key L -- this has to be changed to behave conditionally
 addEventListener("keydown", function(event) {
   toggleLights(vehicle.headLights, vehicle.headLightsOn, "Head");
   toggleLights(vehicle.tailLights, vehicle.tailLightsOn, "Tail ");
@@ -63,6 +73,7 @@ addEventListener("keydown", function(event) {
  * Indicator lights controls
  */
 
+// (!) Global eventlistener for keys Q,E -- this has to be changed to behave conditionally
 addEventListener("keydown", function(event) {
   // Left side indicators:
   if (event.keyCode == vehicle.leftIndicatorsKey) {
@@ -154,14 +165,15 @@ extraSunroof.addEventListener("change", function() {
 var inputArea = document.querySelector(".player-name-input-area");
 // Input field:
 var playerNameField = document.querySelector(".player-name");
+
 var playerNameValue;
+
 // The OK button:
 var enterPlayerName = document.querySelector("#enter-player-name");
 // Player details area
 var playerDetails = document.querySelector(".player-name-display");
 // Where the player name is displayed:
 var thePlayerNameDisplay = document.querySelector(".the-player-name");
-thePlayerNameDisplay.innerHTML = "Driver: " + vehicle.defaultDriverName;
 
 /**
  * Display license plate values
@@ -192,8 +204,8 @@ function getPlateData() {
 /**
  * Function for checking the player's name and make corrections if needed.
  *
- * Rules:
- * - The player name's max length is 12 characters.
+ * Rules for the player name:
+ * - Max length is 12 characters
  * - It can contain letters and numbers
  * - Letters only from the English alphabet
  * - Can have lowercase and uppercase letters
@@ -215,6 +227,7 @@ function checkPlayerName() {
     console.log("Incorrect player name input.");
     setDefaultPlateData();
 
+    // Delete the value inside and set focus on the field:
     playerNameField.value = "";
     playerNameField.focus();
   }
@@ -227,9 +240,9 @@ function checkPlayerName() {
       console.log("Correct player name input.");
       console.log("Driver: " + playerNameValue);
 
-      // Update data:
+      // If names are all correctly set, then update data, hide input area and
+      // show the player details area
       changePlateData();
-      // If names are all correctly set, hide the input area:
       hideElement(inputArea);
       playerDetails.classList.remove("hide-element");
     }
@@ -270,11 +283,6 @@ function setDefaultPlateData() {
   console.log("Default plate data used.");
 }
 
-// Hiding elements
-function hideElement(elem) {
-  elem.className = "hide-element";
-}
-
 // Listen to player's name changes
 enterPlayerName.addEventListener("click", function(event) {
   checkPlayerName();
@@ -289,37 +297,38 @@ var distance = 0;
 var timeRunning = false;
 
 function startTime() {
-  if (timeRunning == false) {
+  if (timeRunning === false) {
     timeRunning = true;
     incrementTime();
   }
   else {
-    timeRunning == false;
+    timeRunning === false;
   }
 }
 
 function incrementTime() {
-  if (timeRunning == true) {
+  if (timeRunning === true) {
     setTimeout(function() {
       distance++;
-      var kms =  Math.floor(distance / 1000);
+
+      var kms =  Math.floor(distance / 10000);
       var kilometers = Math.floor(distance / 10);
       var meters = distance % 10;
-      
+
       if (kilometers < 10) {
         kilometers = "0" + kilometers;
       }
-      
+
       odometer.innerHTML = kms + " " + kilometers + " " + meters;
       incrementTime();
     }, 750);
   }
 }
 
+// Global eventlistener for odometer:
 addEventListener("load", function(event) {
   startTime();
 });
-
 
 console.log("Driver: " + vehicle.defaultDriverName);
 getPlateData();
