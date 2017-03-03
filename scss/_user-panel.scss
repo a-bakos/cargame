@@ -71,13 +71,29 @@ td {
     inset 0 -30px 30px 0 rgba(255,255,255,0.1),
     inset 0 0 30px 0 black;
 
+  font: {
+    family: $odometer-font;
+    size: 30px;
+    }
+  color: rgba(235,159,76,0.95);
+  text: {
+    align: center;
+    shadow:
+      1px 1px 1px rgb(85,8,0),
+      0 0 10px rgb(169,10,78);
+    }
+
   @include no-select;
   }
 
 .clock-area {}
 
-.clock-date {}
-.clock-time {}
+.clock-date {
+  font-size: 22px;
+  }
+.clock-time {
+  font-size: 36px;
+  }
 
 .odometer-area {
   width: 75%;
@@ -90,22 +106,12 @@ td {
     inset 1px 1px 1px rgba(85,8,0, 0.15),
     0 0 10px rgba(169,10,78, 0.15),
     inset 0 0 10px rgba(169,10,78, 0.15);*/
-  font: {
-    family: $odometer-font;
-    size: 30px;
-    }
-  color: rgba(235,159,76,0.95);
-  text: {
-    align: center;
-    shadow:
-      1px 1px 1px rgb(85,8,0),
-      0 0 10px rgb(169,10,78);
-    }
+
   }
 
 .odometer {
-  margin-left: 15px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
   font-size: 36px;
   }
 

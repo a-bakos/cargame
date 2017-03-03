@@ -260,10 +260,25 @@ td {
   border-top-right-radius: 150px;
   background-color: #250906;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.75), 0 10px 10px 0 rgba(0, 0, 0, 0.75), inset 0 25px 15px 0 rgba(0, 0, 0, 0.3), inset 0 -30px 30px 0 rgba(255, 255, 255, 0.1), inset 0 0 30px 0 black;
+  font-family: "VT323", monospace;
+  font-size: 30px;
+  color: rgba(235, 159, 76, 0.95);
+  text-align: center;
+  text-shadow: 1px 1px 1px #550800, 0 0 10px #a90a4e;
   user-select: none;
 }
 
-/* line 82, scss/_user-panel.scss */
+/* line 91, scss/_user-panel.scss */
+.clock-date {
+  font-size: 22px;
+}
+
+/* line 94, scss/_user-panel.scss */
+.clock-time {
+  font-size: 36px;
+}
+
+/* line 98, scss/_user-panel.scss */
 .odometer-area {
   width: 75%;
   margin: auto;
@@ -272,21 +287,16 @@ td {
     inset 1px 1px 1px rgba(85,8,0, 0.15),
     0 0 10px rgba(169,10,78, 0.15),
     inset 0 0 10px rgba(169,10,78, 0.15);*/
-  font-family: "VT323", monospace;
-  font-size: 30px;
-  color: rgba(235, 159, 76, 0.95);
-  text-align: center;
-  text-shadow: 1px 1px 1px #550800, 0 0 10px #a90a4e;
 }
 
-/* line 106, scss/_user-panel.scss */
+/* line 112, scss/_user-panel.scss */
 .odometer {
-  margin-left: 15px;
-  margin-right: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
   font-size: 36px;
 }
 
-/* line 116, scss/_user-panel.scss */
+/* line 122, scss/_user-panel.scss */
 .player-name-input-area {
   clear: both;
   display: block;
@@ -297,7 +307,7 @@ td {
   background: pink;
 }
 
-/* line 132, scss/_user-panel.scss */
+/* line 138, scss/_user-panel.scss */
 .player-name {
   font-size: 20px;
 }
