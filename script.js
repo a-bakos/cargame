@@ -32,6 +32,11 @@ var vehicle = {
   moveRightMotion:    "move-right", // CSS class to toggle
 };
 
+// The duration the car needs to reach its static velocity.
+// Defined in milliseconds.
+// Used for example to mimic loading up the dashboard clock & odometer.
+var startupTime = 750;
+
 /**
  * "Global" functions
  */
@@ -289,6 +294,43 @@ enterPlayerName.addEventListener("click", function(event) {
   getPlateData();
 });
 
+console.log("Driver: " + vehicle.defaultDriverName);
+getPlateData();
+
+/**
+ * DASHBOARD ELEMENTS
+ */
+
+/**
+ * Clock -- date and time display
+ */
+var dateDisplay = document.querySelector(".clock-date");
+var timeDisplay = document.querySelector(".clock-time");
+
+var date        = new Date();
+
+var todaysNum  = date.getDay();
+var dayNames    = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var todaysName   = dayNames[todaysNum];
+
+var currentTime = date.getHours() + ":" + date.getMinutes();
+
+var currMonth   = date.getMonth();
+
+if (todaysNum <= 9) {
+  todaysNum = "0" + todaysNum;
+}
+if (currMonth <= 9) {
+  currMonth = "0" + currMonth;
+}
+
+var todaysDate  =  todaysName + " " + todaysNum + "-" + currMonth + "-" + date.getFullYear();
+
+setTimeout(function() {
+  dateDisplay.innerHTML = todaysDate;
+  timeDisplay.innerHTML = currentTime;
+}, (startupTime / 2));
+
 /**
  * Odometer
  *
@@ -331,7 +373,7 @@ function incrementTime() {
       odometer.innerHTML = distance;
 
       incrementTime();
-    }, 750);
+    }, startupTime);
   }
 }
 
@@ -339,6 +381,3 @@ function incrementTime() {
 addEventListener("load", function(event) {
   startTime();
 });
-
-console.log("Driver: " + vehicle.defaultDriverName);
-getPlateData();
