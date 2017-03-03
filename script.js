@@ -311,15 +311,20 @@ function incrementTime() {
     setTimeout(function() {
       distance++;
 
-      var kms =  Math.floor(distance / 10000);
-      var kilometers = Math.floor(distance / 10);
-      var meters = distance % 10;
+      var kilometers = Math.floor(distance / 5);
+      var meters = (distance % 5) * 2;
 
-      if (kilometers < 10) {
+      if (kilometers > 99 && kilometers <= 999) {
         kilometers = "0" + kilometers;
       }
+      else if (kilometers > 9 && kilometers <= 99) {
+        kilometers = "00" + kilometers;
+      }
+      else if (kilometers <= 9) {
+        kilometers = "000" + kilometers;
+      }
 
-      odometer.innerHTML = kms + " " + kilometers + " " + meters;
+      odometer.innerHTML = "" + kilometers + "." + meters;
       incrementTime();
     }, 750);
   }
