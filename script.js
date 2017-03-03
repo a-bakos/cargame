@@ -46,6 +46,8 @@ function hideElement(elem) {
   elem.className = "hide-element";
 }
 
+var statusIconLights = document.querySelector(".icon-lights");
+
 /**
  * Vehicle lights controls
  * Function for toggling headlights and tail lights
@@ -57,10 +59,12 @@ function toggleLights(lightsSelector, lightsClass, logLights) {
 
       if (lightsSelector[i].classList.contains(lightsClass)) {
         lightsSelector[i].classList.remove(lightsClass);
+        statusIconLights.src = "img/light-off.png";
         console.log(logLights + "lights turned off.");
       }
       else {
         lightsSelector[i].classList.add(lightsClass);
+        statusIconLights.src = "img/light-on.png";
         console.log(logLights + "lights turned on.");
       }
 
@@ -78,6 +82,9 @@ addEventListener("keydown", function(event) {
  * Indicator lights controls
  */
 
+var statusIconLeftIndex = document.querySelector(".icon-left-index")
+var statusIconRightIndex = document.querySelector(".icon-right-index")
+
 // (!) Global eventlistener for keys Q,E -- this has to be changed to behave conditionally
 addEventListener("keydown", function(event) {
   // Left side indicators:
@@ -88,16 +95,19 @@ addEventListener("keydown", function(event) {
     {
       vehicle.leftIndicators[0].classList.remove(vehicle.frontIndicatorsOn);
       vehicle.leftIndicators[1].classList.remove(vehicle.rearIndicatorsOn);
+      statusIconLeftIndex.src = "img/index-left-off.png";
       console.log("Left indicator lights off.");
     }
     else {
       // Turn off the indicators on the other side:
       vehicle.rightIndicators[0].classList.remove(vehicle.frontIndicatorsOn);
       vehicle.rightIndicators[1].classList.remove(vehicle.rearIndicatorsOn);
+      statusIconRightIndex.src = "img/index-right-off.png";
 
       // Turn on the left side:
       vehicle.leftIndicators[0].classList.add(vehicle.frontIndicatorsOn);
       vehicle.leftIndicators[1].classList.add(vehicle.rearIndicatorsOn);
+      statusIconLeftIndex.src = "img/index-left-on.png";
       console.log("Left indicator lights on.");
     }
   } // Left indicators
@@ -108,18 +118,21 @@ addEventListener("keydown", function(event) {
       vehicle.rightIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
       vehicle.rightIndicators[1].classList.contains(vehicle.rearIndicatorsOn))
     {
-      console.log("Right indicator lights off.");
       vehicle.rightIndicators[0].classList.remove(vehicle.frontIndicatorsOn);
       vehicle.rightIndicators[1].classList.remove(vehicle.rearIndicatorsOn);
+      statusIconRightIndex.src = "img/index-right-off.png";
+      console.log("Right indicator lights off.");
     }
     else {
       // Turn off the indicators on the other side:
       vehicle.leftIndicators[0].classList.remove(vehicle.frontIndicatorsOn);
       vehicle.leftIndicators[1].classList.remove(vehicle.rearIndicatorsOn);
+      statusIconLeftIndex.src = "img/index-left-off.png";
 
       // Turn on the right side:
       vehicle.rightIndicators[0].classList.add(vehicle.frontIndicatorsOn);
       vehicle.rightIndicators[1].classList.add(vehicle.rearIndicatorsOn);
+      statusIconRightIndex.src = "img/index-right-on.png";
       console.log("Right indicator lights on.");
     }
   } // Right indicators
@@ -313,9 +326,9 @@ var todaysNum  = date.getDay();
 var dayNames    = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 var todaysName   = dayNames[todaysNum];
 
-var currentTime = date.getHours() + ":" + date.getMinutes();
-
 var currMonth   = date.getMonth();
+
+var currMinutes = date.getMinutes()
 
 if (todaysNum <= 9) {
   todaysNum = "0" + todaysNum;
@@ -323,6 +336,11 @@ if (todaysNum <= 9) {
 if (currMonth <= 9) {
   currMonth = "0" + currMonth;
 }
+if (currMinutes <= 9) {
+  currMinutes = "0" + currMinutes;
+}
+
+var currentTime = date.getHours() + ":" + currMinutes;
 
 var todaysDate  =  todaysName + " " + todaysNum + "-" + currMonth + "-" + date.getFullYear();
 

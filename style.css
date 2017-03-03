@@ -212,7 +212,7 @@ h2 {
   background: purple;
 }
 
-/* line 15, scss/_user-panel.scss */
+/* line 13, scss/_user-panel.scss */
 .game-details {
   background: blue;
   width: 100%;
@@ -220,21 +220,21 @@ h2 {
   box-shadow: inset 0 0 0 1px red;
 }
 
-/* line 22, scss/_user-panel.scss */
+/* line 20, scss/_user-panel.scss */
 table {
   width: 100%;
   margin: 0 auto;
   border-collapse: collapse;
 }
 
-/* line 30, scss/_user-panel.scss */
+/* line 28, scss/_user-panel.scss */
 td {
   width: 33.33333%;
   margin: 0;
   border: 1px solid blue;
 }
 
-/* line 36, scss/_user-panel.scss */
+/* line 34, scss/_user-panel.scss */
 .small-heading {
   margin: 0;
   line-height: normal;
@@ -242,7 +242,7 @@ td {
   font-size: 20px;
 }
 
-/* line 45, scss/_user-panel.scss */
+/* line 43, scss/_user-panel.scss */
 .the-player-name {
   font-size: 50px;
   font-weight: bolder;
@@ -252,7 +252,7 @@ td {
 /**
  * Dashboard
  */
-/* line 60, scss/_user-panel.scss */
+/* line 58, scss/_user-panel.scss */
 .dashboard-area {
   border-radius: 25px;
   background-color: #250906;
@@ -268,17 +268,17 @@ td {
 /**
  * Clock
  */
-/* line 93, scss/_user-panel.scss */
+/* line 91, scss/_user-panel.scss */
 .clock-date {
   font-size: 22px;
 }
 
-/* line 97, scss/_user-panel.scss */
+/* line 95, scss/_user-panel.scss */
 .celsius-display {
   font-size: 22px;
 }
 
-/* line 101, scss/_user-panel.scss */
+/* line 99, scss/_user-panel.scss */
 .clock-time {
   font-size: 36px;
 }
@@ -286,13 +286,13 @@ td {
 /**
  * Odometer
  */
-/* line 109, scss/_user-panel.scss */
+/* line 107, scss/_user-panel.scss */
 .odometer-area {
   width: 75%;
   margin: auto;
 }
 
-/* line 114, scss/_user-panel.scss */
+/* line 112, scss/_user-panel.scss */
 .odometer {
   margin-left: 10px;
   margin-right: 10px;
@@ -302,23 +302,23 @@ td {
 /**
  * Status icons
  */
-/* line 129, scss/_user-panel.scss */
+/* line 127, scss/_user-panel.scss */
 .status-icon {
   width: 25px;
 }
 
-/* line 132, scss/_user-panel.scss */
+/* line 130, scss/_user-panel.scss */
 .status-icon:first-child,
 .status-icon:last-child {
   width: 16px;
 }
 
-/* line 134, scss/_user-panel.scss */
+/* line 132, scss/_user-panel.scss */
 .status-icon:nth-child(2) {
   width: 18px;
 }
 
-/* line 135, scss/_user-panel.scss */
+/* line 133, scss/_user-panel.scss */
 .status-icon:nth-child(6) {
   width: 20px;
 }
@@ -326,7 +326,7 @@ td {
 /**
  * Player name input
  */
-/* line 141, scss/_user-panel.scss */
+/* line 139, scss/_user-panel.scss */
 .player-name-input-area {
   clear: both;
   display: block;
@@ -337,7 +337,7 @@ td {
   background: pink;
 }
 
-/* line 155, scss/_user-panel.scss */
+/* line 153, scss/_user-panel.scss */
 .player-name {
   font-size: 20px;
 }
