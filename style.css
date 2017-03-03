@@ -256,24 +256,37 @@ td {
 .dashboard-area {
   border-bottom-left-radius: 50px;
   border-bottom-right-radius: 50px;
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
-  background-color: #433937;
+  border-top-left-radius: 150px;
+  border-top-right-radius: 150px;
+  background-color: #250906;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.75), 0 10px 10px 0 rgba(0, 0, 0, 0.75), inset 0 25px 15px 0 rgba(0, 0, 0, 0.3), inset 0 -30px 30px 0 rgba(255, 255, 255, 0.1), inset 0 0 30px 0 black;
   user-select: none;
 }
 
-/* line 77, scss/_user-panel.scss */
-.odometer {
-  text-align: center;
-  font-size: 36px;
+/* line 82, scss/_user-panel.scss */
+.odometer-area {
+  width: 75%;
+  margin: auto;
+  /*box-shadow:
+    1px 1px 1px rgba(85,8,0, 0.15),
+    inset 1px 1px 1px rgba(85,8,0, 0.15),
+    0 0 10px rgba(169,10,78, 0.15),
+    inset 0 0 10px rgba(169,10,78, 0.15);*/
   font-family: "VT323", monospace;
-  font-font-weight: bold;
-  color: rgba(0, 0, 0, 0.65);
-  border: 1px solid rgba(0, 0, 0, 0.65);
+  font-size: 30px;
+  color: rgba(235, 159, 76, 0.95);
+  text-align: center;
+  text-shadow: 1px 1px 1px #550800, 0 0 10px #a90a4e;
 }
 
-/* line 88, scss/_user-panel.scss */
+/* line 106, scss/_user-panel.scss */
+.odometer {
+  margin-left: 15px;
+  margin-right: 5px;
+  font-size: 36px;
+}
+
+/* line 116, scss/_user-panel.scss */
 .player-name-input-area {
   clear: both;
   display: block;
@@ -284,7 +297,7 @@ td {
   background: pink;
 }
 
-/* line 104, scss/_user-panel.scss */
+/* line 132, scss/_user-panel.scss */
 .player-name {
   font-size: 20px;
 }
