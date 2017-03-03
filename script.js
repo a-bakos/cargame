@@ -291,10 +291,14 @@ enterPlayerName.addEventListener("click", function(event) {
 
 /**
  * Odometer
+ *
+ * According to the below calculations, the car is moving with the speed of
+ * about 20m/s, or 72km/h.
  */
 var odometer = document.querySelector(".odometer");
-var distance = 0;
 var timeRunning = false;
+var time = 0;
+var distance;
 
 function startTime() {
   if (timeRunning === false) {
@@ -309,22 +313,23 @@ function startTime() {
 function incrementTime() {
   if (timeRunning === true) {
     setTimeout(function() {
-      distance++;
+      time++;
 
-      var kilometers = Math.floor(distance / 5);
-      var meters = (distance % 5) * 2;
+      distance = time / 50;
+      distance = distance.toFixed(2);
 
-      if (kilometers > 99 && kilometers <= 999) {
-        kilometers = "0" + kilometers;
+      if (distance > 99 && distance <= 999) {
+        distance = "0" + distance;
       }
-      else if (kilometers > 9 && kilometers <= 99) {
-        kilometers = "00" + kilometers;
+      else if (distance > 9 && distance <= 99) {
+        distance = "00" + distance;
       }
-      else if (kilometers <= 9) {
-        kilometers = "000" + kilometers;
+      else if (distance <= 9) {
+        distance = "000" + distance;
       }
 
-      odometer.innerHTML = "" + kilometers + "." + meters;
+      odometer.innerHTML = distance;
+
       incrementTime();
     }, 750);
   }
