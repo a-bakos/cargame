@@ -56,19 +56,17 @@ td {
 /**
  * Dashboard
  */
+
 .dashboard-area {
   border: {
-    bottom-left-radius: 50px;
-    bottom-right-radius: 50px;
-    top-left-radius: 150px;
-    top-right-radius: 150px;
+    radius: 25px;
     }
   background-color: rgb(37,9,6);
   box-shadow:
     0 0 20px 0 rgba(0,0,0,0.75),
     0 10px 10px 0 rgba(0,0,0,0.75),
     inset 0 25px 15px 0 rgba(0,0,0,0.3), // upper shadow line
-    inset 0 -30px 30px 0 rgba(255,255,255,0.1),
+    inset 0 -30px 30px 0 rgba(73,12,12,0.5),
     inset 0 0 30px 0 black;
 
   font: {
@@ -86,27 +84,31 @@ td {
   @include no-select;
   }
 
+/**
+ * Clock
+ */
+
 .clock-area {}
 
 .clock-date {
   font-size: 22px;
   }
+
+.celsius-display {
+  font-size: 22px;
+  }
+
 .clock-time {
   font-size: 36px;
   }
 
+/**
+ * Odometer
+ */
+
 .odometer-area {
   width: 75%;
   margin: auto;
-
-  //border: 1px solid rgba(235,159,76,0.1);
-  //border-radius: 2px;
-  /*box-shadow:
-    1px 1px 1px rgba(85,8,0, 0.15),
-    inset 1px 1px 1px rgba(85,8,0, 0.15),
-    0 0 10px rgba(169,10,78, 0.15),
-    inset 0 0 10px rgba(169,10,78, 0.15);*/
-
   }
 
 .odometer {
@@ -116,8 +118,25 @@ td {
   }
 
 .odo-text {}
-
 .odo-km-text {}
+
+/**
+ * Status icons
+ */
+
+.status-icons-area {}
+
+.status-icon              { width: 25px; }
+
+.status-icon:first-child,
+.status-icon:last-child,  { width: 16px; }
+
+.status-icon:nth-child(2) { width: 18px; }
+.status-icon:nth-child(6) { width: 20px; }
+
+/**
+ * Player name input
+ */
 
 .player-name-input-area {
   clear: both;
@@ -129,8 +148,6 @@ td {
 
   background: pink;
   }
-
-
 
 .input-field {}
 .input-submit {}
