@@ -206,35 +206,37 @@ h2 {
  */
 /* line 6, scss/_user-panel.scss */
 .user-panel {
+  position: absolute;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 23px;
   border-top: 5px solid black;
   background: purple;
+  z-index: 2;
 }
 
-/* line 13, scss/_user-panel.scss */
+/* line 15, scss/_user-panel.scss */
 .game-details {
-  background: blue;
+  background: #0a0a0a;
   width: 100%;
   margin: 0;
-  box-shadow: inset 0 0 0 1px red;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-/* line 20, scss/_user-panel.scss */
+/* line 24, scss/_user-panel.scss */
 table {
   width: 100%;
   margin: 0 auto;
   border-collapse: collapse;
 }
 
-/* line 28, scss/_user-panel.scss */
+/* line 32, scss/_user-panel.scss */
 td {
   width: 33.33333%;
   margin: 0;
-  border: 1px solid blue;
 }
 
-/* line 34, scss/_user-panel.scss */
+/* line 38, scss/_user-panel.scss */
 .small-heading {
   margin: 0;
   line-height: normal;
@@ -242,7 +244,7 @@ td {
   font-size: 20px;
 }
 
-/* line 43, scss/_user-panel.scss */
+/* line 47, scss/_user-panel.scss */
 .the-player-name {
   font-size: 50px;
   font-weight: bolder;
@@ -252,10 +254,10 @@ td {
 /**
  * Dashboard
  */
-/* line 58, scss/_user-panel.scss */
+/* line 62, scss/_user-panel.scss */
 .dashboard-area {
   border-radius: 25px;
-  background-color: #250906;
+  background-color: #240806;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.75), 0 10px 10px 0 rgba(0, 0, 0, 0.75), inset 0 25px 15px 0 rgba(0, 0, 0, 0.3), inset 0 -30px 30px 0 rgba(73, 12, 12, 0.5), inset 0 0 30px 0 black;
   font-family: "VT323", monospace;
   font-size: 30px;
@@ -268,17 +270,17 @@ td {
 /**
  * Clock
  */
-/* line 91, scss/_user-panel.scss */
+/* line 95, scss/_user-panel.scss */
 .clock-date {
   font-size: 22px;
 }
 
-/* line 95, scss/_user-panel.scss */
+/* line 99, scss/_user-panel.scss */
 .celsius-display {
   font-size: 22px;
 }
 
-/* line 99, scss/_user-panel.scss */
+/* line 103, scss/_user-panel.scss */
 .clock-time {
   font-size: 36px;
 }
@@ -286,13 +288,13 @@ td {
 /**
  * Odometer
  */
-/* line 107, scss/_user-panel.scss */
+/* line 111, scss/_user-panel.scss */
 .odometer-area {
   width: 75%;
   margin: auto;
 }
 
-/* line 112, scss/_user-panel.scss */
+/* line 116, scss/_user-panel.scss */
 .odometer {
   margin-left: 10px;
   margin-right: 10px;
@@ -302,23 +304,23 @@ td {
 /**
  * Status icons
  */
-/* line 127, scss/_user-panel.scss */
+/* line 131, scss/_user-panel.scss */
 .status-icon {
   width: 25px;
 }
 
-/* line 130, scss/_user-panel.scss */
+/* line 134, scss/_user-panel.scss */
 .status-icon:first-child,
 .status-icon:last-child {
   width: 16px;
 }
 
-/* line 132, scss/_user-panel.scss */
+/* line 136, scss/_user-panel.scss */
 .status-icon:nth-child(2) {
   width: 18px;
 }
 
-/* line 133, scss/_user-panel.scss */
+/* line 137, scss/_user-panel.scss */
 .status-icon:nth-child(6) {
   width: 20px;
 }
@@ -326,7 +328,7 @@ td {
 /**
  * Player name input
  */
-/* line 139, scss/_user-panel.scss */
+/* line 143, scss/_user-panel.scss */
 .player-name-input-area {
   clear: both;
   display: block;
@@ -334,12 +336,17 @@ td {
   height: 125px;
   padding: 15px;
   border: 1px solid blue;
-  background: pink;
+  background: black;
 }
 
-/* line 153, scss/_user-panel.scss */
+/* line 157, scss/_user-panel.scss */
 .player-name {
   font-size: 20px;
+}
+
+/* line 161, scss/_user-panel.scss */
+.the-player-name {
+  color: white;
 }
 
 /* line 1, scss/_roadtrack.scss */
