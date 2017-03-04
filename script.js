@@ -322,16 +322,24 @@ var timeDisplay = document.querySelector(".clock-time");
 
 var date        = new Date();
 
-var todaysNum  = date.getDay();
+// Set the day name
+var todaysNum   = date.getDay();    // 0-6
 var dayNames    = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-var todaysName   = dayNames[todaysNum];
+var todaysName  = dayNames[todaysNum];
 
-var currMonth   = date.getMonth();
+// Set day number
+var dayNumber   = date.getDate();   // 1-31
 
+// Set month
+var currMonth   = date.getMonth();  // 0-11
+currMonth += 1;
+
+// Set time
 var currMinutes = date.getMinutes()
+var currHours   = date.getHours();
 
-if (todaysNum <= 9) {
-  todaysNum = "0" + todaysNum;
+if (dayNumber <= 9) {
+  dayNumber = "0" + dayNumber;
 }
 if (currMonth <= 9) {
   currMonth = "0" + currMonth;
@@ -339,10 +347,13 @@ if (currMonth <= 9) {
 if (currMinutes <= 9) {
   currMinutes = "0" + currMinutes;
 }
+if (currHours <= 9) {
+  currMinutes = "0" + currMinutes;
+}
 
-var currentTime = date.getHours() + ":" + currMinutes;
+var currentTime = currHours + ":" + currMinutes;
 
-var todaysDate  =  todaysName + " " + todaysNum + "-" + currMonth + "-" + date.getFullYear();
+var todaysDate  =  todaysName + " " + dayNumber + "-" + currMonth + "-" + date.getFullYear();
 
 setTimeout(function() {
   dateDisplay.innerHTML = todaysDate;
