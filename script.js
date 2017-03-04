@@ -53,6 +53,7 @@ var statusIconLights = document.querySelector(".icon-lights");
  * Function for toggling headlights and tail lights
  */
 function toggleLights(lightsSelector, lightsClass, logLights) {
+
   if (event.keyCode == vehicle.lightsKey) {
 
     for (var i = 0; i < lightsSelector.length; i++) {
@@ -86,7 +87,7 @@ var statusIconLeftIndex = document.querySelector(".icon-left-index")
 var statusIconRightIndex = document.querySelector(".icon-right-index")
 
 // (!) Global eventlistener for keys Q,E -- this has to be changed to behave conditionally
-addEventListener("keydown", function(event) {
+window.addEventListener("keydown", function(event) {
   // Left side indicators:
   if (event.keyCode == vehicle.leftIndicatorsKey) {
     if (
@@ -142,18 +143,23 @@ addEventListener("keydown", function(event) {
  * Move the vehicle left and right relative to roadtracks
  * Function for left and right movements
  */
-function move(moveVehicle, direction, moveMotion) {
-  if (event.keyCode == moveVehicle) {
-    console.log("Move " + direction + ".");
+function moveLeft(event) {
+  if (event.keyCode == 37) {
     vehicle.body.className = "vehicle";
-    vehicle.body.classList.toggle(moveMotion);
+    vehicle.body.classList.toggle(vehicle.moveLeftMotion);
   }
+  event.preventDefault();
+}
+function moveRight(event) {
+  if (event.keyCode == 39) {
+    vehicle.body.className = "vehicle";
+    vehicle.body.classList.toggle(vehicle.moveRightMotion);
+  }
+  event.preventDefault();
 }
 
-addEventListener("keydown", function(event) {
-  move(vehicle.moveLeftKey, "left", vehicle.moveLeftMotion);
-  move(vehicle.moveRightKey, "right", vehicle.moveRightMotion);
-});
+addEventListener("keydown", moveLeft, false);
+addEventListener("keydown", moveRight, false);
 
 /**
  * Optional sunroof -- checkbox
