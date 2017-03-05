@@ -78,8 +78,6 @@ function toggleLights(event) {
   }
 }
 
-addEventListener("keydown", toggleLights, false);
-
 /**
  * Indicator lights controls
  */
@@ -138,8 +136,6 @@ function indicatorLights(event) {
   } // Right indicators
 }
 
-addEventListener("keydown", indicatorLights, false);
-
 /**
  * Move the vehicle left and right relative to roadtracks
  * Function for left and right movements
@@ -150,7 +146,7 @@ function moveLeft(event) {
     vehicle.body.classList.toggle(vehicle.moveLeftMotion);
     console.log("Move left");
   }
-  event.preventDefault();
+  //event.preventDefault();
 }
 function moveRight(event) {
   if (event.keyCode == 39) {
@@ -158,22 +154,19 @@ function moveRight(event) {
     vehicle.body.classList.toggle(vehicle.moveRightMotion);
     console.log("Move right");
   }
-  event.preventDefault();
+  //event.preventDefault();
 }
-
-addEventListener("keydown", moveLeft, false);
-addEventListener("keydown", moveRight, false);
 
 /**
  * Optional sunroof -- checkbox
  */
-var extraSunroof  = document.querySelector(".extra-sunroof"); // checkbox
+var extraSunroof = document.querySelector(".extra-sunroof"); // checkbox
 
 // Create the sunroof
 vehicle.sunroof = document.createElement("div");
 vehicle.sunroof.classList.add("vehicle-sunroof");
 
-extraSunroof.addEventListener("change", function() {
+function sunroof() {
   if (extraSunroof.checked) {
     vehicle.body.appendChild(vehicle.sunroof);
     console.log("Extra sunroof.");
@@ -182,7 +175,7 @@ extraSunroof.addEventListener("change", function() {
     vehicle.body.removeChild(vehicle.sunroof);
     console.log("No sunroof.");
   }
-});
+}
 
 /**
  * PLAYER'S NAME AND LICENSE PLATE THINGS
@@ -280,25 +273,27 @@ function checkPlayerName() {
  * Function for changing the license plate's data (both values).
  */
 function changePlateData() {
-    // Slice up the input, only the first 3 characters are needed on the plate,
-    // then save them as uppercase characters
-    playerNameValue = playerNameValue.slice(0,3);
-    playerNameValue = playerNameValue.toUpperCase();
+  // Slice up the input, only the first 3 characters are needed on the plate,
+  // then save them as uppercase characters
+  playerNameValue = playerNameValue.slice(0,3);
+  playerNameValue = playerNameValue.toUpperCase();
 
-    // Append 3 random digits after it
-    playerNameValue = playerNameValue + " " + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10);
+  // Append 3 random digits after it
+  playerNameValue = playerNameValue + " " + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10);
 
-    // Apply the final plate data as new values
-    vehicle.plate.setAttribute("data-text", playerNameValue);
-    vehicle.plate.innerHTML = playerNameValue;
+  // Apply the final plate data as new values
+  vehicle.plate.setAttribute("data-text", playerNameValue);
+  vehicle.plate.innerHTML = playerNameValue;
 
-    // Make the input field and its button disabled to prevent changing their
-    // value, aka the player's name and the plate can't be changed once set
-    playerNameField = playerNameField.setAttribute("disabled", "");
-    enterPlayerName = enterPlayerName.setAttribute("disabled", "");
+  // Make the input field and its button disabled to prevent changing their
+  // value, aka the player's name and the plate can't be changed once set
+  playerNameField = playerNameField.setAttribute("disabled", "");
+  enterPlayerName = enterPlayerName.setAttribute("disabled", "");
 
-    console.log("Plate data has changed");
-  }
+
+  console.log("Plate data has changed");
+  getPlateData();
+}
 
 /**
  * Function for setting default plate data (both values).
@@ -309,15 +304,6 @@ function setDefaultPlateData() {
   vehicle.plate.innerHTML = vehicle.defaultPlateData;
   console.log("Default plate data used.");
 }
-
-// Listen to player's name changes
-enterPlayerName.addEventListener("click", function(event) {
-  checkPlayerName();
-  getPlateData();
-});
-
-console.log("Driver: " + vehicle.defaultDriverName);
-getPlateData();
 
 /**
  * DASHBOARD ELEMENTS
@@ -364,10 +350,12 @@ var currentTime = currHours + ":" + currMinutes;
 
 var todaysDate  =  todaysName + " " + dayNumber + "-" + currMonth + "-" + date.getFullYear();
 
-setTimeout(function() {
-  dateDisplay.innerHTML = todaysDate;
-  timeDisplay.innerHTML = currentTime;
-}, (startupTime / 2));
+function odometerClockStartup() {
+  setTimeout(function() {
+    dateDisplay.innerHTML = todaysDate;
+    timeDisplay.innerHTML = currentTime;
+  }, (startupTime / 2));
+}
 
 /**
  * Odometer
@@ -415,5 +403,21 @@ function incrementTime() {
   }
 }
 
-// Global eventlistener for odometer:
-addEventListener("load", startTime, false);
+
+/**
+ * EVENTS / init
+ */
+
+addEventListener("load", startTime, false); // odometer
+addEventListener("keydown", toggleLights, false); // lights
+addEventListener("keydown", indicatorLights, false); // indicators
+addEventListener("keydown", moveLeft, false); // move left
+addEventListener("keydown", moveRight, false); // move right
+
+extraSunroof.addEventListener("change", sunroof, false); // sunroof
+enterPlayerName.addEventListener("click", checkPlayerName, false); // player name
+
+odometerClockStartup();
+
+console.log("Driver: " + vehicle.defaultDriverName);
+getPlateData();
