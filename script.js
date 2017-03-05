@@ -255,13 +255,18 @@ function checkPlayerName() {
       playerNameValue = playerNameValue.charAt(0).toUpperCase() + playerNameValue.slice(1);
 
       thePlayerNameDisplay.innerHTML = playerNameValue;
-      console.log("Correct player name input entered.");
+      console.log("Correct player name entered.");
       console.log("Driver: " + playerNameValue);
 
       // If names are all correctly set, then update data, hide input area and
       // show the player details area
       changePlateData();
-      hideElement(inputArea);
+
+      // Decide whether to hide the main screen after receiving the corrert input
+      // or to remove is completely from the DOM
+      //hideElement(inputArea);
+      document.body.removeChild(inputArea);
+
       playerDetails.classList.remove("hide-element");
       playerNameSet = true;
 
@@ -434,4 +439,4 @@ function incrementTime() {
 
 extraSunroof.addEventListener("change", sunroof, false); // sunroof
 enterPlayerName.addEventListener("click", checkPlayerName, false); // player name
-console.log("Hello, dude!");
+console.log("Hello, dude! Please enter your name.");
