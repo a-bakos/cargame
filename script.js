@@ -43,14 +43,18 @@ function hideElement(elem) {
   elem.className = "hide-element";
 }
 
-var statusIconLights = document.querySelector(".icon-lights");
+var statusIconLights  = document.querySelector(".icon-lights");
+var statusIconBattery = document.querySelector(".icon-battery");
 
 /**
  * Vehicle lights controls
  * Function for toggling headlights and tail lights
  */
+var lightSwitchCounter = 0;
+
 function toggleLights(event) {
   if (event.keyCode == vehicle.lightsKey) {
+    lightSwitchCounter++;
     for (var i = 0; i < vehicle.headLights.length; i++) {
       if (vehicle.headLights[i].classList.contains(vehicle.headLightsOn)) {
         vehicle.headLights[i].classList.remove(vehicle.headLightsOn);
@@ -72,6 +76,14 @@ function toggleLights(event) {
         vehicle.tailLights[i].classList.add(vehicle.tailLightsOn);
       }
     }
+    batteryProblems();
+  }
+}
+
+function batteryProblems() {
+  if (lightSwitchCounter == 10) {
+    statusIconBattery.src = "img/battery-on.png";
+    console.log("Battery problem! Lights switched on and off too many times.");
   }
 }
 
