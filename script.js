@@ -416,6 +416,4 @@ function incrementTime() {
 }
 
 // Global eventlistener for odometer:
-addEventListener("load", function(event) {
-  startTime();
-});
+addEventListener("load", startTime, false);
