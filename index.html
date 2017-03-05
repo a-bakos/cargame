@@ -1,6 +1,7 @@
 <!doctype html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
     <title></title>
     <link href="style.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
@@ -11,110 +12,110 @@
   </head>
   <body>
 
-    <section class="gameframe">
-      <div class="lamp-post">
-        <div class="post-elem"></div>
-        <div class="head-support"></div>
-        <div class="lamp-head"></div>
-      </div>
-      <div class="roadtrack track-left roadtrack-separator roadtrack-motion"></div>
-      <div class="roadtrack track-right roadtrack-motion"></div>
-      <div class="pothole"></div>
-
-      <div class="vehicle">
-        <div class="vehicle-glass"></div>
-        <div class="vehicle-roof"></div>
-
-        <div class="vehicle-doors vehicle-left-door">
-          <div class="vehicle-mirrors vehicle-left-mirror"></div>
-        </div>
-        <div class="vehicle-doors vehicle-right-door">
-          <div class="vehicle-mirrors vehicle-right-mirror"></div>
-        </div>
-
-        <div class="vehicle-headlights headlights-left"></div>
-        <div class="vehicle-headlights headlights-right"></div>
-        <div class="vehicle-taillights taillights-left"></div>
-        <div class="vehicle-taillights taillights-right"></div>
-        <div class="vehicle-front-indicators front-indicator-left indicator-left"></div>
-        <div class="vehicle-front-indicators front-indicator-right indicator-right"></div>
-        <div class="vehicle-rear-indicators rear-indicator-left indicator-left"></div>
-        <div class="vehicle-rear-indicators rear-indicator-right indicator-right"></div>
-      </div>
-
-    </section>
-    <section class="user-panel">
-
-
-
-      <section class="game-details">
-      <table>
-        <tr>
-          <td>
-
-            <section class="player-name-input-area">
-              <input type="text" maxlength="10" placeholder="Player name" class="player-name input-field" autofocus>
-              <button type="submit" class="player-name input-submit" id="enter-player-name">OK</button>
-            </section>
-
-            <div class="player-name-display hide-element">
-              <p class="small-heading">Driver:</p>
-              <h2 class="the-player-name"></h2>
-            </div>
-          </td>
-
-          <td class="dashboard-area">
-            <div class="dashboard">
-
-              <div class="clock-area">
-                <span class="clock-date">--- DD-MM-YYYY</span>
-                <span class="celsius-display">25&#176;</span><br>
-                <span class="clock-time">--:--</span>
-              </div>
-
-              <div class="odometer-area">
-                <span class="odo-text">ODO</span><span class="odometer">----.--</span><span class="odo-km-text">km</span>
-              </div>
-
-              <div class="status-icons-area">
-                <img class="status-icon icon-left-index" src="img/index-left-off.png">
-                <img class="status-icon icon-battery" src="img/battery-off.png">
-                <img class="status-icon icon-lights" src="img/light-off.png">
-                <img class="status-icon icon-oil" src="img/oil-off.png">
-                <img class="status-icon icon-engine" src="img/engine-off.png">
-                <img class="status-icon icon-doors" src="img/doors-off.png">
-                <img class="status-icon icon-right-index" src="img/index-right-off.png">
-              </div>
-            </div>
-          </td>
-
-          <td>
-            <section class="license-plate">
-              <div class="plate-base">
-                <div class="plate-sticker">&nbsp;</div><p class="plate-text">CALIFORNIA</p><div class="plate-sticker">'83</div>
-                <p class="plate-identifier" data-text="AUM 560">AUM 560</p>
-              </div>
-            </section>
-          </td>
-        </tr>
-      </table>
-      </section>
-
-
+    <section class="player-name-input-area">
+      <h1 class="main-screen">Title of the game here...</h1>
+      <p class="main-screen">Maybe a little story what is this and why and things like that...</p>
+      <input type="text" maxlength="10" placeholder="Player name" class="player-name input-field" autofocus>
+      <button type="submit" class="player-name input-submit" id="enter-player-name">OK</button>
 
       <section class="extras-section">
         <label for="extra-sunroof">Want sunroof?</label>
         <input type="checkbox" class="extra-sunroof" id="extra-sunroof">
       </section>
+    </section>
 
-      <section class="cheatsheet">
-        <h2>Notes:</h2>
-        <p>- Navigate the car with the left and right arrows.</p>
-        <p>- Press L to turn the lights on/off.</p>
-        <p>- Press Q to turn the left indicator lights on/off.</p>
-        <p>- Press E to turn the right indicator lights on/off.</p>
+    <section class="mainframe hide-element">
+      <section class="gameframe">
+
+        <div class="lamp-post">
+          <div class="post-elem"></div>
+          <div class="head-support"></div>
+          <div class="lamp-head"></div>
+        </div>
+        <div class="roadtrack track-left roadtrack-separator roadtrack-motion"></div>
+        <div class="roadtrack track-right roadtrack-motion"></div>
+        <div class="pothole"></div>
+
+        <div class="vehicle">
+          <div class="vehicle-glass"></div>
+          <div class="vehicle-roof"></div>
+
+          <div class="vehicle-doors vehicle-left-door">
+            <div class="vehicle-mirrors vehicle-left-mirror"></div>
+          </div>
+          <div class="vehicle-doors vehicle-right-door">
+            <div class="vehicle-mirrors vehicle-right-mirror"></div>
+          </div>
+
+          <div class="vehicle-headlights headlights-left"></div>
+          <div class="vehicle-headlights headlights-right"></div>
+          <div class="vehicle-taillights taillights-left"></div>
+          <div class="vehicle-taillights taillights-right"></div>
+          <div class="vehicle-front-indicators front-indicator-left indicator-left"></div>
+          <div class="vehicle-front-indicators front-indicator-right indicator-right"></div>
+          <div class="vehicle-rear-indicators rear-indicator-left indicator-left"></div>
+          <div class="vehicle-rear-indicators rear-indicator-right indicator-right"></div>
+        </div>
+
       </section>
+      <section class="user-panel">
 
+        <section class="game-details">
+        <table>
+          <tr>
+            <td>
+              <div class="player-name-display hide-element">
+                <p class="small-heading">Driver:</p>
+                <h2 class="the-player-name"></h2>
+              </div>
+            </td>
+
+            <td class="dashboard-area">
+              <div class="dashboard">
+
+                <div class="clock-area">
+                  <span class="clock-date">--- DD-MM-YYYY</span>
+                  <span class="celsius-display">25&#176;</span><br>
+                  <span class="clock-time">--:--</span>
+                </div>
+
+                <div class="odometer-area">
+                  <span class="odo-text">ODO</span><span class="odometer">----.--</span><span class="odo-km-text">km</span>
+                </div>
+
+                <div class="status-icons-area">
+                  <img class="status-icon icon-left-index" src="img/index-left-off.png">
+                  <img class="status-icon icon-battery" src="img/battery-off.png">
+                  <img class="status-icon icon-lights" src="img/light-off.png">
+                  <img class="status-icon icon-oil" src="img/oil-off.png">
+                  <img class="status-icon icon-engine" src="img/engine-off.png">
+                  <img class="status-icon icon-doors" src="img/doors-off.png">
+                  <img class="status-icon icon-right-index" src="img/index-right-off.png">
+                </div>
+              </div>
+            </td>
+
+            <td>
+              <section class="license-plate">
+                <div class="plate-base">
+                  <div class="plate-sticker">&nbsp;</div><p class="plate-text">CALIFORNIA</p><div class="plate-sticker">'83</div>
+                  <p class="plate-identifier" data-text="AUM 560">AUM 560</p>
+                </div>
+              </section>
+            </td>
+          </tr>
+        </table>
+        </section>
+
+        <section class="cheatsheet">
+          <h2>Notes:</h2>
+          <p>- Navigate the car with the left and right arrows.</p>
+          <p>- Press L to turn the lights on/off.</p>
+          <p>- Press Q to turn the left indicator lights on/off.</p>
+          <p>- Press E to turn the right indicator lights on/off.</p>
+        </section>
+
+      </section>
     </section>
     <script src="latinise.min.js"></script>
     <script src="script.js"></script>

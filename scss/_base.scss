@@ -21,8 +21,16 @@ body {
   margin: auto;
 
   @include grass-green(background-color, 1);
-  //outline: 20px solid $color-green;
-  }
+}
+
+.mainframe {
+  animation: load-up $duration ease-in;
+}
+
+@keyframes load-up {
+  0%    { opacity: 0; }
+  100%  { opacity: 1; }
+}
 
 p {
   width: $hpc;

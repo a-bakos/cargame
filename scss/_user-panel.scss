@@ -142,23 +142,26 @@ td {
 
 .player-name-input-area {
   clear: both;
-  display: block;
-  width: auto;
-  height: 125px;
-  padding: 15px;
-  border: 1px solid blue;
+  position: absolute;
+  z-index: 99;
+  width: $hpc;
+  height: 100vh;
+  margin: auto;
+  opacity: 0.95;
 
   background: black;
+  border: 1px solid blue;
+  text-align: center;
   }
+
+
+
+.main-screen {
+  color: white;
+}
 
 .input-field {}
 .input-submit {}
 
-.player-name {
-  font-size: 20px;
-  }
-
-.the-player-name {
-
-  color: white;
-}
+.player-name { font-size: 20px; }
+.the-player-name { color: white; }

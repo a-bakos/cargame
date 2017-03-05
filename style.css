@@ -15,6 +15,12 @@
   src: url("fonts/seasans.ttf") format("truetype");
 }
 
+/*body { animation: load-up $duration ease-in; }
+
+@mixin load-up-ani {
+  0%    { opacity: 0.5; }
+  100%  { opacity: 1;   }
+  }*/
 /**
  * Animation for setting night time on the elements of the gameframe.
  * Currently inactive, and needs elaboration.
@@ -33,7 +39,7 @@
 /**
  * Roadtrack animations.
  */
-/* line 22, scss/_animations.scss */
+/* line 29, scss/_animations.scss */
 .roadtrack-motion {
   animation-name: start, motion;
   animation-duration: 750ms, 100ms;
@@ -43,24 +49,24 @@
 }
 
 @keyframes start {
-  /* line 31, scss/_animations.scss */
+  /* line 38, scss/_animations.scss */
   from {
     left: 0;
   }
 
-  /* line 32, scss/_animations.scss */
+  /* line 39, scss/_animations.scss */
   to {
     left: -55px;
   }
 }
 
 @keyframes motion {
-  /* line 36, scss/_animations.scss */
+  /* line 43, scss/_animations.scss */
   from {
     left: -25px;
   }
 
-  /* line 37, scss/_animations.scss */
+  /* line 44, scss/_animations.scss */
   to {
     left: -55px;
   }
@@ -69,7 +75,7 @@
 /**
  * Pothole or sewer, whatever you want.
  */
-/* line 45, scss/_animations.scss */
+/* line 52, scss/_animations.scss */
 .pothole {
   animation-name: pothole-motion;
   animation-duration: 13s;
@@ -78,7 +84,7 @@
 }
 
 @keyframes pothole-motion {
-  /* line 54, scss/_animations.scss */
+  /* line 61, scss/_animations.scss */
   100% {
     right: 2000px;
   }
@@ -87,7 +93,7 @@
 /**
  * Lamp post animations.
  */
-/* line 60, scss/_animations.scss */
+/* line 67, scss/_animations.scss */
 .lamp-post {
   animation-name: lamp-post-motion;
   animation-duration: 19.5s;
@@ -96,13 +102,13 @@
 }
 
 @keyframes lamp-post-motion {
-  /* line 69, scss/_animations.scss */
+  /* line 76, scss/_animations.scss */
   100% {
     right: 3000px;
   }
 }
 
-/* line 72, scss/_animations.scss */
+/* line 79, scss/_animations.scss */
 .lamp-head {
   animation: 41s linear infinite;
   animation-name: lamp-light-color;
@@ -112,42 +118,42 @@
 }
 
 @keyframes lamp-light-color {
-  /* line 84, scss/_animations.scss */
+  /* line 91, scss/_animations.scss */
   17% {
     box-shadow: 0 35px 175px 50px #ffb442;
   }
 
-  /* line 85, scss/_animations.scss */
+  /* line 92, scss/_animations.scss */
   17.05% {
     box-shadow: none;
   }
 
-  /* line 86, scss/_animations.scss */
+  /* line 93, scss/_animations.scss */
   17.1% {
     box-shadow: 0 35px 175px 25px #ffb442;
   }
 
-  /* line 87, scss/_animations.scss */
+  /* line 94, scss/_animations.scss */
   18% {
     box-shadow: 0 15px 100px 15px #ffb442;
   }
 
-  /* line 88, scss/_animations.scss */
+  /* line 95, scss/_animations.scss */
   18.1% {
     box-shadow: 0 35px 175px 50px #ffb442;
   }
 
-  /* line 91, scss/_animations.scss */
+  /* line 98, scss/_animations.scss */
   50% {
     box-shadow: 0 35px 175px 50px #ffb442;
   }
 
-  /* line 92, scss/_animations.scss */
+  /* line 99, scss/_animations.scss */
   51% {
     box-shadow: 0 60px 220px 60px #e05e07;
   }
 
-  /* line 93, scss/_animations.scss */
+  /* line 100, scss/_animations.scss */
   100% {
     box-shadow: 0 60px 220px 60px #e05e07;
   }
@@ -179,20 +185,37 @@ body {
   background-color: #003300;
 }
 
-/* line 27, scss/_base.scss */
+/* line 26, scss/_base.scss */
+.mainframe {
+  animation: load-up 1000ms ease-in;
+}
+
+@keyframes load-up {
+  /* line 31, scss/_base.scss */
+  0% {
+    opacity: 0;
+  }
+
+  /* line 32, scss/_base.scss */
+  100% {
+    opacity: 1;
+  }
+}
+
+/* line 35, scss/_base.scss */
 p {
   width: 100%;
   font-family: "Ubuntu Condensed", sans-serif;
   font-size: 20px;
 }
 
-/* line 33, scss/_base.scss */
+/* line 41, scss/_base.scss */
 .hide-element {
   display: none;
   transition: 500ms;
 }
 
-/* line 38, scss/_base.scss */
+/* line 46, scss/_base.scss */
 h2 {
   font-size: 16px;
   font-weight: bold;
@@ -331,20 +354,28 @@ td {
 /* line 143, scss/_user-panel.scss */
 .player-name-input-area {
   clear: both;
-  display: block;
-  width: auto;
-  height: 125px;
-  padding: 15px;
-  border: 1px solid blue;
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  opacity: 0.95;
   background: black;
+  border: 1px solid blue;
+  text-align: center;
 }
 
-/* line 157, scss/_user-panel.scss */
+/* line 159, scss/_user-panel.scss */
+.main-screen {
+  color: white;
+}
+
+/* line 166, scss/_user-panel.scss */
 .player-name {
   font-size: 20px;
 }
 
-/* line 161, scss/_user-panel.scss */
+/* line 167, scss/_user-panel.scss */
 .the-player-name {
   color: white;
 }

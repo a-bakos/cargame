@@ -1,3 +1,10 @@
+/*body { animation: load-up $duration ease-in; }
+
+@mixin load-up-ani {
+  0%    { opacity: 0.5; }
+  100%  { opacity: 1;   }
+  }*/
+
 /**
  * Animation for setting night time on the elements of the gameframe.
  * Currently inactive, and needs elaboration.

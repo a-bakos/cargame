@@ -22,9 +22,8 @@ var vehicle = {
 
   leftIndicatorsKey:  81,
   rightIndicatorsKey: 69,
-
-  frontIndicatorsOn:  "front-indicators_on",
-  rearIndicatorsOn:   "rear-indicators_on",
+  frontIndicatorsOn:  "front-indicators_on",  // CSS class to toggle
+  rearIndicatorsOn:   "rear-indicators_on",   // CSS class to toggle
 
   moveLeftKey:        37,
   moveRightKey:       39,
@@ -32,14 +31,12 @@ var vehicle = {
   moveRightMotion:    "move-right", // CSS class to toggle
 };
 
-// The duration the car needs to reach its static velocity.
-// Defined in milliseconds.
-// Used for example to mimic loading up the dashboard clock & odometer.
-var startupTime = 750;
-
 /**
- * "Global" functions
+ * The duration the car needs to reach its static velocity.
+ * Defined in milliseconds.
+ * Used for example to mimic loading up the dashboard clock & odometer.
  */
+var startupTime = 750;
 
 // Hiding elements
 function hideElement(elem) {
@@ -81,7 +78,6 @@ function toggleLights(event) {
 /**
  * Indicator lights controls
  */
-
 var statusIconLeftIndex = document.querySelector(".icon-left-index")
 var statusIconRightIndex = document.querySelector(".icon-right-index")
 
@@ -146,15 +142,14 @@ function moveLeft(event) {
     vehicle.body.classList.toggle(vehicle.moveLeftMotion);
     console.log("Move left");
   }
-  //event.preventDefault();
 }
+
 function moveRight(event) {
   if (event.keyCode == 39) {
     vehicle.body.className = "vehicle";
     vehicle.body.classList.toggle(vehicle.moveRightMotion);
     console.log("Move right");
   }
-  //event.preventDefault();
 }
 
 /**
@@ -169,7 +164,7 @@ vehicle.sunroof.classList.add("vehicle-sunroof");
 function sunroof() {
   if (extraSunroof.checked) {
     vehicle.body.appendChild(vehicle.sunroof);
-    console.log("Extra sunroof.");
+    console.log("Extra sunroof added.");
   }
   else {
     vehicle.body.removeChild(vehicle.sunroof);
@@ -180,6 +175,9 @@ function sunroof() {
 /**
  * PLAYER'S NAME AND LICENSE PLATE THINGS
  */
+
+// Boolean variable to save the state of the player name
+var playerNameSet = false;
 
 // The whole input area, HTML section:
 var inputArea = document.querySelector(".player-name-input-area");
@@ -248,7 +246,7 @@ function checkPlayerName() {
     setDefaultPlateData();
 
     // Delete the value inside and set focus on the field:
-    playerNameField.value = "";
+    playerNameField.value = vehicle.defaultDriverName;
     playerNameField.focus();
   }
   else {
@@ -257,7 +255,7 @@ function checkPlayerName() {
       playerNameValue = playerNameValue.charAt(0).toUpperCase() + playerNameValue.slice(1);
 
       thePlayerNameDisplay.innerHTML = playerNameValue;
-      console.log("Correct player name input.");
+      console.log("Correct player name input entered.");
       console.log("Driver: " + playerNameValue);
 
       // If names are all correctly set, then update data, hide input area and
@@ -265,7 +263,33 @@ function checkPlayerName() {
       changePlateData();
       hideElement(inputArea);
       playerDetails.classList.remove("hide-element");
+      playerNameSet = true;
+
+      startTime(); // Start the clock
+      loadMainframe(); // Load the mainframe
     }
+  }
+}
+
+var mainframe = document.querySelector(".mainframe");
+
+/**
+ * Load the mainframe after the user name has been correctly set.
+ */
+function loadMainframe() {
+  if (playerNameSet === true) {
+    mainframe.classList.remove("hide-element"); // show the mainframe
+    odometerClockStartupDelay(); // delay the clock
+
+    // Attach event listeners that listen to keyboard interactions.
+    // They need to be called here in order to be listening AFTER the mainframe
+    // has loaded.
+    addEventListener("keydown", toggleLights, false);     // lights
+    addEventListener("keydown", indicatorLights, false);  // indicators
+    addEventListener("keydown", moveLeft, false);         // move left
+    addEventListener("keydown", moveRight, false);        // move right
+
+    getPlateData(); // Print plate data to the console
   }
 }
 
@@ -290,9 +314,7 @@ function changePlateData() {
   playerNameField = playerNameField.setAttribute("disabled", "");
   enterPlayerName = enterPlayerName.setAttribute("disabled", "");
 
-
   console.log("Plate data has changed");
-  getPlateData();
 }
 
 /**
@@ -350,7 +372,10 @@ var currentTime = currHours + ":" + currMinutes;
 
 var todaysDate  =  todaysName + " " + dayNumber + "-" + currMonth + "-" + date.getFullYear();
 
-function odometerClockStartup() {
+/**
+ * This function is for delaying the dashboard clock.
+ */
+function odometerClockStartupDelay() {
   setTimeout(function() {
     dateDisplay.innerHTML = todaysDate;
     timeDisplay.innerHTML = currentTime;
@@ -403,21 +428,10 @@ function incrementTime() {
   }
 }
 
-
 /**
  * EVENTS / init
  */
 
-addEventListener("load", startTime, false); // odometer
-addEventListener("keydown", toggleLights, false); // lights
-addEventListener("keydown", indicatorLights, false); // indicators
-addEventListener("keydown", moveLeft, false); // move left
-addEventListener("keydown", moveRight, false); // move right
-
 extraSunroof.addEventListener("change", sunroof, false); // sunroof
 enterPlayerName.addEventListener("click", checkPlayerName, false); // player name
-
-odometerClockStartup();
-
-console.log("Driver: " + vehicle.defaultDriverName);
-getPlateData();
+console.log("Hello, dude!");
