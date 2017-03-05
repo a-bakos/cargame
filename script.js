@@ -87,9 +87,7 @@ addEventListener("keydown", toggleLights, false);
 var statusIconLeftIndex = document.querySelector(".icon-left-index")
 var statusIconRightIndex = document.querySelector(".icon-right-index")
 
-// (!) Global eventlistener for keys Q,E -- this has to be changed to behave conditionally
-window.addEventListener("keydown", function(event) {
-  // Left side indicators:
+function indicatorLights(event) {
   if (event.keyCode == vehicle.leftIndicatorsKey) {
     if (
       vehicle.leftIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
@@ -138,7 +136,9 @@ window.addEventListener("keydown", function(event) {
       console.log("Right indicator lights on.");
     }
   } // Right indicators
-});
+}
+
+addEventListener("keydown", indicatorLights, false);
 
 /**
  * Move the vehicle left and right relative to roadtracks
