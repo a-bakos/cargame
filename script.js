@@ -52,32 +52,33 @@ var statusIconLights = document.querySelector(".icon-lights");
  * Vehicle lights controls
  * Function for toggling headlights and tail lights
  */
-function toggleLights(lightsSelector, lightsClass, logLights) {
-
+function toggleLights(event) {
   if (event.keyCode == vehicle.lightsKey) {
-
-    for (var i = 0; i < lightsSelector.length; i++) {
-
-      if (lightsSelector[i].classList.contains(lightsClass)) {
-        lightsSelector[i].classList.remove(lightsClass);
+    for (var i = 0; i < vehicle.headLights.length; i++) {
+      if (vehicle.headLights[i].classList.contains(vehicle.headLightsOn)) {
+        vehicle.headLights[i].classList.remove(vehicle.headLightsOn);
         statusIconLights.src = "img/light-off.png";
-        console.log(logLights + "lights turned off.");
+        console.log("Lights turned off.");
       }
       else {
-        lightsSelector[i].classList.add(lightsClass);
+        vehicle.headLights[i].classList.add(vehicle.headLightsOn);
         statusIconLights.src = "img/light-on.png";
-        console.log(logLights + "lights turned on.");
+        console.log("Lights turned on.");
       }
+    }
 
+    for (var i = 0; i < vehicle.tailLights.length; i++) {
+      if (vehicle.tailLights[i].classList.contains(vehicle.tailLightsOn)) {
+        vehicle.tailLights[i].classList.remove(vehicle.tailLightsOn);
+      }
+      else {
+        vehicle.tailLights[i].classList.add(vehicle.tailLightsOn);
+      }
     }
   }
 }
 
-// (!) Global eventlistener for key L -- this has to be changed to behave conditionally
-addEventListener("keydown", function(event) {
-  toggleLights(vehicle.headLights, vehicle.headLightsOn, "Head");
-  toggleLights(vehicle.tailLights, vehicle.tailLightsOn, "Tail ");
-});
+addEventListener("keydown", toggleLights, false);
 
 /**
  * Indicator lights controls
@@ -147,6 +148,7 @@ function moveLeft(event) {
   if (event.keyCode == 37) {
     vehicle.body.className = "vehicle";
     vehicle.body.classList.toggle(vehicle.moveLeftMotion);
+    console.log("Move left");
   }
   event.preventDefault();
 }
@@ -154,6 +156,7 @@ function moveRight(event) {
   if (event.keyCode == 39) {
     vehicle.body.className = "vehicle";
     vehicle.body.classList.toggle(vehicle.moveRightMotion);
+    console.log("Move right");
   }
   event.preventDefault();
 }
