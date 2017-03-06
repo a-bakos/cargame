@@ -227,7 +227,7 @@ h2 {
  * User panel is the section that contains and displays all the information
  * needed for the user.
  */
-/* line 6, scss/_user-panel.scss */
+/* line 5, scss/_user-panel.scss */
 .user-panel {
   position: absolute;
   width: 100%;
@@ -237,7 +237,7 @@ h2 {
   z-index: 2;
 }
 
-/* line 15, scss/_user-panel.scss */
+/* line 14, scss/_user-panel.scss */
 .game-details {
   background: #0a0a0a;
   width: 100%;
@@ -253,31 +253,77 @@ table {
   border-collapse: collapse;
 }
 
-/* line 32, scss/_user-panel.scss */
+/* line 30, scss/_user-panel.scss */
 td {
   width: 33.33333%;
   margin: 0;
 }
 
-/* line 38, scss/_user-panel.scss */
+/* line 35, scss/_user-panel.scss */
 .small-heading {
   margin: 0;
-  line-height: normal;
   font-family: "Teko", sans-serif;
   font-size: 20px;
+  line-height: normal;
 }
 
-/* line 47, scss/_user-panel.scss */
+/* line 44, scss/_user-panel.scss */
 .the-player-name {
   font-size: 50px;
   font-weight: bolder;
-  font-family: "Passion One", cursive;
+  font-family: "Luckiest Guy", cursive;
+}
+
+/**
+ * Main screen - input area
+ */
+/* line 56, scss/_user-panel.scss */
+.main-screen {
+  color: white;
+  background: #787878;
+  border: 1px solid blue;
+  clear: both;
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  opacity: 0.95;
+  text-align: center;
+}
+
+/* line 70, scss/_user-panel.scss */
+.main-screen-title {
+  font-family: "Luckiest Guy", cursive;
+  font-size: 60px;
+  font-weight: normal;
+  letter-spacing: 5px;
+}
+
+/* line 78, scss/_user-panel.scss */
+.main-screen-subtitle {
+  font-size: 40px;
+}
+
+/* line 87, scss/_user-panel.scss */
+.main-screen {
+  color: white;
+}
+
+/* line 92, scss/_user-panel.scss */
+.player-name {
+  font-size: 20px;
+}
+
+/* line 93, scss/_user-panel.scss */
+.the-player-name {
+  color: white;
 }
 
 /**
  * Dashboard
  */
-/* line 62, scss/_user-panel.scss */
+/* line 5, scss/_dashboard.scss */
 .dashboard-area {
   border-radius: 25px;
   background-color: #240806;
@@ -293,17 +339,17 @@ td {
 /**
  * Clock
  */
-/* line 95, scss/_user-panel.scss */
+/* line 36, scss/_dashboard.scss */
 .clock-date {
   font-size: 22px;
 }
 
-/* line 99, scss/_user-panel.scss */
+/* line 37, scss/_dashboard.scss */
 .celsius-display {
   font-size: 22px;
 }
 
-/* line 103, scss/_user-panel.scss */
+/* line 38, scss/_dashboard.scss */
 .clock-time {
   font-size: 36px;
 }
@@ -311,13 +357,13 @@ td {
 /**
  * Odometer
  */
-/* line 111, scss/_user-panel.scss */
+/* line 44, scss/_dashboard.scss */
 .odometer-area {
   width: 75%;
   margin: auto;
 }
 
-/* line 116, scss/_user-panel.scss */
+/* line 49, scss/_dashboard.scss */
 .odometer {
   margin-left: 10px;
   margin-right: 10px;
@@ -327,57 +373,25 @@ td {
 /**
  * Status icons
  */
-/* line 131, scss/_user-panel.scss */
+/* line 61, scss/_dashboard.scss */
 .status-icon {
   width: 25px;
 }
 
-/* line 134, scss/_user-panel.scss */
+/* line 64, scss/_dashboard.scss */
 .status-icon:first-child,
 .status-icon:last-child {
   width: 16px;
 }
 
-/* line 136, scss/_user-panel.scss */
+/* line 66, scss/_dashboard.scss */
 .status-icon:nth-child(2) {
   width: 18px;
 }
 
-/* line 137, scss/_user-panel.scss */
+/* line 67, scss/_dashboard.scss */
 .status-icon:nth-child(6) {
   width: 20px;
-}
-
-/**
- * Player name input
- */
-/* line 143, scss/_user-panel.scss */
-.player-name-input-area {
-  clear: both;
-  position: absolute;
-  z-index: 99;
-  width: 100%;
-  height: 100vh;
-  margin: auto;
-  opacity: 0.95;
-  background: black;
-  border: 1px solid blue;
-  text-align: center;
-}
-
-/* line 159, scss/_user-panel.scss */
-.main-screen {
-  color: white;
-}
-
-/* line 166, scss/_user-panel.scss */
-.player-name {
-  font-size: 20px;
-}
-
-/* line 167, scss/_user-panel.scss */
-.the-player-name {
-  color: white;
 }
 
 /* line 1, scss/_roadtrack.scss */
