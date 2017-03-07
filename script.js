@@ -85,6 +85,10 @@ function batteryProblems() {
     statusIconBattery.src = "img/battery-on.png";
     console.log("Battery problem! Lights switched on and off too many times.");
   }
+  if (lightSwitchCounter > 20) {
+    statusIconBattery.src = "img/battery-error.png";
+    console.log("Warning! Battery problem!");
+  }
 }
 
 /**
