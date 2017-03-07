@@ -43,8 +43,57 @@ function hideElement(elem) {
   elem.className = "hide-element";
 }
 
+/**
+ * Status icon selectors
+ */
 var statusIconLights  = document.querySelector(".icon-lights");
 var statusIconBattery = document.querySelector(".icon-battery");
+var statusIconEngine  = document.querySelector(".icon-engine");
+
+/**
+ * Car condition
+ *
+ * Condition starts from a given number and slowly decreases as time passes.
+ * Also, the condition is (or will be) affected by other external factors,
+ * that decrease the number as well such as switcing the lights on and off,
+ * or using the indicators.
+ */
+var conditionDisplay  = document.querySelector(".cond-state");
+var conditionState    = 100;
+
+function carCondition() {
+  if (timeRunning === true) {
+    setTimeout(function() {
+      // Automatically decrease the condition state:
+      conditionState = conditionState - 0.015;
+      conditionState = parseFloat(conditionState);
+
+      if (conditionState >= 10 && conditionState < 100) {
+        conditionState = "0" + conditionState;
+      }
+      else if (conditionState < 10) {
+        conditionState = "00" + conditionState;
+      }
+
+      if (conditionState <= 1) {
+        conditionState = "xxx";
+        timeRunning = false;
+      }
+
+      // Display the number, but only up to one decimal
+      conditionDisplay.innerHTML = conditionState.slice(0,5);
+      // Call the function again
+      carCondition();
+    }, startupTime);
+
+    if (conditionState <= 35) {
+      statusIconEngine.src = "img/engine-on.png";
+    }
+    if (conditionState <= 20) {
+      statusIconEngine.src = "img/engine-error.png";
+    }
+  }
+}
 
 /**
  * Vehicle lights controls
@@ -54,7 +103,11 @@ var lightSwitchCounter = 0;
 
 function toggleLights(event) {
   if (event.keyCode == vehicle.lightsKey) {
+
+    // Increment light switch counter & decrement condition state:
     lightSwitchCounter++;
+    conditionState--;
+
     for (var i = 0; i < vehicle.headLights.length; i++) {
       if (vehicle.headLights[i].classList.contains(vehicle.headLightsOn)) {
         vehicle.headLights[i].classList.remove(vehicle.headLightsOn);
@@ -82,12 +135,14 @@ function toggleLights(event) {
 
 function batteryProblems() {
   if (lightSwitchCounter == 10) {
+    conditionState = conditionState - 2;
     statusIconBattery.src = "img/battery-on.png";
     console.log("Battery problem! Lights switched on and off too many times.");
   }
-  if (lightSwitchCounter > 20) {
-    statusIconBattery.src = "img/battery-error.png";
+  if (lightSwitchCounter == 20) {
+    conditionState = conditionState - 5;
     console.log("Warning! Battery problem!");
+    statusIconBattery.src = "img/battery-error.png";
   }
 }
 
@@ -99,6 +154,7 @@ var statusIconRightIndex = document.querySelector(".icon-right-index")
 
 function indicatorLights(event) {
   if (event.keyCode == vehicle.leftIndicatorsKey) {
+    conditionState = conditionState - 0.05;
     if (
       vehicle.leftIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
       vehicle.leftIndicators[1].classList.contains(vehicle.rearIndicatorsOn))
@@ -124,6 +180,7 @@ function indicatorLights(event) {
 
   // Right side indicators:
   if (event.keyCode == vehicle.rightIndicatorsKey) {
+    conditionState = conditionState - 0.05;
     if (
       vehicle.rightIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
       vehicle.rightIndicators[1].classList.contains(vehicle.rearIndicatorsOn))
@@ -154,6 +211,7 @@ function indicatorLights(event) {
  */
 function moveLeft(event) {
   if (event.keyCode == 37) {
+    conditionState = conditionState - 0.02;
     vehicle.body.className = "vehicle";
     vehicle.body.classList.toggle(vehicle.moveLeftMotion);
     console.log("Move left");
@@ -162,6 +220,7 @@ function moveLeft(event) {
 
 function moveRight(event) {
   if (event.keyCode == 39) {
+    conditionState = conditionState - 0.02;
     vehicle.body.className = "vehicle";
     vehicle.body.classList.toggle(vehicle.moveRightMotion);
     console.log("Move right");
@@ -427,52 +486,6 @@ function incrementTime() {
     }, startupTime);
   }
 }
-
-/**
- * Car condition
- *
- * Condition starts from a given number and slowly decreases as time passes.
- * Also, the condition is (or will be) affected by other external factors,
- * that decrease the number as well.
- */
-var conditionDisplay  = document.querySelector(".cond-state");
-var conditionState    = 100;
-var statusIconEngine  = document.querySelector(".icon-engine");
-
-function carCondition() {
-  if (timeRunning === true) {
-    setTimeout(function() {
-      // Automatically decrease the condition state:
-      conditionState = conditionState - 0.015;
-      conditionState = parseFloat(conditionState);
-
-      if (conditionState >= 10 && conditionState < 100) {
-        conditionState = "0" + conditionState;
-      }
-      else if (conditionState < 10) {
-        conditionState = "00" + conditionState;
-      }
-
-      if (conditionState <= 1) {
-        conditionState = "xxx";
-        timeRunning = false;
-      }
-
-      // Display the number, but only up to one decimal
-      conditionDisplay.innerHTML = conditionState.slice(0,5);
-      // Call the function again
-      carCondition();
-    }, startupTime);
-
-    if (conditionState <= 35) {
-      statusIconEngine.src = "img/engine-on.png";
-    }
-    if (conditionState <= 20) {
-      statusIconEngine.src = "img/engine-error.png";
-    }
-  }
-}
-
 
 var mainframe = document.querySelector(".mainframe");
 
