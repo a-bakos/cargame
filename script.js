@@ -429,7 +429,11 @@ function incrementTime() {
 }
 
 /**
- * Condition display
+ * Car condition
+ *
+ * Condition starts from a given number and slowly decreases as time passes.
+ * Also, the condition is (or will be) affected by other external factors,
+ * that decrease the number as well.
  */
 var conditionDisplay  = document.querySelector(".cond-state");
 var conditionState    = 100;
@@ -438,8 +442,10 @@ var statusIconEngine  = document.querySelector(".icon-engine");
 function carCondition() {
   if (timeRunning === true) {
     setTimeout(function() {
-      conditionState--;
-      
+      // Automatically decrease the condition state:
+      conditionState = conditionState - 0.015;
+      conditionState = parseFloat(conditionState);
+
       if (conditionState >= 10 && conditionState < 100) {
         conditionState = "0" + conditionState;
       }
@@ -452,7 +458,9 @@ function carCondition() {
         timeRunning = false;
       }
 
-      conditionDisplay.innerHTML = conditionState;
+      // Display the number, but only up to one decimal
+      conditionDisplay.innerHTML = conditionState.slice(0,5);
+      // Call the function again
       carCondition();
     }, startupTime);
 
@@ -464,7 +472,6 @@ function carCondition() {
     }
   }
 }
-
 
 
 var mainframe = document.querySelector(".mainframe");
