@@ -224,6 +224,65 @@ h2 {
 }
 
 /**
+ * Main screen
+ *
+ * - Title,
+ * - Story,
+ * - Player input area,
+ * - Extras,
+ * - Info
+ * + Game Over
+ */
+/* line 12, scss/_main-screen.scss */
+.main-screen {
+  clear: both;
+  position: absolute;
+  z-index: 99;
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  opacity: 0.95;
+  color: white;
+  text-align: center;
+  background: #787878;
+  border: 10px solid blue;
+  border-radius: 20px;
+}
+
+/* line 28, scss/_main-screen.scss */
+.main-screen-title {
+  font-family: "Luckiest Guy", cursive;
+  font-size: 60px;
+  font-weight: normal;
+  text-shadow: 0 2px 0 #787878, 0 6px 0 black;
+  letter-spacing: 5px;
+}
+
+/* line 40, scss/_main-screen.scss */
+.main-screen-subtitle {
+  font-size: 40px;
+}
+
+/* line 46, scss/_main-screen.scss */
+.input-field {
+  font-family: "Zzyzx", "Seattle Sans", sans-serif;
+  width: 300px;
+  font-size: 40px;
+  text-align: center;
+  border: 5px solid blue;
+}
+/* line 53, scss/_main-screen.scss */
+.input-field:focus {
+  border: 5px solid blue;
+  box-shadow: 0 0 25px blue;
+}
+
+/* line 59, scss/_main-screen.scss */
+.main-screen {
+  color: white;
+}
+
+/**
  * User panel is the section that contains and displays all the information
  * needed for the user.
  */
@@ -274,48 +333,7 @@ td {
   font-family: "Luckiest Guy", cursive;
 }
 
-/**
- * Main screen - input area
- */
-/* line 56, scss/_user-panel.scss */
-.main-screen {
-  color: white;
-  background: #787878;
-  border: 1px solid blue;
-  clear: both;
-  position: absolute;
-  z-index: 99;
-  width: 100%;
-  height: 100vh;
-  margin: auto;
-  opacity: 0.95;
-  text-align: center;
-}
-
-/* line 70, scss/_user-panel.scss */
-.main-screen-title {
-  font-family: "Luckiest Guy", cursive;
-  font-size: 60px;
-  font-weight: normal;
-  letter-spacing: 5px;
-}
-
-/* line 78, scss/_user-panel.scss */
-.main-screen-subtitle {
-  font-size: 40px;
-}
-
-/* line 87, scss/_user-panel.scss */
-.main-screen {
-  color: white;
-}
-
-/* line 92, scss/_user-panel.scss */
-.player-name {
-  font-size: 20px;
-}
-
-/* line 93, scss/_user-panel.scss */
+/* line 54, scss/_user-panel.scss */
 .the-player-name {
   color: white;
 }

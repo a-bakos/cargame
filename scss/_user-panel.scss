@@ -49,45 +49,6 @@ td {
     }
   }
 
-/**
- * Main screen - input area
- */
 
-.main-screen {
-  color: white;
-  background: rgb(120,120,120);
-  border: 1px solid blue;
-  clear: both;
-  position: absolute;
-  z-index: 99;
-  width: $hpc;
-  height: 100vh;
-  margin: auto;
-  opacity: 0.95;
-  text-align: center;
-  }
 
-.main-screen-title  {
-  font: {
-    family: $main-display-bold;
-    size: 60px;
-    weight: normal;
-    }
-  letter-spacing: 5px;
-  }
-.main-screen-subtitle {
-  font-size: 40px;
-  }
-.main-screen-text   {}
-
-// Player name input
-.player-name-input-area {
-  }
-
-.main-screen { color: white; }
-
-.input-field {}
-.input-submit {}
-
-.player-name { font-size: 20px; }
 .the-player-name { color: white; }

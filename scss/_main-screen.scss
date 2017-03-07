@@ -1,0 +1,64 @@
+/**
+ * Main screen
+ *
+ * - Title,
+ * - Story,
+ * - Player input area,
+ * - Extras,
+ * - Info
+ * + Game Over
+ */
+
+.main-screen {
+  clear: both;
+  position: absolute;
+  z-index: 99;
+  width: $hpc;
+  height: 100vh;
+  margin: auto;
+  opacity: 0.95;
+
+  color: white;
+  text-align: center;
+  background: rgb(120,120,120);
+  border: 10px solid blue;
+  border-radius: 20px;
+  }
+
+.main-screen-title  {
+  font: {
+    family: $main-display-bold;
+    size: 60px;
+    weight: normal;
+    }
+  text-shadow:
+    0 2px 0 rgb(120,120,120),
+    0 6px 0 black;
+  letter-spacing: 5px;
+  }
+
+.main-screen-subtitle {
+  font-size: 40px;
+  }
+.main-screen-text   {}
+
+// Player name input
+.input-field {
+  font-family: $plate-font;
+  width: 300px;
+  font-size: 40px;
+  text-align: center;
+  border: 5px solid blue;
+  
+  &:focus {
+    border: 5px solid blue;
+    box-shadow: 0 0 25px blue;
+  }
+  }
+
+.main-screen { color: white; }
+
+.input-field {}
+.input-submit {}
+
+.player-name {  }
