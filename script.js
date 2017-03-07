@@ -1,3 +1,4 @@
+(function(){
 "use strict";
 
 /**
@@ -516,3 +517,5 @@ function loadMainframe() {
 extraSunroof.addEventListener("change", sunroof, false); // sunroof
 enterPlayerName.addEventListener("click", checkPlayerName, false); // player name
 console.log("Hello, dude! Please enter your name.");
+
+})();
