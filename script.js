@@ -292,28 +292,6 @@ function checkPlayerName() {
   }
 }
 
-var mainframe = document.querySelector(".mainframe");
-
-/**
- * Load the mainframe after the user name has been correctly set.
- */
-function loadMainframe() {
-  if (playerNameSet === true) {
-    mainframe.classList.remove("hide-element"); // show the mainframe
-    odometerClockStartupDelay(); // delay the clock
-
-    // Attach event listeners that listen to keyboard interactions.
-    // They need to be called here in order to be listening AFTER the mainframe
-    // has loaded.
-    addEventListener("keydown", toggleLights, false);     // lights
-    addEventListener("keydown", indicatorLights, false);  // indicators
-    addEventListener("keydown", moveLeft, false);         // move left
-    addEventListener("keydown", moveRight, false);        // move right
-
-    getPlateData(); // Print plate data to the console
-  }
-}
-
 /**
  * Function for changing the license plate's data (both values).
  */
@@ -418,6 +396,7 @@ function startTime() {
   if (timeRunning === false) {
     timeRunning = true;
     incrementTime();
+    carCondition();
   }
   else {
     timeRunning === false;
@@ -446,6 +425,67 @@ function incrementTime() {
 
       incrementTime();
     }, startupTime);
+  }
+}
+
+/**
+ * Condition display
+ */
+var conditionDisplay  = document.querySelector(".cond-state");
+var conditionState    = 100;
+var statusIconEngine  = document.querySelector(".icon-engine");
+
+function carCondition() {
+  if (timeRunning === true) {
+    setTimeout(function() {
+      conditionState--;
+      
+      if (conditionState >= 10 && conditionState < 100) {
+        conditionState = "0" + conditionState;
+      }
+      else if (conditionState < 10) {
+        conditionState = "00" + conditionState;
+      }
+
+      if (conditionState <= 1) {
+        conditionState = "xxx";
+        timeRunning = false;
+      }
+
+      conditionDisplay.innerHTML = conditionState;
+      carCondition();
+    }, startupTime);
+
+    if (conditionState <= 35) {
+      statusIconEngine.src = "img/engine-on.png";
+    }
+    if (conditionState <= 20) {
+      statusIconEngine.src = "img/engine-error.png";
+    }
+  }
+}
+
+
+
+var mainframe = document.querySelector(".mainframe");
+
+/**
+ * Load the mainframe after the user name has been correctly set.
+ */
+function loadMainframe() {
+  if (playerNameSet === true) {
+    mainframe.classList.remove("hide-element"); // show the mainframe
+    odometerClockStartupDelay(); // delay the clock
+
+    // Attach event listeners that listen to keyboard interactions.
+    // They need to be called here in order to be listening AFTER the mainframe
+    // has loaded.
+    addEventListener("keydown", toggleLights, false);     // lights
+    addEventListener("keydown", indicatorLights, false);  // indicators
+    addEventListener("keydown", moveLeft, false);         // move left
+    addEventListener("keydown", moveRight, false);        // move right
+
+    getPlateData(); // Print plate data to the console
   }
 }
 
