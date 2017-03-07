@@ -329,7 +329,6 @@ td {
   background-color: #240806;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.75), 0 10px 10px 0 rgba(0, 0, 0, 0.75), inset 0 25px 15px 0 rgba(0, 0, 0, 0.3), inset 0 -30px 30px 0 rgba(73, 12, 12, 0.5), inset 0 0 30px 0 black;
   font-family: "VT323", monospace;
-  font-size: 30px;
   color: rgba(235, 159, 76, 0.95);
   text-align: center;
   text-shadow: 1px 1px 1px #550800, 0 0 10px #a90a4e;
@@ -337,33 +336,36 @@ td {
 }
 
 /**
- * Clock
+ * Dashboard text sizes
  */
+/* line 34, scss/_dashboard.scss */
+.small-text {
+  font-size: 22px;
+}
+
+/* line 35, scss/_dashboard.scss */
+.medium-text {
+  font-size: 28px;
+}
+
 /* line 36, scss/_dashboard.scss */
-.clock-date {
-  font-size: 22px;
-}
-
-/* line 37, scss/_dashboard.scss */
-.celsius-display {
-  font-size: 22px;
-}
-
-/* line 38, scss/_dashboard.scss */
-.clock-time {
+.large-text {
   font-size: 36px;
 }
 
 /**
+ * Clock
+ */
+/**
  * Odometer
  */
-/* line 44, scss/_dashboard.scss */
+/* line 50, scss/_dashboard.scss */
 .odometer-area {
   width: 75%;
   margin: auto;
 }
 
-/* line 49, scss/_dashboard.scss */
+/* line 55, scss/_dashboard.scss */
 .odometer {
   margin-left: 10px;
   margin-right: 10px;
@@ -373,23 +375,23 @@ td {
 /**
  * Status icons
  */
-/* line 61, scss/_dashboard.scss */
+/* line 67, scss/_dashboard.scss */
 .status-icon {
   width: 25px;
 }
 
-/* line 64, scss/_dashboard.scss */
+/* line 70, scss/_dashboard.scss */
 .status-icon:first-child,
 .status-icon:last-child {
   width: 16px;
 }
 
-/* line 66, scss/_dashboard.scss */
+/* line 72, scss/_dashboard.scss */
 .status-icon:nth-child(2) {
   width: 18px;
 }
 
-/* line 67, scss/_dashboard.scss */
+/* line 73, scss/_dashboard.scss */
 .status-icon:nth-child(6) {
   width: 20px;
 }

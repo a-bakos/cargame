@@ -16,7 +16,6 @@
 
   font: {
     family: $odometer-font;
-    size: 30px;
     }
   color: rgba(235,159,76,0.95);
   text: {
@@ -30,12 +29,19 @@
   }
 
 /**
+ * Dashboard text sizes
+ */
+.small-text       { font-size: 22px; }
+.medium-text      { font-size: 28px; }
+.large-text       { font-size: 36px; }
+
+/**
  * Clock
  */
 
-.clock-date       { font-size: 22px; }
-.celsius-display  { font-size: 22px; }
-.clock-time       { font-size: 36px; }
+.clock-date       {}
+.celsius-display  {}
+.clock-time       {}
 
 /**
  * Odometer
