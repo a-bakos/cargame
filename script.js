@@ -34,10 +34,13 @@ var vehicle = {
 
 /**
  * The duration the car needs to reach its static velocity.
- * Defined in milliseconds.
+ * Defined in milliseconds, and the same amount is used in the CSS animations.
  * Used for example to mimic loading up the dashboard clock & odometer.
  */
 var startupTime = 750;
+
+var timeRunning = false;
+var time = 0;
 
 // Hiding elements
 function hideElement(elem) {
@@ -47,9 +50,12 @@ function hideElement(elem) {
 /**
  * Status icon selectors
  */
-var statusIconLights  = document.querySelector(".icon-lights");
-var statusIconBattery = document.querySelector(".icon-battery");
-var statusIconEngine  = document.querySelector(".icon-engine");
+//var statusIconLeftIndex   = document.querySelector(".icon-left-index");
+var statusIconBattery     = document.querySelector(".icon-battery");
+var statusIconLights      = document.querySelector(".icon-lights");
+var statusIconEngine      = document.querySelector(".icon-engine");
+//var statusIconDoors       = document.querySelector(".icon-doors");
+//var statusIconRighttIndex = document.querySelector(".icon-right-index");
 
 /**
  * Car condition
@@ -448,8 +454,6 @@ function odometerClockStartupDelay() {
  * about 20m/s, or 72km/h.
  */
 var odometer = document.querySelector(".odometer");
-var timeRunning = false;
-var time = 0;
 var distance;
 
 function startTime() {
@@ -492,11 +496,12 @@ var mainframe = document.querySelector(".mainframe");
 
 /**
  * Load the mainframe after the user name has been correctly set.
+ * (mainframe = the area where the game happens)
  */
 function loadMainframe() {
   if (playerNameSet === true) {
     mainframe.classList.remove("hide-element"); // show the mainframe
-    odometerClockStartupDelay(); // delay the clock
+    odometerClockStartupDelay(); // delay the dashboard clock(s) & counter(s)
 
     // Attach event listeners that listen to keyboard interactions.
     // They need to be called here in order to be listening AFTER the mainframe
@@ -516,6 +521,7 @@ function loadMainframe() {
 
 extraSunroof.addEventListener("change", sunroof, false); // sunroof
 enterPlayerName.addEventListener("click", checkPlayerName, false); // player name
-console.log("Hello, dude! Please enter your name.");
+
+console.log("Hello, dude! Please enter your name."); // The first line on the console
 
 })();
