@@ -5,6 +5,9 @@
   top: -50px;
   right: -2000px;
 
-  background: rgba(0,0,0,0.85);
+  background: rgba(104,104,76,1);
+  box-shadow:
+    0 0 15px rgba(0,0,0,0.5),
+    inset 0 0 15px rgba(0,0,0,0.85);
   border-radius: 50%;
   }
