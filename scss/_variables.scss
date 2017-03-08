@@ -16,7 +16,7 @@ $main-screen-color:   rgb(200,200,200);
 
 $color-black:         rgba(0,0,0,1);
 $color-white:         rgba(255,255,255,1);
-$color-red:           rgba(174,0,0,1);
+$color-red:           rgba(165,0,0,1);
 $color-orange:        rgba(254,147,1,1);
 $color-light-yellow:  rgb(255,255,159);     // color of the car's front lights
 $color-green:         rgb(0,51,0);
@@ -24,6 +24,7 @@ $color-green:         rgb(0,51,0);
 $color-lamp-yellow:   rgba(224,94,7,1);
 $color-lamp-orange:   rgba(255,180,66,1);
 
+$glass-color:         rgb(5,50,50);
 
 /**
  * Let's use interpolation on colors, so they aren't dependent on individual
@@ -45,7 +46,7 @@ $color-lamp-orange:   rgba(255,180,66,1);
   }
 
 @mixin car-color($property_name, $opacity:1) {
-  #{$property_name}: rgba(157,0,0,$opacity);
+  #{$property_name}: rgba(165,0,0,$opacity);
   }
 @mixin car-headlights($property_name, $opacity:1) {
   #{$property_name}: rgba(255,255,159,$opacity);
