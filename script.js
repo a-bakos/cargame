@@ -317,7 +317,6 @@ function checkPlayerName() {
 
   playerNameValue = playerNameField.value;
   playerNameValue = playerNameValue.latinise(); // Remove accents
-
   if (playerNameValue.length < 1 || !playerNameValue.match(correctInput)) {
 
     // Instead of the temporary alert, a text node insertion would be a better
@@ -355,6 +354,18 @@ function checkPlayerName() {
       startTime(); // Start the clock
       loadMainframe(); // Load the mainframe
     }
+  }
+}
+
+/**
+ * Wrapper function that calls the checkPlayerName() function after the enter
+ * button is pressed on playerNameField. An event listener is listening to it,
+ * so this way the user can assign the player name by clicking the button on the
+ * screen, or by pressing the enter key.
+ */
+function checkPlayerNameEnter(event) {
+  if (event.keyCode == 13) {
+    checkPlayerName();
   }
 }
 
@@ -520,7 +531,10 @@ function loadMainframe() {
  */
 
 extraSunroof.addEventListener("change", sunroof, false); // sunroof
-enterPlayerName.addEventListener("click", checkPlayerName, false); // player name
+
+// Player name listeners:
+enterPlayerName.addEventListener("click", checkPlayerName, false);
+playerNameField.addEventListener("keydown", checkPlayerNameEnter, false);
 
 console.log("Hello, dude! Please enter your name."); // The first line on the console
 
