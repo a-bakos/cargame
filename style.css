@@ -432,18 +432,38 @@ td {
   width: 14px;
 }
 
+/* line 111, scss/_dashboard.scss */
+.icon-wifi {
+  width: 14px;
+}
+
+/* line 112, scss/_dashboard.scss */
+.icon-network {
+  width: 14px;
+}
+
+/* line 113, scss/_dashboard.scss */
+.icon-bluetooth {
+  width: 14px;
+}
+
 /* line 114, scss/_dashboard.scss */
+.icon-energy {
+  width: 20px;
+}
+
+/* line 117, scss/_dashboard.scss */
 .icon-left-index,
 .icon-right-index {
   width: 16px;
 }
 
-/* line 120, scss/_dashboard.scss */
+/* line 123, scss/_dashboard.scss */
 .icon-battery {
   width: 18px;
 }
 
-/* line 121, scss/_dashboard.scss */
+/* line 124, scss/_dashboard.scss */
 .icon-doors {
   width: 20px;
 }

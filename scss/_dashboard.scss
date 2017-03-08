@@ -105,10 +105,13 @@
   text-align: center;
   }
 
-.status-icon { width: 25px; }
+.status-icon  { width: 25px; }
 
-.icon-driver { width: 14px; }
-.icon-energy {}
+.icon-driver  { width: 14px; }
+.icon-wifi    { width: 14px; }
+.icon-network { width: 14px; }
+.icon-bluetooth { width: 14px; }
+.icon-energy  { width: 20px; }
 
 .icon-left-index,
 .icon-right-index {
