@@ -182,40 +182,41 @@ body {
   left: 0;
   padding-top: 0px;
   margin: auto;
-  background-color: #003300;
+  background-color: #45541b;
+  box-shadow: inset -20px 0 50px #131b06;
 }
 
-/* line 26, scss/_base.scss */
+/* line 27, scss/_base.scss */
 .mainframe {
   animation: load-up 1000ms ease-in;
 }
 
 @keyframes load-up {
-  /* line 31, scss/_base.scss */
+  /* line 32, scss/_base.scss */
   0% {
     opacity: 0;
   }
 
-  /* line 32, scss/_base.scss */
+  /* line 33, scss/_base.scss */
   100% {
     opacity: 1;
   }
 }
 
-/* line 35, scss/_base.scss */
+/* line 36, scss/_base.scss */
 p {
   width: 100%;
   font-family: "Ubuntu Condensed", sans-serif;
   font-size: 20px;
 }
 
-/* line 41, scss/_base.scss */
+/* line 42, scss/_base.scss */
 .hide-element {
   display: none;
   transition: 500ms;
 }
 
-/* line 46, scss/_base.scss */
+/* line 47, scss/_base.scss */
 h2 {
   font-size: 16px;
   font-weight: bold;
@@ -421,25 +422,25 @@ td {
   width: 100%;
   height: 94px;
   background-color: #272c25;
-  box-shadow: inset -15px 0 10px 10px rgba(39, 44, 37, 0.75), inset 0 20px 10px 10px #3d514f, inset 0 35px 15px 5px #435654, inset 0 62px 15px 5px #4f6260, inset 0 -20px 2px 10px #3d514f;
+  box-shadow: inset -15px 0 10px 10px rgba(39, 44, 37, 0.75), inset 0 20px 10px 10px #3d514f, inset 0 35px 15px 5px #435654, inset 0 62px 15px 5px #4f6260, inset 0 -20px 2px 10px #3d514f, -20px 0 20px #131b06;
 }
 
-/* line 15, scss/_roadtrack.scss */
+/* line 18, scss/_roadtrack.scss */
 .track-left {
   border-top: 5px double;
   border-top-color: #f9d074;
 }
 
-/* line 19, scss/_roadtrack.scss */
+/* line 22, scss/_roadtrack.scss */
 .track-right {
   border-bottom: 5px double;
   border-bottom-color: #f9d074;
 }
 
-/* line 24, scss/_roadtrack.scss */
+/* line 27, scss/_roadtrack.scss */
 .roadtrack-separator {
   border-bottom: 5px dashed;
-  border-bottom-color: rgba(255, 255, 255, 0.75);
+  border-bottom-color: white;
 }
 
 /* line 1, scss/_pothole.scss */

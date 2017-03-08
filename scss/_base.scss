@@ -21,6 +21,7 @@ body {
   margin: auto;
 
   @include grass-green(background-color, 1);
+  box-shadow: inset -20px 0 50px $color-dark-green;
 }
 
 .mainframe {
