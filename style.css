@@ -873,7 +873,7 @@ td {
   top: 10px;
   margin-left: 15px;
   margin-right: 15px;
-  color: #f0a32d;
+  color: #f59c33;
   font-size: 16px;
   font-family: "Zzyzx", "Seattle Sans", sans-serif;
   font-weight: bolder;
@@ -890,7 +890,7 @@ td {
   font-weight: bolder;
   font-family: "Zzyzx", "Seattle Sans", sans-serif;
   letter-spacing: 4px;
-  color: #f0a32d;
+  color: #f59c33;
   /**
    * In order to create text with a gradient effect, the following rules are
    * needed. Browsers that don't support them will fall back to the above color

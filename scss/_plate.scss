@@ -78,7 +78,7 @@ float: right;
   margin-left: 15px;
   margin-right: 15px;
 
-  color: rgba(240,163,45,1);
+  color: $plate-color;
   font: {
     size: 16px;
     family: $plate-font;
@@ -103,7 +103,7 @@ float: right;
     family: $plate-font;
     }
   letter-spacing: 4px;
-  color: rgba(240,163,45,1);
+  color: $plate-color;
 
   /**
    * In order to create text with a gradient effect, the following rules are
