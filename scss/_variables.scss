@@ -12,6 +12,7 @@ $hpx: 100px;  // Hundred pixel
 // Colors
 
 $bg-color:            wheat; // main bg + some elements use it, like the holes on the license plate
+$main-screen-color:   rgb(200,200,200);
 
 $color-black:         rgba(0,0,0,1);
 $color-white:         rgba(255,255,255,1);
@@ -40,7 +41,7 @@ $color-lamp-orange:   rgba(255,180,66,1);
   #{$property_name}: rgba(0,51,0,$opacity);
   }
 @mixin warning-yellow($property_name, $opacity:1) {
-  #{$property_name}: rgba(255,204,0,$opacity);
+  #{$property_name}: rgba(249,208,116,$opacity);
   }
 
 @mixin car-color($property_name, $opacity:1) {

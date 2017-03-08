@@ -4,12 +4,13 @@
   width: $hpc;
   height: 94px;
 
-  background-color: rgba(20,20,20,1);
+  background-color: rgba(39,44,37,1);
   box-shadow:
-    inset -15px 0 15px 10px rgba(0,0,0,0.65),
-    inset 0 35px 10px rgba(30,30,30,0.75),
-    inset 0 62px 10px rgba(60,60,60,0.9),
-    inset 0 -35px 10px rgba(40,40,40,0.95);
+    inset -15px 0 10px 10px rgba(39,44,37,0.75),
+    inset 0 20px 10px 10px rgba(61,81,79,1),
+    inset 0 35px 15px 5px rgba(67,86,84,1),
+    inset 0 62px 15px 5px rgba(79,98,96,1),
+    inset 0 -20px 2px 10px rgba(61,81,79,1);
   }
   .track-left {
     border-top: 5px double;
