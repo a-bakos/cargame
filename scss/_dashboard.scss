@@ -2,17 +2,26 @@
  * Dashboard
  */
 
-.dashboard-area {
+.dashboard-area { @include no-select; }
+
+.dashboard {
+  padding: {
+    top: 15px;
+    bottom: 15px;
+    }
   border: {
+    top: 1px solid rgba(255,255,255,0.15);
     radius: 25px;
     }
-  background-color: rgb(36,8,6);
+  background-color: $dash-display-bg;
   box-shadow:
     0 0 20px 0 rgba(0,0,0,0.75),
     0 10px 10px 0 rgba(0,0,0,0.75),
     inset 0 25px 15px 0 rgba(0,0,0,0.3), // upper shadow line
-    inset 0 -30px 30px 0 rgba(73,12,12,0.5),
-    inset 0 0 30px 0 rgba(0,0,0,1);
+    inset 0 -30px 30px 0 rgba(42,38,44,1),
+    inset 0 0 30px 0 rgba(0,0,0,1),
+    
+    0 15px 50px 0 rgba(235,159,76,0.3);
 
   font: {
     family: $odometer-font;
@@ -21,11 +30,21 @@
   text: {
     align: center;
     shadow:
-      1px 1px 1px rgb(85,8,0),
-      0 0 10px rgb(169,10,78);
+      1px 1px 1px rgba(85,8,0,0.75),
+      0 0 10px rgba(235,159,76,0.5);
     }
+}
 
-  @include no-select;
+.inverse-disp {
+  padding: {
+    left: 2px;
+    right: 2px;
+  }
+  background-color: rgba(235,159,76,0.85);
+  border-radius: 2px;
+  color: darken($dash-display-bg, 5%);
+  text-shadow: none;
+  box-shadow: 0 0 2px rgba(85,8,0,0.5);
   }
 
 /**
@@ -49,7 +68,12 @@
 
 .odometer-area {
   width: 75%;
-  margin: auto;
+  margin: {
+    top: 5px;
+    left: auto;
+    right: auto;
+    }
+  border-top: 1px solid  rgba(235,159,76,0.35);
   }
 
 .odometer {
@@ -61,13 +85,37 @@
   }
 
 /**
+ * Energy area
+ */
+.energy-area {
+  width: 75%;
+  margin: {
+    left: auto;
+    right: auto;
+    }
+  border-bottom: 1px solid rgba(235,159,76,0.35);
+  }
+
+/**
  * Status icons
  */
+.status-icons-area {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+  }
 
-.status-icon              { width: 25px; }
+.status-icon { width: 25px; }
 
-.status-icon:first-child,
-.status-icon:last-child,  { width: 16px; }
+.icon-driver { width: 14px; }
+.icon-energy {}
 
-.status-icon:nth-child(2) { width: 18px; }
-.status-icon:nth-child(6) { width: 20px; }
+.icon-left-index,
+.icon-right-index {
+  width: 16px;
+  }
+
+.icon-lights  {}
+.icon-engine  {}
+.icon-battery { width: 18px; }
+.icon-doors   { width: 20px; }

@@ -171,11 +171,12 @@ body {
   margin: auto;
   height: 100vh;
   overflow-x: hidden;
-  background-color: wheat;
+  background-color: #422e2f;
   font-size: 20px;
+  box-shadow: inset 0 -100px 10px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* line 16, scss/_base.scss */
+/* line 18, scss/_base.scss */
 .gameframe {
   width: 120%;
   height: 225px;
@@ -186,37 +187,37 @@ body {
   box-shadow: inset -20px 0 50px #131b06;
 }
 
-/* line 27, scss/_base.scss */
+/* line 29, scss/_base.scss */
 .mainframe {
   animation: load-up 1000ms ease-in;
 }
 
 @keyframes load-up {
-  /* line 32, scss/_base.scss */
+  /* line 34, scss/_base.scss */
   0% {
     opacity: 0;
   }
 
-  /* line 33, scss/_base.scss */
+  /* line 35, scss/_base.scss */
   100% {
     opacity: 1;
   }
 }
 
-/* line 36, scss/_base.scss */
+/* line 38, scss/_base.scss */
 p {
   width: 100%;
   font-family: "Ubuntu Condensed", sans-serif;
   font-size: 20px;
 }
 
-/* line 42, scss/_base.scss */
+/* line 44, scss/_base.scss */
 .hide-element {
   display: none;
   transition: 500ms;
 }
 
-/* line 47, scss/_base.scss */
+/* line 49, scss/_base.scss */
 h2 {
   font-size: 16px;
   font-weight: bold;
@@ -246,7 +247,7 @@ h2 {
   color: white;
   text-align: center;
   background: #c8c8c8;
-  border: 10px solid wheat;
+  border: 10px solid #422e2f;
   border-radius: 20px;
 }
 
@@ -293,33 +294,33 @@ h2 {
   width: 100%;
   margin-top: 23px;
   border-top: 5px solid black;
-  background: purple;
   z-index: 2;
 }
 
-/* line 14, scss/_user-panel.scss */
+/* line 13, scss/_user-panel.scss */
 .game-details {
-  background: #0a0a0a;
+  background: #422e2f;
+  box-shadow: inset 0 85px 15px 0 #5c4648;
   width: 100%;
   margin: 0;
   padding-top: 15px;
   padding-bottom: 15px;
 }
 
-/* line 24, scss/_user-panel.scss */
+/* line 25, scss/_user-panel.scss */
 table {
   width: 100%;
   margin: 0 auto;
   border-collapse: collapse;
 }
 
-/* line 30, scss/_user-panel.scss */
+/* line 31, scss/_user-panel.scss */
 td {
   width: 33.33333%;
   margin: 0;
 }
 
-/* line 35, scss/_user-panel.scss */
+/* line 36, scss/_user-panel.scss */
 .small-heading {
   margin: 0;
   font-family: "Teko", sans-serif;
@@ -327,47 +328,53 @@ td {
   line-height: normal;
 }
 
-/* line 44, scss/_user-panel.scss */
-.the-player-name {
-  font-size: 50px;
-  font-weight: bolder;
-  font-family: "Luckiest Guy", cursive;
-}
-
-/* line 54, scss/_user-panel.scss */
-.the-player-name {
-  color: white;
-}
-
 /**
  * Dashboard
  */
 /* line 5, scss/_dashboard.scss */
 .dashboard-area {
+  user-select: none;
+}
+
+/* line 7, scss/_dashboard.scss */
+.dashboard {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 25px;
-  background-color: #240806;
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.75), 0 10px 10px 0 rgba(0, 0, 0, 0.75), inset 0 25px 15px 0 rgba(0, 0, 0, 0.3), inset 0 -30px 30px 0 rgba(73, 12, 12, 0.5), inset 0 0 30px 0 black;
+  background-color: #453e3d;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.75), 0 10px 10px 0 rgba(0, 0, 0, 0.75), inset 0 25px 15px 0 rgba(0, 0, 0, 0.3), inset 0 -30px 30px 0 #2a262c, inset 0 0 30px 0 black, 0 15px 50px 0 rgba(235, 159, 76, 0.3);
   font-family: "VT323", monospace;
   color: rgba(235, 159, 76, 0.95);
   text-align: center;
-  text-shadow: 1px 1px 1px #550800, 0 0 10px #a90a4e;
-  user-select: none;
+  text-shadow: 1px 1px 1px rgba(85, 8, 0, 0.75), 0 0 10px rgba(235, 159, 76, 0.5);
+}
+
+/* line 38, scss/_dashboard.scss */
+.inverse-disp {
+  padding-left: 2px;
+  padding-right: 2px;
+  background-color: rgba(235, 159, 76, 0.85);
+  border-radius: 2px;
+  color: #373231;
+  text-shadow: none;
+  box-shadow: 0 0 2px rgba(85, 8, 0, 0.5);
 }
 
 /**
  * Dashboard text sizes
  */
-/* line 34, scss/_dashboard.scss */
+/* line 53, scss/_dashboard.scss */
 .small-text {
   font-size: 22px;
 }
 
-/* line 35, scss/_dashboard.scss */
+/* line 54, scss/_dashboard.scss */
 .medium-text {
   font-size: 28px;
 }
 
-/* line 36, scss/_dashboard.scss */
+/* line 55, scss/_dashboard.scss */
 .large-text {
   font-size: 36px;
 }
@@ -378,13 +385,16 @@ td {
 /**
  * Odometer
  */
-/* line 50, scss/_dashboard.scss */
+/* line 69, scss/_dashboard.scss */
 .odometer-area {
   width: 75%;
-  margin: auto;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  border-top: 1px solid rgba(235, 159, 76, 0.35);
 }
 
-/* line 55, scss/_dashboard.scss */
+/* line 79, scss/_dashboard.scss */
 .odometer {
   margin-left: 10px;
   margin-right: 10px;
@@ -392,26 +402,49 @@ td {
 }
 
 /**
+ * Energy area
+ */
+/* line 90, scss/_dashboard.scss */
+.energy-area {
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
+  border-bottom: 1px solid rgba(235, 159, 76, 0.35);
+}
+
+/**
  * Status icons
  */
-/* line 67, scss/_dashboard.scss */
+/* line 102, scss/_dashboard.scss */
+.status-icons-area {
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+/* line 108, scss/_dashboard.scss */
 .status-icon {
   width: 25px;
 }
 
-/* line 70, scss/_dashboard.scss */
-.status-icon:first-child,
-.status-icon:last-child {
+/* line 110, scss/_dashboard.scss */
+.icon-driver {
+  width: 14px;
+}
+
+/* line 114, scss/_dashboard.scss */
+.icon-left-index,
+.icon-right-index {
   width: 16px;
 }
 
-/* line 72, scss/_dashboard.scss */
-.status-icon:nth-child(2) {
+/* line 120, scss/_dashboard.scss */
+.icon-battery {
   width: 18px;
 }
 
-/* line 73, scss/_dashboard.scss */
-.status-icon:nth-child(6) {
+/* line 121, scss/_dashboard.scss */
+.icon-doors {
   width: 20px;
 }
 
