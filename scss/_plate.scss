@@ -8,12 +8,12 @@
 
 // The plate wrapper section
 .license-plate {
-float: right;
   @include no-select;
   }
 
 // The actual plate
 .plate-base {
+  margin: auto;
   width: 250px;
   height: 125px;
 

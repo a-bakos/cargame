@@ -345,10 +345,8 @@ function checkPlayerName() {
 
       // Decide whether to hide the main screen after receiving the corrert input
       // or to remove is completely from the DOM
-      //hideElement(inputArea);
       document.body.removeChild(inputArea);
 
-      playerDetails.classList.remove("hide-element");
       playerNameSet = true;
 
       startTime(); // Start the clock

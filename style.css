@@ -329,6 +329,16 @@ td {
 }
 
 /**
+ * Info unit that display
+ */
+/* line 4, scss/_info-unit.scss */
+.info-unit {
+  width: 75%;
+  margin: auto;
+  background: white;
+}
+
+/**
  * Dashboard
  */
 /* line 5, scss/_dashboard.scss */
@@ -466,6 +476,106 @@ td {
 /* line 124, scss/_dashboard.scss */
 .icon-doors {
   width: 20px;
+}
+
+/**
+ * Styling of the generated license plate.
+ *
+ * The plate that gets recreated here is similar to what was was being used in
+ * California, USA from 1963 and was issued until 1970.
+ * More info on that topic here: http://www.worldlicenseplates.com/
+ */
+/* line 10, scss/_plate.scss */
+.license-plate {
+  user-select: none;
+}
+
+/* line 15, scss/_plate.scss */
+.plate-base {
+  margin: auto;
+  width: 250px;
+  height: 125px;
+  background-color: #1a1a1c;
+  background-image: linear-gradient(#141414, #282828, #1a1a1c);
+  box-shadow: inset 0 0 0 3px #181319, inset 0 -1px 0 4px rgba(255, 255, 255, 0.15), inset 0 0 0 5px #1e1e1e, inset 0 0 10px 5px black, 0 2px 15px 4px rgba(0, 0, 0, 0.5);
+  border-top: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  text-align: center;
+  /**
+   * The following rules are needed because there is a pseudo element (:after)
+   * on a child of this element which is positioned by manipulating the local
+   * stacking context. (Z-index only works if position is specified.)
+   * More info at the .plate-identifier declaration block.
+   */
+  position: relative;
+  z-index: 1;
+}
+
+/* line 49, scss/_plate.scss */
+.plate-sticker {
+  display: inline-table;
+  position: relative;
+  top: 10px;
+  width: 40px;
+  height: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: inset 0 1px 5px 0 rgba(255, 255, 255, 0.1), inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  background-color: transparent;
+  color: rgba(110, 99, 90, 0.35);
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.75), 0 0 3px rgba(0, 0, 0, 0.25);
+  font-family: "Rockwell";
+  font-size: 18px;
+  font-vertical-align: middle;
+}
+
+/* line 74, scss/_plate.scss */
+.plate-text {
+  display: inline;
+  position: relative;
+  top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+  color: #f59c33;
+  font-size: 16px;
+  font-family: "Zzyzx", "Seattle Sans", sans-serif;
+  font-weight: bolder;
+  letter-spacing: 3px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75), 0 -1px 1px rgba(255, 255, 255, 0.75);
+}
+
+/* line 95, scss/_plate.scss */
+.plate-identifier {
+  position: relative;
+  margin: 0;
+  margin-top: 0;
+  font-size: 76px;
+  font-weight: bolder;
+  font-family: "Zzyzx", "Seattle Sans", sans-serif;
+  letter-spacing: 4px;
+  color: #f59c33;
+  /**
+   * In order to create text with a gradient effect, the following rules are
+   * needed. Browsers that don't support them will fall back to the above color
+   * property.
+   *
+   * Note: Since background-clip does not work with text-shadow, the :after
+   * pseudo element is utilised, see below.
+   */
+  background-image: linear-gradient(#f0a32d 65%, #573104);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* line 125, scss/_plate.scss */
+.plate-identifier:after {
+  position: absolute;
+  width: inherit;
+  content: attr(data-text);
+  left: 0;
+  background: none;
+  text-shadow: 0 2px 1px black, 0 -2px 1px rgba(255, 255, 255, 0.5);
+  z-index: -1;
 }
 
 /* line 1, scss/_roadtrack.scss */
@@ -866,106 +976,6 @@ td {
   background-color: #053232;
   border-radius: 5px;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.75), 0 0 15px rgba(0, 0, 0, 0.5), inset 0 15px 10px #053232, inset 0 25px 15px rgba(255, 255, 255, 0.25), inset 0 35px 10px #053232;
-}
-
-/**
- * Styling of the generated license plate.
- *
- * The plate that gets recreated here is similar to what was was being used in
- * California, USA from 1963 and was issued until 1970.
- * More info on that topic here: http://www.worldlicenseplates.com/
- */
-/* line 10, scss/_plate.scss */
-.license-plate {
-  float: right;
-  user-select: none;
-}
-
-/* line 16, scss/_plate.scss */
-.plate-base {
-  width: 250px;
-  height: 125px;
-  background-color: #1a1a1c;
-  background-image: linear-gradient(#141414, #282828, #1a1a1c);
-  box-shadow: inset 0 0 0 3px #181319, inset 0 -1px 0 4px rgba(255, 255, 255, 0.15), inset 0 0 0 5px #1e1e1e, inset 0 0 10px 5px black, 0 2px 15px 4px rgba(0, 0, 0, 0.5);
-  border-top: 2px solid rgba(255, 255, 255, 0.25);
-  border-radius: 10px;
-  text-align: center;
-  /**
-   * The following rules are needed because there is a pseudo element (:after)
-   * on a child of this element which is positioned by manipulating the local
-   * stacking context. (Z-index only works if position is specified.)
-   * More info at the .plate-identifier declaration block.
-   */
-  position: relative;
-  z-index: 1;
-}
-
-/* line 49, scss/_plate.scss */
-.plate-sticker {
-  display: inline-table;
-  position: relative;
-  top: 10px;
-  width: 40px;
-  height: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: inset 0 1px 5px 0 rgba(255, 255, 255, 0.1), inset 0 0 5px 0 rgba(0, 0, 0, 0.5);
-  background-color: transparent;
-  color: rgba(110, 99, 90, 0.35);
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.75), 0 0 3px rgba(0, 0, 0, 0.25);
-  font-family: "Rockwell";
-  font-size: 18px;
-  font-vertical-align: middle;
-}
-
-/* line 74, scss/_plate.scss */
-.plate-text {
-  display: inline;
-  position: relative;
-  top: 10px;
-  margin-left: 15px;
-  margin-right: 15px;
-  color: #f59c33;
-  font-size: 16px;
-  font-family: "Zzyzx", "Seattle Sans", sans-serif;
-  font-weight: bolder;
-  letter-spacing: 3px;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.75), 0 -1px 1px rgba(255, 255, 255, 0.75);
-}
-
-/* line 95, scss/_plate.scss */
-.plate-identifier {
-  position: relative;
-  margin: 0;
-  margin-top: 0;
-  font-size: 76px;
-  font-weight: bolder;
-  font-family: "Zzyzx", "Seattle Sans", sans-serif;
-  letter-spacing: 4px;
-  color: #f59c33;
-  /**
-   * In order to create text with a gradient effect, the following rules are
-   * needed. Browsers that don't support them will fall back to the above color
-   * property.
-   *
-   * Note: Since background-clip does not work with text-shadow, the :after
-   * pseudo element is utilised, see below.
-   */
-  background-image: linear-gradient(#f0a32d 65%, #573104);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* line 125, scss/_plate.scss */
-.plate-identifier:after {
-  position: absolute;
-  width: inherit;
-  content: attr(data-text);
-  left: 0;
-  background: none;
-  text-shadow: 0 2px 1px black, 0 -2px 1px rgba(255, 255, 255, 0.5);
-  z-index: -1;
 }
 
 /* line 1, scss/_controls.scss */
