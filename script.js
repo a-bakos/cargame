@@ -54,6 +54,7 @@ function hideElement(elem) {
 var statusIconBattery     = document.querySelector(".icon-battery");
 var statusIconLights      = document.querySelector(".icon-lights");
 var statusIconEngine      = document.querySelector(".icon-engine");
+var statusIconMessage     = document.querySelector(".icon-message");
 //var statusIconDoors       = document.querySelector(".icon-doors");
 //var statusIconRighttIndex = document.querySelector(".icon-right-index");
 
@@ -525,6 +526,118 @@ function loadMainframe() {
 }
 
 /**
+ * INFO UNIT
+ */
+
+/**
+ * Message wall
+ */
+
+// The actual message text:
+var messageString = "Hey man, this is the garage. Can you please bring the car in for a quick checkup today? Say, $300?";
+
+var messageCounter = 0; // Message counter
+
+var msgWall = document.querySelector(".msg-wall"); // Message wall
+
+function createMessage() {
+  // Incremenet message counter on message creation:
+  messageCounter++;
+
+  // Create message item
+  var msgItem = document.createElement("div");
+  msgItem.classList.add("msg-item");
+  msgItem.classList.add("msg-no-" + messageCounter);
+
+  // Create the message content
+  var msgContent = document.createElement("div");
+  msgContent.classList.add("msg-content");
+  msgContent.innerHTML = messageString;
+
+  // Create message actions buttonset wrapper
+  var msgActions = document.createElement("div");
+  msgActions.classList.add("msg-actions");
+
+  // Create the accept button
+  var acceptMsgBtn = document.createElement("button");
+  acceptMsgBtn.classList.add("msg-accept");
+  acceptMsgBtn.innerHTML = "OK";
+
+  // Create delete button
+  var deleteMsgBtn = document.createElement("button");
+  deleteMsgBtn.classList.add("msg-delete");
+  deleteMsgBtn.innerHTML = "IGNORE";
+
+  // Put the whole message item together:
+  msgWall.appendChild(msgItem);
+    // Append message content and the button wrapper
+    msgItem.appendChild(msgContent);
+    msgItem.appendChild(msgActions);
+      // Add buttons
+      msgActions.appendChild(acceptMsgBtn);
+      msgActions.appendChild(deleteMsgBtn);
+
+  // Listen for accepting
+  //function acceptMsg() {}
+  // Listen for deleting
+  deleteMsgBtn.addEventListener("click", deleteMsg, false);
+  return messageCounter;
+}
+
+function deleteMsg() {
+
+  var msgItem = document.querySelector(".msg-item");
+  //var msgItemNo = document.querySelector(".msg-no-" + messageCounter);
+  console.log("hello from deleteMsg function");
+
+    messageCounter--;
+    // Disable the action buttons after one is clicked
+    var acceptMsgBtn = document.querySelector(".msg-accept");
+    acceptMsgBtn.setAttribute("disabled", "");
+    var deleteMsgBtn = document.querySelector(".msg-delete");
+    deleteMsgBtn.setAttribute("disabled", "");
+    deleteMsgBtn.style.backgroundColor = "red";
+
+    var msgContent = document.querySelector(".msg-content");
+    msgContent.innerHTML = "Message deleted.";
+
+
+    // Apply a short delay before deleting
+    setTimeout(function(){
+
+      // There is something tricky here:
+      msgWall.removeChild(msgItem);
+      console.log("Message deleted.");
+
+      // Set the elements' base state:
+      acceptMsgBtn.removeAttribute("disabled", "");
+      deleteMsgBtn.removeAttribute("disabled", "");
+      statusIconMessage.src = "img/message-off.png";
+    }, 1000);
+}
+
+
+
+
+// test function for auto-appending elements
+function receiveMsg() {
+  setTimeout(function() {
+    statusIconMessage.src = "img/message-on.png";
+
+    createMessage();
+    console.log("One new message received. Counter:" + messageCounter);
+
+    receiveMsg();
+  }, Math.floor(Math.random() * 10000));
+};
+
+receiveMsg();
+
+
+
+
+
+/**
  * EVENTS / init
  */
 
@@ -535,5 +648,7 @@ enterPlayerName.addEventListener("click", checkPlayerName, false);
 playerNameField.addEventListener("keydown", checkPlayerNameEnter, false);
 
 console.log("Hello, dude! Please enter your name."); // The first line on the console
+
+
 
 })();
