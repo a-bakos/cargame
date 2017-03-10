@@ -559,9 +559,8 @@ var messageString = "Hey man, this is the garage. Can you please bring the car i
  *  </li>
  */
 function createMessage() {
-
   /**
-   * Create the elements of a message item
+   * First, create the elements of a message item
    */
 
   // The message item <li> wrapper:
@@ -588,7 +587,7 @@ function createMessage() {
   deleteMsgBtn.innerHTML = "IGNORE";
 
   /**
-   * Put the whole message item block together
+   * Then, put the whole message item block together
    */
 
   msgWall.appendChild(msgItem);
@@ -601,7 +600,7 @@ function createMessage() {
       msgActions.appendChild(deleteMsgBtn);
 
   // Listen for accepting the message:
-  //function acceptMsg() {}
+  //acceptMsgBtn.addEventListener("click", acceptMsg, false);
 
   // Listen for deleting the message:
   deleteMsgBtn.addEventListener("click", deleteMsg, false);
@@ -624,11 +623,12 @@ function deleteMsg() {
   deleteMsgBtn.style.backgroundColor = "red";
 
   // Show a message to the user before completely removing the .msg-item:
+  // This will be replaced with a CSS class in the stylesheet.
   var msgContent = document.querySelector(".msg-content");
   msgContent.innerHTML = "Message deleted.";
 
   // Apply a short delay before deleting:
-  setTimeout(function(){
+  setTimeout(function() {
 
     msgWall.removeChild(msgItem); // Remove the message item
     console.log("Message deleted.");
@@ -642,6 +642,19 @@ function deleteMsg() {
 }
 
 /**
+ * Function for accepting the message.
+ */
+function acceptMsg() {
+  //
+  // process everything
+  //
+  
+  // Lastly, delete the message:
+  deleteMsg();
+}
+
+
+/**
  * When a new message is received, destroy the old one, if any.
  */
 function destroyOldMsg() {
@@ -649,7 +662,7 @@ function destroyOldMsg() {
 
   if (msgItem) {
     msgWall.removeChild(msgItem);
-    console.log("Old message has been deleted automatically.");
+    console.log("Old message has been automatically deleted.");
   }
 }
 
