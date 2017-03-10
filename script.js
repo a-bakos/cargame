@@ -530,105 +530,141 @@ function loadMainframe() {
  */
 
 /**
- * Message wall
+ * MESSAGE WALL
+ * and related functions
+ *
+ * The message wall itself is an empty unordered list at its initial state.
+ * I chose <ul> and <li> elements because there is a possibility of appending
+ * several messages to the message wall by expanding the function later on, and
+ * a list is a good container for multiple items.
  */
+var msgWall = document.querySelector(".msg-wall");
+
+var messageCounter = 0; // Keep track of the messages
 
 // The actual message text:
 var messageString = "Hey man, this is the garage. Can you please bring the car in for a quick checkup today? Say, $300?";
 
-var messageCounter = 0; // Message counter
-
-var msgWall = document.querySelector(".msg-wall"); // Message wall
-
+/**
+ * This function creates the message item which looks like the following:
+ *
+ *  <li class="msg-item msg-no-[counter]">
+ *    <div class="msg-content">
+ *      [messageString]
+ *    </div>
+ *    <div class="msg-actions">
+ *      <button class="msg-accept">OK</button>
+ *      <button class="msg-delete">IGNORE</button>
+ *    </div>
+ *  </li>
+ */
 function createMessage() {
-  // Incremenet message counter on message creation:
-  messageCounter++;
 
-  // Create message item
-  var msgItem = document.createElement("div");
+  /**
+   * Create the elements of a message item
+   */
+
+  // The message item <li> wrapper:
+  var msgItem = document.createElement("li");
   msgItem.classList.add("msg-item");
   msgItem.classList.add("msg-no-" + messageCounter);
 
-  // Create the message content
+  // The message container:
   var msgContent = document.createElement("div");
   msgContent.classList.add("msg-content");
-  msgContent.innerHTML = messageString;
 
-  // Create message actions buttonset wrapper
+  // The message actions buttonset wrapper:
   var msgActions = document.createElement("div");
   msgActions.classList.add("msg-actions");
 
-  // Create the accept button
+  // The accept button:
   var acceptMsgBtn = document.createElement("button");
   acceptMsgBtn.classList.add("msg-accept");
   acceptMsgBtn.innerHTML = "OK";
 
-  // Create delete button
+  // The delete / ignore button:
   var deleteMsgBtn = document.createElement("button");
   deleteMsgBtn.classList.add("msg-delete");
   deleteMsgBtn.innerHTML = "IGNORE";
 
-  // Put the whole message item together:
+  /**
+   * Put the whole message item block together
+   */
+
   msgWall.appendChild(msgItem);
-    // Append message content and the button wrapper
+    // Append message container, content and the button wrapper
     msgItem.appendChild(msgContent);
+      msgContent.innerHTML = messageString;
     msgItem.appendChild(msgActions);
       // Add buttons
       msgActions.appendChild(acceptMsgBtn);
       msgActions.appendChild(deleteMsgBtn);
 
-  // Listen for accepting
+  // Listen for accepting the message:
   //function acceptMsg() {}
-  // Listen for deleting
+
+  // Listen for deleting the message:
   deleteMsgBtn.addEventListener("click", deleteMsg, false);
-  return messageCounter;
 }
 
+/**
+ * Function for deleting the message by clicking on the "ignore/delete" button
+ */
 function deleteMsg() {
-
+  // Find the message container:
   var msgItem = document.querySelector(".msg-item");
-  //var msgItemNo = document.querySelector(".msg-no-" + messageCounter);
-  console.log("hello from deleteMsg function");
 
-    messageCounter--;
-    // Disable the action buttons after one is clicked
-    var acceptMsgBtn = document.querySelector(".msg-accept");
-    acceptMsgBtn.setAttribute("disabled", "");
-    var deleteMsgBtn = document.querySelector(".msg-delete");
-    deleteMsgBtn.setAttribute("disabled", "");
-    deleteMsgBtn.style.backgroundColor = "red";
+  // Disable the action buttons after one is clicked
+  var acceptMsgBtn = document.querySelector(".msg-accept");
+  var deleteMsgBtn = document.querySelector(".msg-delete");
+  acceptMsgBtn.setAttribute("disabled", "");
+  deleteMsgBtn.setAttribute("disabled", "");
 
-    var msgContent = document.querySelector(".msg-content");
-    msgContent.innerHTML = "Message deleted.";
+  // Indicate the click by setting a different styling on the button:
+  deleteMsgBtn.style.backgroundColor = "red";
 
+  // Show a message to the user before completely removing the .msg-item:
+  var msgContent = document.querySelector(".msg-content");
+  msgContent.innerHTML = "Message deleted.";
 
-    // Apply a short delay before deleting
-    setTimeout(function(){
+  // Apply a short delay before deleting:
+  setTimeout(function(){
 
-      // There is something tricky here:
-      msgWall.removeChild(msgItem);
-      console.log("Message deleted.");
+    msgWall.removeChild(msgItem); // Remove the message item
+    console.log("Message deleted.");
 
-      // Set the elements' base state:
-      acceptMsgBtn.removeAttribute("disabled", "");
-      deleteMsgBtn.removeAttribute("disabled", "");
-      statusIconMessage.src = "img/message-off.png";
-    }, 1000);
+    // Put the elements back to their base state:
+    acceptMsgBtn.removeAttribute("disabled", "");
+    deleteMsgBtn.removeAttribute("disabled", "");
+    statusIconMessage.src = "img/message-off.png"; // Dashboard notification icon
+
+  }, 1000);
 }
 
+/**
+ * When a new message is received, destroy the old one, if any.
+ */
+function destroyOldMsg() {
+  var msgItem = document.querySelector(".msg-item");
 
+  if (msgItem) {
+    msgWall.removeChild(msgItem);
+    console.log("Old message has been deleted automatically.");
+  }
+}
 
-
-// test function for auto-appending elements
+// Test function for auto-appending elements
 function receiveMsg() {
   setTimeout(function() {
-    statusIconMessage.src = "img/message-on.png";
+    destroyOldMsg();
 
+    statusIconMessage.src = "img/message-on.png";
+    messageCounter++;
     createMessage();
-    console.log("One new message received. Counter:" + messageCounter);
+    console.log("New message received. Counter:" + messageCounter);
 
     receiveMsg();
-  }, Math.floor(Math.random() * 10000));
+  }, 10000);
 };
 
 receiveMsg();
@@ -642,7 +678,7 @@ receiveMsg();
  */
 
 extraSunroof.addEventListener("change", sunroof, false); // sunroof
-
+ 
 // Player name listeners:
 enterPlayerName.addEventListener("click", checkPlayerName, false);
 playerNameField.addEventListener("keydown", checkPlayerNameEnter, false);
