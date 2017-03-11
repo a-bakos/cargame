@@ -544,9 +544,6 @@ function loadMainframe() {
  * and related functions
  *
  * The message wall itself is an empty unordered list at its initial state.
- * I chose <ul> and <li> elements because there is a possibility of appending
- * several messages to the message wall by expanding the function later on, and
- * a list is a good container for multiple items.
  */
 var msgWall = document.querySelector(".msg-wall");
 
