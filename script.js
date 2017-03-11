@@ -257,9 +257,11 @@ function sunroof() {
 
 // Cheat function for adding sunroof during the game
 function cheatRoof(event) {
-  if (event.shiftKey) {
-    vehicle.body.appendChild(vehicle.sunroof);
-    console.log("[Cheat applied!] -> Sunroof added.");
+  if (!extraSunroof.checked) {
+    if (event.shiftKey) {
+      vehicle.body.appendChild(vehicle.sunroof);
+      console.log("[Cheat applied!] -> Sunroof added.");
+    }
   }
 }
 
@@ -512,29 +514,6 @@ function incrementTime() {
   }
 }
 
-var mainframe = document.querySelector(".mainframe");
-
-/**
- * Load the mainframe after the user name has been correctly set.
- * (mainframe = the area where the game happens)
- */
-function loadMainframe() {
-  if (playerNameSet === true) {
-    mainframe.classList.remove("hide-element"); // show the mainframe
-    odometerClockStartupDelay(); // delay the dashboard clock(s) & counter(s)
-
-    // Attach event listeners that listen to keyboard interactions.
-    // They need to be called here in order to be listening AFTER the mainframe
-    // has loaded.
-    addEventListener("keydown", toggleLights, false);     // lights
-    addEventListener("keydown", indicatorLights, false);  // indicators
-    addEventListener("keydown", moveLeft, false);         // move left
-    addEventListener("keydown", moveRight, false);        // move right
-
-    getPlateData(); // Print plate data to the console
-  }
-}
-
 /**
  * INFO UNIT
  */
@@ -732,15 +711,34 @@ function receiveMsg() {
   }, 5000);
 };
 
-receiveMsg();
-
-
-
-
 
 /**
  * EVENTS / init
  */
+
+var mainframe = document.querySelector(".mainframe");
+
+/**
+ * Load the mainframe after the user name has been correctly set.
+ * (mainframe = the area where the game happens)
+ */
+function loadMainframe() {
+  if (playerNameSet === true) {
+    mainframe.classList.remove("hide-element"); // show the mainframe
+    odometerClockStartupDelay(); // delay the dashboard clock(s) & counter(s)
+
+    // Attach event listeners that listen to keyboard interactions.
+    // They need to be called here in order to be listening AFTER the mainframe
+    // has loaded.
+    addEventListener("keydown", toggleLights, false);     // lights
+    addEventListener("keydown", indicatorLights, false);  // indicators
+    addEventListener("keydown", moveLeft, false);         // move left
+    addEventListener("keydown", moveRight, false);        // move right
+
+    getPlateData(); // Print plate data to the console
+    receiveMsg();
+  }
+}
 
 extraSunroof.addEventListener("change", sunroof, false); // sunroof
 
