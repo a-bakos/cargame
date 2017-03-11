@@ -255,6 +255,16 @@ function sunroof() {
   }
 }
 
+// Cheat function for adding sunroof during the game
+function cheatRoof(event) {
+  if (event.shiftKey) {
+    vehicle.body.appendChild(vehicle.sunroof);
+    console.log("Cheat applied: sunroof added.");
+  }
+}
+
+vehicle.body.addEventListener("click", cheatRoof, false);
+
 /**
  * PLAYER'S NAME AND LICENSE PLATE THINGS
  */
