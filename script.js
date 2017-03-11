@@ -1,4 +1,4 @@
-(function(){
+(function() {
 "use strict";
 
 /**
@@ -265,8 +265,6 @@ function cheatRoof(event) {
   }
 }
 
-vehicle.body.addEventListener("click", cheatRoof, false);
-
 /**
  * PLAYER'S NAME AND LICENSE PLATE THINGS
  */
@@ -420,52 +418,50 @@ function setDefaultPlateData() {
 
 /**
  * Clock -- date and time display
+ *
+ * Function re-calls itself every 3 seconds.
  */
 var dateDisplay = document.querySelector(".clock-date");
 var timeDisplay = document.querySelector(".clock-time");
 
-var date        = new Date();
+function displayDateTime() {
+  setTimeout(function() {
+    var date        = new Date();
+    // Set the day name
+    var todaysNum   = date.getDay();    // 0-6
+    var dayNames    = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    var todaysName  = dayNames[todaysNum];
+    // Set day number
+    var dayNumber   = date.getDate();   // 1-31
+    // Set month
+    var currMonth   = date.getMonth();  // 0-11
+    currMonth += 1;
+    // Set time
+    var currMinutes = date.getMinutes()
+    var currHours   = date.getHours();
 
-// Set the day name
-var todaysNum   = date.getDay();    // 0-6
-var dayNames    = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-var todaysName  = dayNames[todaysNum];
+    if (dayNumber <= 9)   { dayNumber = "0" + dayNumber; }
+    if (currMonth <= 9)   { currMonth = "0" + currMonth; }
+    if (currHours <= 9)   { currMinutes = "0" + currMinutes; }
+    if (currMinutes <= 9) { currMinutes = "0" + currMinutes; }
 
-// Set day number
-var dayNumber   = date.getDate();   // 1-31
+    var currentTime = currHours + ":" + currMinutes;
 
-// Set month
-var currMonth   = date.getMonth();  // 0-11
-currMonth += 1;
+    var todaysDate  =  todaysName + " " + dayNumber + "-" + currMonth + "-" + date.getFullYear();
 
-// Set time
-var currMinutes = date.getMinutes()
-var currHours   = date.getHours();
+    dateDisplay.innerHTML = todaysDate;
+    timeDisplay.innerHTML = currentTime;
 
-if (dayNumber <= 9) {
-  dayNumber = "0" + dayNumber;
+    displayDateTime();
+  }, 3000);
 }
-if (currMonth <= 9) {
-  currMonth = "0" + currMonth;
-}
-if (currMinutes <= 9) {
-  currMinutes = "0" + currMinutes;
-}
-if (currHours <= 9) {
-  currMinutes = "0" + currMinutes;
-}
-
-var currentTime = currHours + ":" + currMinutes;
-
-var todaysDate  =  todaysName + " " + dayNumber + "-" + currMonth + "-" + date.getFullYear();
 
 /**
  * This function is for delaying the dashboard clock.
  */
 function odometerClockStartupDelay() {
   setTimeout(function() {
-    dateDisplay.innerHTML = todaysDate;
-    timeDisplay.innerHTML = currentTime;
+    displayDateTime();
   }, (startupTime / 2));
 }
 
@@ -740,7 +736,8 @@ function loadMainframe() {
   }
 }
 
-extraSunroof.addEventListener("change", sunroof, false); // sunroof
+extraSunroof.addEventListener("change", sunroof, false);  // sunroof
+vehicle.body.addEventListener("click", cheatRoof, false); // cheatroof
 
 // Player name listeners:
 enterPlayerName.addEventListener("click", checkPlayerName, false);
