@@ -259,7 +259,7 @@ function sunroof() {
 function cheatRoof(event) {
   if (event.shiftKey) {
     vehicle.body.appendChild(vehicle.sunroof);
-    console.log("Cheat applied: sunroof added.");
+    console.log("[Cheat applied!] -> Sunroof added.");
   }
 }
 
@@ -687,6 +687,10 @@ function acceptMsg() {
 
 
 /**
+ * DEPRECATED!
+ * Replaced by multiple message handling.
+ * This was used when only one message could be received at a time.
+ *
  * When a new message is received, destroy the old one, if any.
  */
 function destroyOldMsg() {
@@ -701,12 +705,12 @@ function destroyOldMsg() {
 // Test function for auto-appending elements
 function receiveMsg() {
   setTimeout(function() {
-    //destroyOldMsg();
+    // destroyOldMsg(); // Deprecated function
 
     statusIconMessage.src = "img/message-on.png";
     messageCounter++;
     createMessage();
-    console.log("New message received. Counter:" + messageCounter);
+    console.log("New message received. Counter: " + messageCounter);
 
     receiveMsg();
   }, 5000);
