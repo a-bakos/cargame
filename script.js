@@ -619,13 +619,21 @@ function createMessage() {
 /**
  * Function for deleting the message by clicking on the "ignore/delete" button
  */
-function deleteMsg() {
-  // Find the message container:
-  var msgItem = document.querySelector(".msg-item");
+function deleteMsg(event) {
 
+  // This is the soul of this function.
+  // By setting the target, or where the event happened, will determine the
+  // related further actions relative to itself:
+  var deleteMsgBtn = event.target;
+
+  // Set the selectors relative to target:
+  var acceptMsgBtn = deleteMsgBtn.previousSibling;
+  var msgButtons   = deleteMsgBtn.parentNode;
+  var msgContent   = msgButtons.previousSibling;
+  var msgItem      = msgButtons.parentNode;
+  var msgWall      = msgItem.parentNode;
+  
   // Disable the action buttons after one is clicked
-  var acceptMsgBtn = document.querySelector(".msg-accept");
-  var deleteMsgBtn = document.querySelector(".msg-delete");
   acceptMsgBtn.setAttribute("disabled", "");
   deleteMsgBtn.setAttribute("disabled", "");
 
@@ -634,21 +642,33 @@ function deleteMsg() {
 
   // Show a message to the user before completely removing the .msg-item:
   // This will be replaced with a CSS class in the stylesheet.
-  var msgContent = document.querySelector(".msg-content");
+  //var msgContent = document.querySelector(".msg-content");
   msgContent.innerHTML = "Message deleted.";
+
+  // Decrement message counter:
+  messageCounter--;
 
   // Apply a short delay before deleting:
   setTimeout(function() {
 
+    //msgWall.removeChild(msgItem); // Remove the message item
     msgWall.removeChild(msgItem); // Remove the message item
-    console.log("Message deleted.");
+    console.log("Message deleted. Counter: " + messageCounter);
 
     // Put the elements back to their base state:
     acceptMsgBtn.removeAttribute("disabled", "");
     deleteMsgBtn.removeAttribute("disabled", "");
-    statusIconMessage.src = "img/message-off.png"; // Dashboard notification icon
 
+    turnOffMsgNotification();
   }, 1000);
+}
+
+// Function for setting the dashboard message notification icon back to base
+// state, aka "there is no message"
+function turnOffMsgNotification() {
+  if (messageCounter == 0) {
+    statusIconMessage.src = "img/message-off.png";
+  }
 }
 
 /**
@@ -659,8 +679,10 @@ function acceptMsg() {
   // process everything
   //
   
-  // Lastly, delete the message:
+  // Delete the message:
   deleteMsg();
+
+  turnOffMsgNotification();
 }
 
 
@@ -679,7 +701,7 @@ function destroyOldMsg() {
 // Test function for auto-appending elements
 function receiveMsg() {
   setTimeout(function() {
-    destroyOldMsg();
+    //destroyOldMsg();
 
     statusIconMessage.src = "img/message-on.png";
     messageCounter++;
@@ -687,7 +709,7 @@ function receiveMsg() {
     console.log("New message received. Counter:" + messageCounter);
 
     receiveMsg();
-  }, 10000);
+  }, 5000);
 };
 
 receiveMsg();
