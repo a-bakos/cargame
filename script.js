@@ -553,14 +553,18 @@ var msgWall = document.querySelector(".msg-wall");
 var messageCounter = 0; // Keep track of the messages
 
 // The actual message text:
+// The message string will be retrieved dynamically,based on some factors.
 var messageString = "Hey man, this is the garage. Can you please bring the car in for a quick checkup today? Say, $300?";
 
 /**
  * This function creates the message item which looks like the following:
  *
  *  <li class="msg-item msg-no-[counter]">
- *    <div class="msg-content">
- *      [messageString]
+ *    <div class="msg-container">
+ *      <p class="msg-received>[msgReceivedAt]</p>
+ *      <p class="msg-content>
+ *        [messageString]
+ *      </p>
  *    </div>
  *    <div class="msg-actions">
  *      <button class="msg-accept">OK</button>
@@ -569,6 +573,13 @@ var messageString = "Hey man, this is the garage. Can you please bring the car i
  *  </li>
  */
 function createMessage() {
+
+  // Get the time the message has arrived:
+  var msgDate = new Date();
+  var currMsgHours = msgDate.getHours();
+  var currMsgMins  = msgDate.getMinutes();
+  var msgArrived   = currMsgHours + ":" + currMsgMins;
+
   /**
    * First, create the elements of a message item
    */
@@ -579,8 +590,16 @@ function createMessage() {
   msgItem.classList.add("msg-no-" + messageCounter);
 
   // The message container:
-  var msgContent = document.createElement("div");
+  var msgContainer = document.createElement("div");
+  msgContainer.classList.add("msg-container");
+
+  var msgReceivedAt = document.createElement("p");
+  //msgReceivedAt.classList.add("msg-received");
+  msgReceivedAt.innerHTML = msgArrived;
+
+  var msgContent = document.createElement("p");
   msgContent.classList.add("msg-content");
+  msgContent.innerHTML = messageString;
 
   // The message actions buttonset wrapper:
   var msgActions = document.createElement("div");
@@ -601,11 +620,12 @@ function createMessage() {
    */
 
   msgWall.appendChild(msgItem);
-    // Append message container, content and the button wrapper
-    msgItem.appendChild(msgContent);
-      msgContent.innerHTML = messageString;
+    // Append message container, time and content
+    msgItem.appendChild(msgContainer);
+      msgContainer.appendChild(msgReceivedAt);
+      msgContainer.appendChild(msgContent);
+    // Append button container and buttons
     msgItem.appendChild(msgActions);
-      // Add buttons
       msgActions.appendChild(acceptMsgBtn);
       msgActions.appendChild(deleteMsgBtn);
 
@@ -629,7 +649,7 @@ function deleteMsg(event) {
   // Set the selectors relative to target:
   var acceptMsgBtn = deleteMsgBtn.previousSibling;
   var msgButtons   = deleteMsgBtn.parentNode;
-  var msgContent   = msgButtons.previousSibling;
+  var msgContainer = msgButtons.previousSibling;
   var msgItem      = msgButtons.parentNode;
   var msgWall      = msgItem.parentNode;
   
@@ -638,12 +658,11 @@ function deleteMsg(event) {
   deleteMsgBtn.setAttribute("disabled", "");
 
   // Indicate the click by setting a different styling on the button:
+  // (This will be replaced with a CSS class in the stylesheet.)
   deleteMsgBtn.style.backgroundColor = "red";
 
   // Show a message to the user before completely removing the .msg-item:
-  // This will be replaced with a CSS class in the stylesheet.
-  //var msgContent = document.querySelector(".msg-content");
-  msgContent.innerHTML = "Message deleted.";
+  msgContainer.innerHTML = "<p>Message deleted.</p>";
 
   // Decrement message counter:
   messageCounter--;
@@ -727,7 +746,7 @@ receiveMsg();
  */
 
 extraSunroof.addEventListener("change", sunroof, false); // sunroof
- 
+
 // Player name listeners:
 enterPlayerName.addEventListener("click", checkPlayerName, false);
 playerNameField.addEventListener("keydown", checkPlayerNameEnter, false);
