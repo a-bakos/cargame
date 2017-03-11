@@ -442,7 +442,7 @@ function displayDateTime() {
 
     if (dayNumber <= 9)   { dayNumber = "0" + dayNumber; }
     if (currMonth <= 9)   { currMonth = "0" + currMonth; }
-    if (currHours <= 9)   { currMinutes = "0" + currMinutes; }
+    if (currHours <= 9)   { currHours = "0" + currHours; }
     if (currMinutes <= 9) { currMinutes = "0" + currMinutes; }
 
     var currentTime = currHours + ":" + currMinutes;
@@ -550,6 +550,10 @@ function createMessage() {
   var msgDate = new Date();
   var currMsgHours = msgDate.getHours();
   var currMsgMins  = msgDate.getMinutes();
+
+  if (currMsgHours <= 9) { currMsgHours = "0" + currMsgHours; }
+  if (currMsgMins  <= 9) { currMsgMins = "0" + currMsgMins; }
+
   var msgArrived   = currMsgHours + ":" + currMsgMins;
 
   /**
@@ -704,7 +708,7 @@ function receiveMsg() {
     console.log("New message received. Counter: " + messageCounter);
 
     receiveMsg();
-  }, 5000);
+  }, 20000);
 };
 
 
