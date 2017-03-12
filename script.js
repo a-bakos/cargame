@@ -429,10 +429,11 @@ function checkPlayerNameEnter(event) {
  *
  * Function re-calls itself every 3 seconds.
  */
-var dateDisplay = document.querySelector(".clock-date");
-var timeDisplay = document.querySelector(".clock-time");
 
 function displayDateTime() {
+  var dateDisplay = document.querySelector(".clock-date");
+  var timeDisplay = document.querySelector(".clock-time");
+
   setTimeout(function() {
     var date        = new Date();
     // Set the day name
