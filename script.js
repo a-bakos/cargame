@@ -90,6 +90,7 @@ function carEnergy() {
 
       // Display the number, but only up to one decimal
       energyDisplay.innerHTML = energyState.slice(0,5);
+
       // Call the function again
       carEnergy();
     }, startupTime);
@@ -142,15 +143,17 @@ function toggleLights(event) {
 }
 
 function batteryProblems() {
-  if (lightSwitchCounter == 10) {
-    energyState = energyState - 2;
-    statusIconBattery.src = "img/battery-on.png";
-    console.log("Battery problem! Lights switched on and off too many times.");
-  }
-  if (lightSwitchCounter == 20) {
-    energyState = energyState - 5;
-    console.log("Warning! Battery problem!");
-    statusIconBattery.src = "img/battery-error.png";
+  switch(lightSwitchCounter) {
+    case 10:
+      energyState = energyState - 2;
+      statusIconBattery.src = "img/battery-on.png";
+      console.log("Battery problem! Lights switched on and off too many times.");
+      break;
+    case 20:
+      energyState = energyState - 5;
+      console.log("Warning! Battery problem!");
+      statusIconBattery.src = "img/battery-error.png";
+      break;
   }
 }
 
