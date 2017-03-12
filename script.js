@@ -530,8 +530,13 @@ function incrementTime() {
  * The message wall itself is an empty unordered list at its initial state.
  */
 var msgWall = document.querySelector(".msg-wall");
-
 var messageCounter = 0; // Keep track of the messages
+
+var unreadMessages = document.querySelector(".msg-amount");
+// Function for updating unread messages counter:
+function updateUnreadMsgCounter() {
+  unreadMessages.innerHTML = messageCounter;
+}
 
 // The actual message text:
 // The message string will be retrieved dynamically,based on some factors.
@@ -554,6 +559,7 @@ var messageString = "Hey man, this is the garage. Can you please bring the car i
  *  </li>
  */
 function createMessage() {
+  updateUnreadMsgCounter();
 
   // Get the time the message has arrived:
   var msgDate = new Date();
@@ -649,8 +655,8 @@ function deleteMsg(event) {
   // Show a message to the user before completely removing the .msg-item:
   msgContainer.innerHTML = "<p>Message deleted.</p>";
 
-  // Decrement message counter:
-  messageCounter--;
+  messageCounter--; // Decrement message counter
+  updateUnreadMsgCounter(); // Update unread message counter
 
   // Apply a short delay before deleting:
   setTimeout(function() {
@@ -692,8 +698,6 @@ function acceptMsg() {
 // Test function for auto-appending elements
 function receiveMsg() {
   setTimeout(function() {
-    // destroyOldMsg(); // Deprecated function
-
     statusIconMessage.src = "img/message-on.png";
     messageCounter++;
     createMessage();
