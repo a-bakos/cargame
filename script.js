@@ -342,6 +342,30 @@ function checkPlayerName() {
     console.log("Default plate data used.");
   }
 
+  /**
+   * Function for changing the license plate's data (both values).
+   */
+  function changePlateData() {
+    // Slice up the input, only the first 3 characters are needed on the plate,
+    // then save them as uppercase characters
+    playerNameValue = playerNameValue.slice(0,3);
+    playerNameValue = playerNameValue.toUpperCase();
+
+    // Append 3 random digits after it
+    playerNameValue = playerNameValue + " " + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10);
+
+    // Apply the final plate data as new values
+    vehicle.plate.setAttribute("data-text", playerNameValue);
+    vehicle.plate.innerHTML = playerNameValue;
+
+    // Make the input field and its button disabled to prevent changing their
+    // value, aka the player's name and the plate can't be changed once set
+    playerNameField = playerNameField.setAttribute("disabled", "");
+    enterPlayerName = enterPlayerName.setAttribute("disabled", "");
+
+    console.log("Plate data has changed");
+  }
+
   var correctInput = /^[a-zA-Z0-9]{1,12}$/;
 
   playerNameValue = playerNameField.value;
@@ -395,32 +419,6 @@ function checkPlayerNameEnter(event) {
     checkPlayerName();
   }
 }
-
-/**
- * Function for changing the license plate's data (both values).
- */
-function changePlateData() {
-  // Slice up the input, only the first 3 characters are needed on the plate,
-  // then save them as uppercase characters
-  playerNameValue = playerNameValue.slice(0,3);
-  playerNameValue = playerNameValue.toUpperCase();
-
-  // Append 3 random digits after it
-  playerNameValue = playerNameValue + " " + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10) + Math.floor(Math.random() * 10);
-
-  // Apply the final plate data as new values
-  vehicle.plate.setAttribute("data-text", playerNameValue);
-  vehicle.plate.innerHTML = playerNameValue;
-
-  // Make the input field and its button disabled to prevent changing their
-  // value, aka the player's name and the plate can't be changed once set
-  playerNameField = playerNameField.setAttribute("disabled", "");
-  enterPlayerName = enterPlayerName.setAttribute("disabled", "");
-
-  console.log("Plate data has changed");
-}
-
-
 
 /**
  * DASHBOARD ELEMENTS
