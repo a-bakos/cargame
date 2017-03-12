@@ -561,7 +561,7 @@ function createMessage() {
   var currMsgMins  = msgDate.getMinutes();
 
   if (currMsgHours <= 9) { currMsgHours = "0" + currMsgHours; }
-  if (currMsgMins  <= 9) { currMsgMins = "0" + currMsgMins; }
+  if (currMsgMins  <= 9) { currMsgMins  = "0" + currMsgMins;  }
 
   var msgArrived   = currMsgHours + ":" + currMsgMins;
 
@@ -689,23 +689,6 @@ function acceptMsg() {
   turnOffMsgNotification();
 }
 
-
-/**
- * DEPRECATED!
- * Replaced by multiple message handling.
- * This was used when only one message could be received at a time.
- *
- * When a new message is received, destroy the old one, if any.
- */
-function destroyOldMsg() {
-  var msgItem = document.querySelector(".msg-item");
-
-  if (msgItem) {
-    msgWall.removeChild(msgItem);
-    console.log("Old message has been automatically deleted.");
-  }
-}
-
 // Test function for auto-appending elements
 function receiveMsg() {
   setTimeout(function() {
@@ -757,7 +740,5 @@ enterPlayerName.addEventListener("click", checkPlayerName, false);
 playerNameField.addEventListener("keydown", checkPlayerNameEnter, false);
 
 console.log("Hello, dude! Please enter your name."); // The first line on the console
-
-
 
 })();
