@@ -83,6 +83,8 @@ function carEnergy() {
         energyState = "00" + energyState;
       }
 
+      // If energy is less than or equal to one, show other symbols and stop
+      // the time running
       if (energyState <= 1) {
         energyState = "xxx";
         timeRunning = false;
@@ -166,6 +168,7 @@ var statusIconRightIndex = document.querySelector(".icon-right-index")
 function indicatorLights(event) {
   if (event.keyCode == vehicle.leftIndicatorsKey) {
     energyState = energyState - 0.05;
+
     if (
       vehicle.leftIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
       vehicle.leftIndicators[1].classList.contains(vehicle.rearIndicatorsOn))
@@ -192,6 +195,7 @@ function indicatorLights(event) {
   // Right side indicators:
   if (event.keyCode == vehicle.rightIndicatorsKey) {
     energyState = energyState - 0.05;
+
     if (
       vehicle.rightIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
       vehicle.rightIndicators[1].classList.contains(vehicle.rearIndicatorsOn))
@@ -327,6 +331,17 @@ function getPlateData() {
  * - If nothing given, fallback to default value
  */
 function checkPlayerName() {
+
+  /**
+   * Function for setting default plate data (both values).
+   */
+  function setDefaultPlateData() {
+    // If nothing is entered apply default plate data
+    vehicle.plate.setAttribute("data-text", vehicle.defaultPlateData);
+    vehicle.plate.innerHTML = vehicle.defaultPlateData;
+    console.log("Default plate data used.");
+  }
+
   var correctInput = /^[a-zA-Z0-9]{1,12}$/;
 
   playerNameValue = playerNameField.value;
@@ -405,15 +420,7 @@ function changePlateData() {
   console.log("Plate data has changed");
 }
 
-/**
- * Function for setting default plate data (both values).
- */
-function setDefaultPlateData() {
-  // If nothing is entered apply default plate data
-  vehicle.plate.setAttribute("data-text", vehicle.defaultPlateData);
-  vehicle.plate.innerHTML = vehicle.defaultPlateData;
-  console.log("Default plate data used.");
-}
+
 
 /**
  * DASHBOARD ELEMENTS
