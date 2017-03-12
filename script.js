@@ -69,7 +69,7 @@ var statusIconMessage     = document.querySelector(".icon-message");
 var energyDisplay  = document.querySelector(".energy-state");
 var energyState    = 100;
 
-function carenergy() {
+function carEnergy() {
   if (timeRunning === true) {
     setTimeout(function() {
       // Automatically decrease the energy state:
@@ -91,7 +91,7 @@ function carenergy() {
       // Display the number, but only up to one decimal
       energyDisplay.innerHTML = energyState.slice(0,5);
       // Call the function again
-      carenergy();
+      carEnergy();
     }, startupTime);
 
     if (energyState <= 35) {
@@ -478,7 +478,7 @@ function startTime() {
   if (timeRunning === false) {
     timeRunning = true;
     incrementTime();
-    carenergy();
+    carEnergy();
   }
   else {
     timeRunning === false;
