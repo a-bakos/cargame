@@ -41,11 +41,13 @@ var interactionCounter = {
   incrementClicks: function() {
     interactionCounter.mouseClicks++;
     interactionCounter.allAction++;
+    sendMessage();
   },
 
   incrementKeys: function() {
     interactionCounter.keyPresses++;
     interactionCounter.allAction++;
+    sendMessage();
   }
 };
 
@@ -387,6 +389,7 @@ function checkPlayerName() {
 
   playerNameValue = playerNameField.value;
   playerNameValue = playerNameValue.latinise(); // Remove accents
+
   if (playerNameValue.length < 1 || !playerNameValue.match(correctInput)) {
 
     // Instead of the temporary alert, a text node insertion would be a better
@@ -540,10 +543,104 @@ function incrementTime() {
  * INFO UNIT
  */
 
+// User wallet:
+var userWallet = document.querySelector(".money-amount");
+var userMoney = Number(5000); // Starting amount
+userWallet.innerHTML = userMoney;
+
+// The actual message text that the user will receive:
+var messageString;
+
+/**
+ * MESSAGE BANK
+ */
+var msg = {
+  garage: [
+    "Hey, this is the garage. You still have no suroof. That is so old school. Would you like to add a sunroof to your car? Cost: ",
+    "Hi mate, garage here. Could you please bring the car in for a quick checkup? Cost: "
+  ],
+
+  system: [
+    "Warning 2",
+    "Error 1",
+    "Error 2"
+  ],
+
+  random: [
+    "Donate today to your favourite local fitting shop today!",
+    "Hi, my name is Toby, I am selling personalized car insurance solutions, would you be interested in having one? Initial price: $",
+    "Tired of paying all the monthly bills by yourself? Register with us and we will take care of the burden for you, now for just: $",
+    "Get your amazing new ACME driver's seat today! It's such a delight to sit on while on the road driving. Price: $",
+    "Essential MOT pre-checkup. Send us a photo of your car and we will tell its condition. Cheap and reliable! $",
+    "Personalised gas pedals just for you! You can have your loved one's face printed on it! Order while you can for $",
+    "Hello, we have new fantastic plastic steering wheels arrived last night. Buy one get one for free. Prices from $"
+  ]
+}
+
+/**
+ * sendMessage() function
+ *
+ * This is the function for sending messages to the user based on different
+ * cases that are depending on the collective number of user interactions,
+ * aka mouse clicks + keyboard keypresses.
+ *
+ * These are messages from the garage and the system. Random spam messages
+ * not included here.
+ */
+function sendMessage() {
+  var cost;
+
+  switch (interactionCounter.allAction) {
+    case 5:
+      messageString = msg.garage[0];
+      cost = 1500;
+      messageReceived(cost);
+      delete msg.garage[0];
+      break;
+
+    case 10:
+      messageString = msg.garage[1];
+      cost = 500;
+      messageReceived(cost);
+      delete msg.garage[1];
+      break;
+  }
+}
+
+/**
+ * messageReceived() function
+ *
+ * After the message has been sent, this function takes over the next steps.
+ * It increments the message counter, creates the actual message item and
+ * inserts it into the DOM, plus displays a notification on the dashboard.
+ */
+function messageReceived(cost) {
+  messageCounter++;
+  createMessage(cost);
+  statusIconMessage.src = "img/message-on.png";
+  console.log("New message received. Counter: " + messageCounter);
+}
+
+/**
+ * receiveRandomMsg() function
+ *
+ * This function is for receiving random spam messages.
+ * It runs all the time and picks a random message text from the message bank's
+ * related random property's array. Then calculates a random price for it, and
+ * invokes messageReceived() function (which builds up the message item).
+ * At last it calls itself again after 30 seconds.
+ */
+function receiveRandomMsg() {
+  setTimeout(function() {
+    messageString = msg.random[Math.floor(Math.random() * msg.random.length)];
+    var cost = Math.floor(Math.random() * 1000);
+    messageReceived(cost);
+    receiveRandomMsg();
+  }, 30000);
+}
+
 /**
  * MESSAGE WALL
- * and related functions
- *
  * The message wall itself is an empty unordered list at its initial state.
  */
 var msgWall = document.querySelector(".msg-wall");
@@ -555,11 +652,9 @@ function updateUnreadMsgCounter() {
   unreadMessages.innerHTML = messageCounter;
 }
 
-// The actual message text:
-// The message string will be retrieved dynamically,based on some factors.
-var messageString = "Hey man, this is the garage. Can you please bring the car in for a quick checkup today? Say, $300?";
-
 /**
+ * createMessage() function
+ *
  * This function creates the message item which looks like the following:
  *
  *  <li class="msg-item msg-no-[counter]">
@@ -567,6 +662,7 @@ var messageString = "Hey man, this is the garage. Can you please bring the car i
  *      <p class="msg-received>[msgReceivedAt]</p>
  *      <p class="msg-content>
  *        [messageString]
+ *        <span class="msg-content-cost">[cost]</span>
  *      </p>
  *    </div>
  *    <div class="msg-actions">
@@ -574,8 +670,10 @@ var messageString = "Hey man, this is the garage. Can you please bring the car i
  *      <button class="msg-delete">IGNORE</button>
  *    </div>
  *  </li>
+ *
+ * (Takes one argument, 'cost')
  */
-function createMessage() {
+function createMessage(cost) {
   updateUnreadMsgCounter();
 
   // Get the time the message has arrived:
@@ -589,7 +687,7 @@ function createMessage() {
   var msgArrived   = currMsgHours + ":" + currMsgMins;
 
   /**
-   * First, create the elements of a message item
+   * Create the elements of a message item
    */
 
   // The message item <li> wrapper:
@@ -601,13 +699,20 @@ function createMessage() {
   var msgContainer = document.createElement("div");
   msgContainer.classList.add("msg-container");
 
+  // The time of the message:
   var msgReceivedAt = document.createElement("p");
-  //msgReceivedAt.classList.add("msg-received");
+  msgReceivedAt.classList.add("msg-received");
   msgReceivedAt.innerHTML = msgArrived;
 
+  // The message content:
   var msgContent = document.createElement("p");
   msgContent.classList.add("msg-content");
   msgContent.innerHTML = messageString;
+
+  // The cost:
+  var msgContentCost = document.createElement("span");
+  msgContentCost.classList.add("msg-content-cost");
+  msgContentCost.innerHTML = cost;
 
   // The message actions buttonset wrapper:
   var msgActions = document.createElement("div");
@@ -626,22 +731,76 @@ function createMessage() {
   /**
    * Then, put the whole message item block together
    */
-
   msgWall.appendChild(msgItem);
     // Append message container, time and content
     msgItem.appendChild(msgContainer);
       msgContainer.appendChild(msgReceivedAt);
       msgContainer.appendChild(msgContent);
+        msgContent.appendChild(msgContentCost);
     // Append button container and buttons
     msgItem.appendChild(msgActions);
       msgActions.appendChild(acceptMsgBtn);
       msgActions.appendChild(deleteMsgBtn);
 
+  /**
+   * Message handlers
+   */
   // Listen for accepting the message:
-  //acceptMsgBtn.addEventListener("click", acceptMsg, false);
-
+  acceptMsgBtn.addEventListener("click", acceptMsg, false);
   // Listen for deleting the message:
   deleteMsgBtn.addEventListener("click", deleteMsg, false);
+}
+
+/**
+ * Function for accepting the message.
+ */
+function acceptMsg(event) {
+  // This is the soul of this function.
+  // By setting the target, or where the event happened, will determine the
+  // related further actions relative to itself:
+  var acceptMsgBtn = event.target;
+
+  // Set the selectors relative to target:
+  var deleteMsgBtn   = acceptMsgBtn.nextSibling;
+  var msgButtons     = acceptMsgBtn.parentNode;
+  var msgContainer   = msgButtons.previousSibling;
+  var msgReceived    = msgContainer.firstChild;
+  var msgContent     = msgReceived.nextSibling;
+  var msgContentCost = msgContent.lastChild;
+  var msgItem        = msgButtons.parentNode;
+  var msgWall        = msgItem.parentNode;
+
+  // Disable the action buttons after one is clicked
+  acceptMsgBtn.setAttribute("disabled", "");
+  deleteMsgBtn.setAttribute("disabled", "");
+
+  // Indicate the click by setting a different styling on the button:
+  // (This will be replaced with a CSS class in the stylesheet.)
+  acceptMsgBtn.style.backgroundColor = "green";
+
+  // Show a message to the user before completely removing the .msg-item:
+  msgContainer.innerHTML = "<p>Message accepted.</p>";
+
+  // Update counters:
+  messageCounter--; // Decrement message counter
+  updateUnreadMsgCounter(); // Update unread message counter
+
+  // Update the user wallet:
+  userMoney = userMoney - msgContentCost.innerHTML;
+  userWallet.innerHTML = userMoney;
+
+  // Apply a short delay before deleting:
+  setTimeout(function() {
+
+    msgWall.removeChild(msgItem); // Remove the message item
+    console.log("Message item removed (accept). Counter: " + messageCounter);
+
+    // Put the elements back to their base state:
+    acceptMsgBtn.removeAttribute("disabled", "");
+    deleteMsgBtn.removeAttribute("disabled", "");
+
+    turnOffMsgNotification();
+  }, 1000);
 }
 
 /**
@@ -660,7 +819,7 @@ function deleteMsg(event) {
   var msgContainer = msgButtons.previousSibling;
   var msgItem      = msgButtons.parentNode;
   var msgWall      = msgItem.parentNode;
-  
+
   // Disable the action buttons after one is clicked
   acceptMsgBtn.setAttribute("disabled", "");
   deleteMsgBtn.setAttribute("disabled", "");
@@ -672,15 +831,15 @@ function deleteMsg(event) {
   // Show a message to the user before completely removing the .msg-item:
   msgContainer.innerHTML = "<p>Message deleted.</p>";
 
+  // Update counters:
   messageCounter--; // Decrement message counter
   updateUnreadMsgCounter(); // Update unread message counter
 
   // Apply a short delay before deleting:
   setTimeout(function() {
 
-    //msgWall.removeChild(msgItem); // Remove the message item
     msgWall.removeChild(msgItem); // Remove the message item
-    console.log("Message deleted. Counter: " + messageCounter);
+    console.log("Message item removed (ignore). Counter: " + messageCounter);
 
     // Put the elements back to their base state:
     acceptMsgBtn.removeAttribute("disabled", "");
@@ -697,33 +856,6 @@ function turnOffMsgNotification() {
     statusIconMessage.src = "img/message-off.png";
   }
 }
-
-/**
- * Function for accepting the message.
- */
-function acceptMsg() {
-  //
-  // process everything
-  //
-  
-  // Delete the message:
-  deleteMsg();
-
-  turnOffMsgNotification();
-}
-
-// Test function for auto-appending elements
-function receiveMsg() {
-  setTimeout(function() {
-    statusIconMessage.src = "img/message-on.png";
-    messageCounter++;
-    createMessage();
-    console.log("New message received. Counter: " + messageCounter);
-
-    receiveMsg();
-  }, 20000);
-};
-
 
 /**
  * EVENTS / init
@@ -749,7 +881,8 @@ function loadMainframe() {
     addEventListener("keydown", moveRight, false);        // move right
 
     getPlateData(); // Print plate data to the console
-    receiveMsg();
+    //receiveMsg();
+    receiveRandomMsg();
   }
 }
 
