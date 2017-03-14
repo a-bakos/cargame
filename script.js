@@ -32,6 +32,7 @@ var vehicle = {
   moveRightMotion:    "move-right", // CSS class to toggle
 };
 
+// User interaction counters:
 var interactionCounter = {
   mouseClicks: 0,
   keyPresses: 0,
