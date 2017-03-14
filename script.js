@@ -32,6 +32,22 @@ var vehicle = {
   moveRightMotion:    "move-right", // CSS class to toggle
 };
 
+var interactionCounter = {
+  mouseClicks: 0,
+  keyPresses: 0,
+  allAction: 0,
+
+  incrementClicks: function() {
+    interactionCounter.mouseClicks++;
+    interactionCounter.allAction++;
+  },
+
+  incrementKeys: function() {
+    interactionCounter.keyPresses++;
+    interactionCounter.allAction++;
+  }
+};
+
 /**
  * The duration the car needs to reach its static velocity.
  * Defined in milliseconds, and the same amount is used in the CSS animations.
@@ -531,9 +547,9 @@ function incrementTime() {
  */
 var msgWall = document.querySelector(".msg-wall");
 var messageCounter = 0; // Keep track of the messages
-
 var unreadMessages = document.querySelector(".msg-amount");
-// Function for updating unread messages counter:
+
+// Function for updating unread message counter:
 function updateUnreadMsgCounter() {
   unreadMessages.innerHTML = messageCounter;
 }
@@ -735,6 +751,10 @@ function loadMainframe() {
     receiveMsg();
   }
 }
+
+// "Global" event listeners for counting user interactions:
+addEventListener("click", interactionCounter.incrementClicks, false);
+addEventListener("keydown", interactionCounter.incrementKeys, false);
 
 extraSunroof.addEventListener("change", sunroof, false);  // sunroof
 vehicle.body.addEventListener("click", cheatRoof, false); // cheatroof
