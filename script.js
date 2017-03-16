@@ -95,6 +95,10 @@ function carEnergy() {
       energyState = energyState - 0.015;
       energyState = parseFloat(energyState);
 
+      if (energyState > 100) {
+        energyState = 99.999;
+      }
+
       if (energyState >= 10 && energyState < 100) {
         energyState = "0" + energyState;
       }
@@ -102,26 +106,31 @@ function carEnergy() {
         energyState = "00" + energyState;
       }
 
-      // If energy is less than or equal to one, show other symbols and stop
-      // the time running
-      if (energyState <= 1) {
-        energyState = "xxx";
-        timeRunning = false;
-      }
-
       // Display the number, but only up to one decimal
       energyDisplay.innerHTML = energyState.slice(0,5);
 
-      // Call the function again
+      if (energyState > 20 && energyState <= 35) {
+        statusIconEngine.src = "img/engine-on.png";
+      }
+      else if (energyState <= 20) {
+        statusIconEngine.src = "img/engine-error.png";
+      }
+      else {
+        statusIconEngine.src = "img/engine-off.png";
+      }
+
+      // Call the function again, recursively.
       carEnergy();
+
+      if (energyState <= 1) {
+        // GAME OVER SCREEN
+        energyDisplay.innerHTML = "XXX";
+        timeRunning = false;
+        mainframe.classList.add("hide-element"); // test
+      }
+
     }, startupTime);
 
-    if (energyState <= 35) {
-      statusIconEngine.src = "img/engine-on.png";
-    }
-    if (energyState <= 20) {
-      statusIconEngine.src = "img/engine-error.png";
-    }
   }
 }
 
@@ -173,6 +182,11 @@ function batteryProblems() {
     case 20:
       energyState = energyState - 5;
       console.log("Warning! Battery problem!");
+      statusIconBattery.src = "img/battery-error.png";
+      break;
+    case 30:
+      energyState = energyState - 20;
+      console.log("Warning! Critical battery condition!");
       statusIconBattery.src = "img/battery-error.png";
       break;
   }
@@ -286,7 +300,7 @@ function cheatRoof(event) {
   if (!extraSunroof.checked) {
     if (event.shiftKey) {
       vehicle.body.appendChild(vehicle.sunroof);
-      sendDirectMsg("Cheat applied! Sunroof added. Cost: $", 0);
+      sendDirectMsg("Cheat applied! Sunroof added.", "");
       console.log("[Cheat applied!] -> Sunroof added.");
     }
   }
@@ -556,17 +570,6 @@ var messageString;
  * MESSAGE BANK
  */
 var msg = {
-  garage: [
-    "Hey, this is the garage. You still have no suroof. That is so old school. Would you like to add a sunroof to your car? Cost: ",
-    "Hi mate, garage here. Could you please bring the car in for a quick checkup? Cost: "
-  ],
-
-  system: [
-    "Warning 2",
-    "Error 1",
-    "Error 2"
-  ],
-
   random: [
     "Donate today to your favourite local fitting shop today!",
     "Hi, my name is Toby, I am selling personalized car insurance solutions, would you be interested in having one? Initial price: $",
@@ -589,21 +592,15 @@ var msg = {
  * not included here.
  */
 function sendConditionalMsg() {
-  var cost;
-
   switch (interactionCounter.allAction) {
-    case 5:
-      messageString = msg.garage[0];
-      cost = 1500;
-      messageReceived(cost);
-      delete msg.garage[0];
+    case 20:
+      sendDirectMsg("General checkup needed. Cost: $", 500, 15);
       break;
-
-    case 10:
-      messageString = msg.garage[1];
-      cost = 500;
-      messageReceived(cost);
-      delete msg.garage[1];
+    case 100:
+      sendDirectMsg("General checkup needed. Cost: $", 1500, 40);
+      break;
+    case 1000:
+      sendDirectMsg("General checkup needed. Cost: $", 2500, 100);
       break;
   }
 }
@@ -616,23 +613,14 @@ function sendConditionalMsg() {
  * message: the actual message text
  * cost: the cost of applying whatever the message contains
  */
-function sendDirectMsg(message, cost) {
+function sendDirectMsg(message, cost, energyCharge) {
   messageString = message + " ";
-  messageReceived(cost);
-}
 
-/**
- * messageReceived() function
- *
- * After the message has been sent, this function takes over the next steps.
- * It increments the message counter, creates the actual message item and
- * inserts it into the DOM, plus displays a notification on the dashboard.
- */
-function messageReceived(cost) {
-  messageCounter++;
-  createMessage(cost);
-  statusIconMessage.src = "img/message-on.png";
-  console.log("New message received. Counter: " + messageCounter);
+  if (typeof energyCharge === "undefined") {
+    energyCharge = 0;
+  }
+
+  messageReceived(cost, energyCharge);
 }
 
 /**
@@ -648,9 +636,24 @@ function receiveRandomMsg() {
   setTimeout(function() {
     messageString = msg.random[Math.floor(Math.random() * msg.random.length)];
     var cost = Math.floor(Math.random() * 1000);
-    messageReceived(cost);
-    receiveRandomMsg();
+    var energyCharge = 0;
+    messageReceived(cost, energyCharge);
+    receiveRandomMsg(); // Recursion.
   }, 30000);
+}
+
+/**
+ * messageReceived() function
+ *
+ * After the message has been sent, this function takes over the next steps.
+ * It increments the message counter, creates the actual message item and
+ * inserts it into the DOM, plus displays a notification on the dashboard.
+ */
+function messageReceived(cost, energyCharge) {
+  messageCounter++;
+  createMessage(cost, energyCharge);
+  statusIconMessage.src = "img/message-on.png";
+  console.log("New message received. Counter: " + messageCounter);
 }
 
 /**
@@ -678,6 +681,9 @@ function updateUnreadMsgCounter() {
  *        [messageString]
  *        <span class="msg-content-cost">[cost]</span>
  *      </p>
+ *      <p class="msg-energy-charge>Energy charge:
+ *        <span>[energyCharge]</span>
+ *      </p>
  *    </div>
  *    <div class="msg-actions">
  *      <button class="msg-accept">OK</button>
@@ -687,7 +693,7 @@ function updateUnreadMsgCounter() {
  *
  * (Takes one argument, 'cost')
  */
-function createMessage(cost) {
+function createMessage(cost, energyCharge) {
   updateUnreadMsgCounter();
 
   // Get the time the message has arrived:
@@ -728,6 +734,17 @@ function createMessage(cost) {
   msgContentCost.classList.add("msg-content-cost");
   msgContentCost.innerHTML = cost;
 
+  // Conditionally displayed energy charge:
+  if (energyCharge > 0) {
+    var msgEnergyContainer = document.createElement("p");
+    msgEnergyContainer.classList.add("msg-energy-charge-container");
+    msgEnergyContainer.innerHTML = "Energy charge: ";
+
+    var msgEnergyCharge = document.createElement("span");
+    msgEnergyCharge.classList.add("msg-energy-charge-amount");
+    msgEnergyCharge.innerHTML = energyCharge;
+  }
+
   // The message actions buttonset wrapper:
   var msgActions = document.createElement("div");
   msgActions.classList.add("msg-actions");
@@ -751,6 +768,10 @@ function createMessage(cost) {
       msgContainer.appendChild(msgReceivedAt);
       msgContainer.appendChild(msgContent);
         msgContent.appendChild(msgContentCost);
+    if (msgEnergyCharge) {
+      msgContainer.appendChild(msgEnergyContainer);
+      msgEnergyContainer.appendChild(msgEnergyCharge);
+    }
     // Append button container and buttons
     msgItem.appendChild(msgActions);
       msgActions.appendChild(acceptMsgBtn);
@@ -783,6 +804,11 @@ function acceptMsg(event) {
   var msgContentCost = msgContent.lastChild;
   var msgItem        = msgButtons.parentNode;
   var msgWall        = msgItem.parentNode;
+
+  if (document.querySelector(".msg-energy-charge-container")) {
+    var energyCharge = document.querySelector(".msg-energy-charge-amount").innerHTML;
+    energyState = parseFloat(energyState) + parseFloat(energyCharge);
+  }
 
   // Disable the action buttons after one is clicked
   acceptMsgBtn.setAttribute("disabled", "");
@@ -895,7 +921,6 @@ function loadMainframe() {
     addEventListener("keydown", moveRight, false);        // move right
 
     getPlateData(); // Print plate data to the console
-    //receiveMsg();
     receiveRandomMsg();
   }
 }
