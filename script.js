@@ -86,7 +86,7 @@ var statusIconMessage     = document.querySelector(".icon-message");
  * or using the indicators.
  */
 var energyDisplay  = document.querySelector(".energy-state");
-var energyState    = 5;
+var energyState    = 100;
 
 function carEnergy() {
   if (timeRunning === true) {
@@ -131,18 +131,6 @@ function carEnergy() {
   }
 }
 
-// test state
-function gameOver() {
-  // GAME OVER SCREEN
-    energyDisplay.innerHTML = "XXX";
-    timeRunning = false;
-    hideElement(mainframe);
-    //removeEventListener();
-    var gameOverScreen = document.createElement("section");
-    gameOverScreen.classList.add("game-over-screen");
-    document.body.appendChild(gameOverScreen);
-}
-
 /**
  * energyConsumption(amount)
  *
@@ -158,6 +146,18 @@ function energyConsumption(amount) {
   else {
     gameOver();
   }
+}
+
+// test state
+function gameOver() {
+  // GAME OVER SCREEN
+    energyDisplay.innerHTML = "XXX";
+    timeRunning = false;
+    hideElement(mainframe);
+    //removeEventListener();
+    var gameOverScreen = document.createElement("section");
+    gameOverScreen.classList.add("game-over-screen");
+    document.body.appendChild(gameOverScreen);
 }
 
 /**
@@ -201,18 +201,21 @@ function toggleLights(event) {
 
 function batteryProblems() {
   switch(lightSwitchCounter) {
-    case 10:
-      energyState = energyState - 2;
+    case 8:
+      energyConsumption(6);
       statusIconBattery.src = "img/battery-on.png";
+      sendDirectMsg("System", "Battery problem! Lights switched on and off too many times.");
       console.log("Battery problem! Lights switched on and off too many times.");
       break;
-    case 20:
-      energyState = energyState - 5;
-      console.log("Warning! Battery problem!");
+    case 16:
+      energyConsumption(12);
+      sendDirectMsg("System", "Battery error! Stop playing with the light switch!");
+      console.log("Battery error! Stop playing with the light switch!");
       statusIconBattery.src = "img/battery-error.png";
       break;
     case 30:
-      energyState = energyState - 20;
+      energyConsumption(30);
+      sendDirectMsg("System", "Warning! Critical battery condition! Say goodbye to your battery, mate.");
       console.log("Warning! Critical battery condition!");
       statusIconBattery.src = "img/battery-error.png";
       break;
@@ -227,7 +230,8 @@ var statusIconRightIndex = document.querySelector(".icon-right-index")
 
 function indicatorLights(event) {
   if (event.keyCode == vehicle.leftIndicatorsKey) {
-    energyState = energyState - 0.05;
+
+    energyConsumption(0.05);
 
     if (
       vehicle.leftIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
@@ -254,7 +258,8 @@ function indicatorLights(event) {
 
   // Right side indicators:
   if (event.keyCode == vehicle.rightIndicatorsKey) {
-    energyState = energyState - 0.05;
+
+    energyConsumption(0.05);
 
     if (
       vehicle.rightIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
@@ -286,7 +291,7 @@ function indicatorLights(event) {
  */
 function moveLeft(event) {
   if (event.keyCode == 37) {
-    energyState = energyState - 0.02;
+    energyConsumption(0.02);
     vehicle.body.className = "vehicle";
     vehicle.body.classList.toggle(vehicle.moveLeftMotion);
     console.log("Move left");
@@ -295,7 +300,7 @@ function moveLeft(event) {
 
 function moveRight(event) {
   if (event.keyCode == 39) {
-    energyState = energyState - 0.02;
+    energyConsumption(0.02);
     vehicle.body.className = "vehicle";
     vehicle.body.classList.toggle(vehicle.moveRightMotion);
     console.log("Move right");
@@ -327,7 +332,7 @@ function cheatRoof(event) {
   if (!extraSunroof.checked) {
     if (event.shiftKey) {
       vehicle.body.appendChild(vehicle.sunroof);
-      sendDirectMsg("Cheat applied! Sunroof added.", "");
+      sendDirectMsg("System", "Cheat applied! Sunroof added.");
       console.log("[Cheat applied!] -> Sunroof added.");
     }
   }
@@ -598,13 +603,15 @@ var messageString;
  */
 var msg = {
   random: [
-    "Donate today to your favourite local fitting shop today!",
+    "Dear driver, donate today to your favourite local fitting shop today! $",
     "Hi, my name is Toby, I am selling personalized car insurance solutions, would you be interested in having one? Initial price: $",
     "Tired of paying all the monthly bills by yourself? Register with us and we will take care of the burden for you, now for just: $",
     "Get your amazing new ACME driver's seat today! It's such a delight to sit on while on the road driving. Price: $",
-    "Essential MOT pre-checkup. Send us a photo of your car and we will tell its condition. Cheap and reliable! $",
+    "Essential MOT pre-checkup. What you only have to do is send us a photo of your car and we will tell its condition accurately. Cheap and reliable! $",
     "Personalised gas pedals just for you! You can have your loved one's face printed on it! Order while you can for $",
-    "Hello, we have new fantastic plastic steering wheels arrived last night. Buy one get one for free. Prices from $"
+    "Hello, we have new fantastic plastic steering wheels arrived last night. Buy one get one for free. Prices from $",
+    "Find out whether you have been fined for parking at a wrong location lately! Register with us only for $",
+    "Isn't it very annoying when your inbox is bombarded with spam messages? Let us try to stop it for you! No guarantee, T&C apply."
   ]
 }
 
@@ -619,15 +626,17 @@ var msg = {
  * not included here.
  */
 function sendConditionalMsg() {
+  var playerName = thePlayerNameDisplay.innerHTML;
+
   switch (interactionCounter.allAction) {
     case 20:
-      sendDirectMsg("General checkup needed. Cost: $", 500, 15);
+      sendDirectMsg("Garage", "Hi " + playerName + "! General checkup needed. Cost: $", 500, 15);
       break;
     case 100:
-      sendDirectMsg("General checkup needed. Cost: $", 1500, 40);
+      sendDirectMsg("Garage", "General checkup needed. Cost: $", 1500, 40);
       break;
     case 1000:
-      sendDirectMsg("General checkup needed. Cost: $", 2500, 100);
+      sendDirectMsg("Garage", "General checkup needed. Cost: $", 2500, 100);
       break;
   }
 }
@@ -640,9 +649,24 @@ function sendConditionalMsg() {
  * message: the actual message text
  * cost: the cost of applying whatever the message contains
  */
-function sendDirectMsg(message, cost, energyCharge) {
-  messageString = message + " ";
+function sendDirectMsg(from, message, cost, energyCharge) {
 
+  /**
+   * sender(from)
+   *
+   * Returns the message sender's name, inserted into a styled DOM element
+   */
+  function sender(from) {
+    return "<span class=\"msg-sender\">From: " + from + "</span><br>";
+  }
+
+  messageString = sender(from) + message + " ";
+
+  // If there is no cost and/or energyCharge supplied with the message, assign
+  // zero as value to them
+  if (typeof cost === "undefined") {
+    cost = 0;
+  }
   if (typeof energyCharge === "undefined") {
     energyCharge = 0;
   }
@@ -759,7 +783,11 @@ function createMessage(cost, energyCharge) {
   // The cost:
   var msgContentCost = document.createElement("span");
   msgContentCost.classList.add("msg-content-cost");
-  msgContentCost.innerHTML = cost;
+  // Only display the cost if the message has a cost sent with it (which
+  // actually means cost is bigger than "0")
+  if (cost > 0) {
+    msgContentCost.innerHTML = cost;
+  }
 
   // Conditionally displayed energy charge:
   if (energyCharge > 0) {
@@ -785,6 +813,11 @@ function createMessage(cost, energyCharge) {
   var deleteMsgBtn = document.createElement("button");
   deleteMsgBtn.classList.add("msg-delete");
   deleteMsgBtn.innerHTML = "IGNORE";
+  // If there is no cost sent with the message (meaning, less than "0"), hide
+  // the IGNORE button
+  if (cost <= 0) {
+    hideElement(deleteMsgBtn);
+  }
 
   /**
    * Then, put the whole message item block together
@@ -947,8 +980,8 @@ function loadMainframe() {
     addEventListener("keydown", moveLeft, false);         // move left
     addEventListener("keydown", moveRight, false);        // move right
 
-    getPlateData(); // Print plate data to the console
-    receiveRandomMsg();
+    getPlateData();     // Print plate data to the console
+    receiveRandomMsg(); // Start receiving spam messages
   }
 }
 
