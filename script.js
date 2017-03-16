@@ -86,7 +86,7 @@ var statusIconMessage     = document.querySelector(".icon-message");
  * or using the indicators.
  */
 var energyDisplay  = document.querySelector(".energy-state");
-var energyState    = 100;
+var energyState    = 5;
 
 function carEnergy() {
   if (timeRunning === true) {
@@ -123,14 +123,40 @@ function carEnergy() {
       carEnergy();
 
       if (energyState <= 1) {
-        // GAME OVER SCREEN
-        energyDisplay.innerHTML = "XXX";
-        timeRunning = false;
-        mainframe.classList.add("hide-element"); // test
+        gameOver();
       }
 
     }, startupTime);
 
+  }
+}
+
+// test state
+function gameOver() {
+  // GAME OVER SCREEN
+    energyDisplay.innerHTML = "XXX";
+    timeRunning = false;
+    hideElement(mainframe);
+    //removeEventListener();
+    var gameOverScreen = document.createElement("section");
+    gameOverScreen.classList.add("game-over-screen");
+    document.body.appendChild(gameOverScreen);
+}
+
+/**
+ * energyConsumption(amount)
+ *
+ * This function handles the energy consumption of the car. For example, when
+ * the player turns the lights on, energyConsumption() will decrease the overall
+ * car energy by the amount given as a parameter. If amount is less than the
+ * available energy, the function invokes gameOver() function.
+ */
+function energyConsumption(amount) {
+  if (amount <= energyState) {
+    energyState = energyState - amount;
+  }
+  else {
+    gameOver();
   }
 }
 
@@ -145,7 +171,8 @@ function toggleLights(event) {
 
     // Increment light switch counter & decrement energy state:
     lightSwitchCounter++;
-    energyState--;
+
+    energyConsumption(1);
 
     for (var i = 0; i < vehicle.headLights.length; i++) {
       if (vehicle.headLights[i].classList.contains(vehicle.headLightsOn)) {
