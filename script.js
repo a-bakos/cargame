@@ -290,6 +290,7 @@ function indicatorLights(event) {
  * Function for left and right movements
  */
 function moveLeft(event) {
+  event.preventDefault();
   if (event.keyCode == 37) {
     energyConsumption(0.02);
     vehicle.body.className = "vehicle";
@@ -299,6 +300,7 @@ function moveLeft(event) {
 }
 
 function moveRight(event) {
+  event.preventDefault();
   if (event.keyCode == 39) {
     energyConsumption(0.02);
     vehicle.body.className = "vehicle";
@@ -611,7 +613,7 @@ var msg = {
     "Personalised gas pedals just for you! You can have your loved one's face printed on it! Order while you can for $",
     "Hello, we have new fantastic plastic steering wheels arrived last night. Buy one get one for free. Prices from $",
     "Find out whether you have been fined for parking at a wrong location lately! Register with us only for $",
-    "Isn't it very annoying when your inbox is bombarded with spam messages? Let us try to stop it for you! No guarantee, T&C apply."
+    "Isn't it very annoying when your inbox is bombarded with spam messages? Let us try to guard you from them! No guarantee, T&C apply. $"
   ]
 }
 
@@ -629,8 +631,11 @@ function sendConditionalMsg() {
   var playerName = thePlayerNameDisplay.innerHTML;
 
   switch (interactionCounter.allAction) {
-    case 20:
-      sendDirectMsg("Garage", "Hi " + playerName + "! General checkup needed. Cost: $", 500, 15);
+    case 1:
+      sendDirectMsg("System", "Hello! Welcome aboard on your test edition of the newest <strong>Kimpson e7</strong> vehicle. You will see all your system and external messages here. Happy driving and enjoy your journey!");
+      break;
+    case 25:
+      sendDirectMsg("Garage", "Hi " + playerName + "! General checkup needed. Cost: $", 500, 5);
       break;
     case 100:
       sendDirectMsg("Garage", "General checkup needed. Cost: $", 1500, 40);
@@ -817,6 +822,7 @@ function createMessage(cost, energyCharge) {
   // the IGNORE button
   if (cost <= 0) {
     hideElement(deleteMsgBtn);
+    acceptMsgBtn.classList.add("single-button");
   }
 
   /**
@@ -879,7 +885,7 @@ function acceptMsg(event) {
   acceptMsgBtn.style.backgroundColor = "green";
 
   // Show a message to the user before completely removing the .msg-item:
-  msgContainer.innerHTML = "<p>Message accepted.</p>";
+  msgContainer.innerHTML = "<p class=\"msg-action-response\"><img class=\"status-icon icon-accepted\" src=\"img/accepted.png\">Message accepted.</p>";
 
   // Update counters:
   messageCounter--; // Decrement message counter
@@ -929,7 +935,7 @@ function deleteMsg(event) {
   deleteMsgBtn.style.backgroundColor = "red";
 
   // Show a message to the user before completely removing the .msg-item:
-  msgContainer.innerHTML = "<p>Message deleted.</p>";
+  msgContainer.innerHTML = "<p class=\"msg-action-response\"><img class=\"status-icon icon-deleted\" src=\"img/deleted.png\">Message deleted.</p>";
 
   // Update counters:
   messageCounter--; // Decrement message counter

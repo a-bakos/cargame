@@ -173,10 +173,9 @@ body {
   overflow-x: hidden;
   background-color: #422e2f;
   font-size: 20px;
-  box-shadow: inset 0 -100px 10px 0 rgba(0, 0, 0, 0.25);
 }
 
-/* line 18, scss/_base.scss */
+/* line 16, scss/_base.scss */
 .gameframe {
   width: 120%;
   height: 225px;
@@ -187,37 +186,37 @@ body {
   box-shadow: inset -20px 0 50px #131b06;
 }
 
-/* line 29, scss/_base.scss */
+/* line 27, scss/_base.scss */
 .mainframe {
   animation: load-up 1000ms ease-in;
 }
 
 @keyframes load-up {
-  /* line 34, scss/_base.scss */
+  /* line 32, scss/_base.scss */
   0% {
     opacity: 0;
   }
 
-  /* line 35, scss/_base.scss */
+  /* line 33, scss/_base.scss */
   100% {
     opacity: 1;
   }
 }
 
-/* line 38, scss/_base.scss */
+/* line 36, scss/_base.scss */
 p {
   width: 100%;
   font-family: "Ubuntu Condensed", sans-serif;
   font-size: 20px;
 }
 
-/* line 44, scss/_base.scss */
+/* line 42, scss/_base.scss */
 .hide-element {
   display: none;
   transition: 500ms;
 }
 
-/* line 49, scss/_base.scss */
+/* line 47, scss/_base.scss */
 h2 {
   font-size: 16px;
   font-weight: bold;
@@ -321,6 +320,11 @@ td {
 }
 
 /* line 36, scss/_user-panel.scss */
+tr {
+  vertical-align: top;
+}
+
+/* line 40, scss/_user-panel.scss */
 .small-heading {
   margin: 0;
   font-family: "Teko", sans-serif;
@@ -333,9 +337,160 @@ td {
  */
 /* line 4, scss/_info-unit.scss */
 .info-unit {
-  width: 75%;
+  width: 85%;
   margin: auto;
-  background: white;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  background-color: #453e3d;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.75), 0 10px 10px 0 rgba(0, 0, 0, 0.75), inset 0 25px 15px 0 rgba(0, 0, 0, 0.3), inset 0 -30px 30px 0 #2a262c, inset 0 0 30px 0 black;
+}
+
+/* line 22, scss/_info-unit.scss */
+.user-money {
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* line 34, scss/_info-unit.scss */
+.unread-msg {
+  text-align: center;
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 1%;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* line 45, scss/_info-unit.scss */
+.msg-wall {
+  width: 95%;
+  height: 300px;
+  overflow-y: scroll;
+  margin: auto;
+  background-color: transparent;
+  list-style: none;
+  padding: 0;
+  box-shadow: inset 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 0 30px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* line 58, scss/_info-unit.scss */
+.msg-item {
+  width: 98%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 2.5%;
+  padding-right: 2.5%;
+  background-image: linear-gradient(to bottom, rgba(187, 191, 164, 0.9) 50%, rgba(187, 191, 164, 0.45) 100%);
+  border-radius: 5px;
+  box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.25);
+}
+
+/* line 81, scss/_info-unit.scss */
+.msg-received {
+  margin: 0;
+  margin-bottom: 2%;
+  font-family: monospace;
+  font-size: 12px;
+  border-bottom: 1px solid #bbbfa4;
+  text-align: center;
+  line-height: normal;
+}
+
+/* line 93, scss/_info-unit.scss */
+.msg-sender {
+  font-family: monospace;
+  font-size: 12px;
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+  margin: 0;
+  margin-top: 1%;
+  padding-top: 0.25%;
+  padding-bottom: 0.25%;
+  padding-left: 3%;
+  padding-right: 3%;
+  background-color: #bbbfa4;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* line 111, scss/_info-unit.scss */
+.msg-content {
+  margin: 0;
+  color: #2f2720;
+  font-size: 18px;
+  font-family: "Ubuntu Condensed", sans-serif;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+}
+
+/* line 119, scss/_info-unit.scss */
+.msg-content-cost {
+  font-weight: bold;
+}
+
+/* line 123, scss/_info-unit.scss */
+.msg-energy-charge-container {
+  font-size: 18px;
+  margin: 0;
+}
+
+/* line 127, scss/_info-unit.scss */
+.msg-energy-charge-amount {
+  font-weight: bold;
+}
+
+/* line 131, scss/_info-unit.scss */
+.msg-actions {
+  margin: auto;
+  margin-top: 2%;
+}
+
+/* line 136, scss/_info-unit.scss */
+.msg-accept {
+  height: 30px;
+  display: inline-block;
+  text-align: center;
+  width: 50%;
+  background-color: darkslategray;
+  border-color: transparent;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* line 148, scss/_info-unit.scss */
+.msg-delete {
+  height: 30px;
+  display: inline-block;
+  text-align: center;
+  width: 50%;
+  color: rgba(255, 255, 255, 0.75);
+  background-color: #781212;
+  box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  border-color: transparent;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/* line 162, scss/_info-unit.scss */
+.single-button {
+  width: 100%;
+  border-radius: 5px;
+}
+
+/* line 167, scss/_info-unit.scss */
+.msg-action-response {
+  text-align: center;
+}
+
+/* line 172, scss/_info-unit.scss */
+.icon-accepted,
+.icon-deleted {
+  vertical-align: bottom;
+  margin-right: 5px;
 }
 
 /**
@@ -458,22 +613,27 @@ td {
 }
 
 /* line 114, scss/_dashboard.scss */
+.icon-message {
+  width: 14px;
+}
+
+/* line 115, scss/_dashboard.scss */
 .icon-energy {
   width: 20px;
 }
 
-/* line 117, scss/_dashboard.scss */
+/* line 118, scss/_dashboard.scss */
 .icon-left-index,
 .icon-right-index {
   width: 16px;
 }
 
-/* line 123, scss/_dashboard.scss */
+/* line 124, scss/_dashboard.scss */
 .icon-battery {
   width: 18px;
 }
 
-/* line 124, scss/_dashboard.scss */
+/* line 125, scss/_dashboard.scss */
 .icon-doors {
   width: 20px;
 }
