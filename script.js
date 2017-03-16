@@ -41,13 +41,13 @@ var interactionCounter = {
   incrementClicks: function() {
     interactionCounter.mouseClicks++;
     interactionCounter.allAction++;
-    sendMessage();
+    sendConditionalMsg();
   },
 
   incrementKeys: function() {
     interactionCounter.keyPresses++;
     interactionCounter.allAction++;
-    sendMessage();
+    sendConditionalMsg();
   }
 };
 
@@ -286,6 +286,7 @@ function cheatRoof(event) {
   if (!extraSunroof.checked) {
     if (event.shiftKey) {
       vehicle.body.appendChild(vehicle.sunroof);
+      sendDirectMsg("Cheat applied! Sunroof added. Cost: $", 0);
       console.log("[Cheat applied!] -> Sunroof added.");
     }
   }
@@ -481,7 +482,7 @@ function displayDateTime() {
     dateDisplay.innerHTML = todaysDate;
     timeDisplay.innerHTML = currentTime;
 
-    displayDateTime();
+    displayDateTime(); // Recursion.
   }, 3000);
 }
 
@@ -545,7 +546,7 @@ function incrementTime() {
 
 // User wallet:
 var userWallet = document.querySelector(".money-amount");
-var userMoney = Number(5000); // Starting amount
+var userMoney = Number(5000);
 userWallet.innerHTML = userMoney;
 
 // The actual message text that the user will receive:
@@ -578,7 +579,7 @@ var msg = {
 }
 
 /**
- * sendMessage() function
+ * sendConditionalMsg() function
  *
  * This is the function for sending messages to the user based on different
  * cases that are depending on the collective number of user interactions,
@@ -587,7 +588,7 @@ var msg = {
  * These are messages from the garage and the system. Random spam messages
  * not included here.
  */
-function sendMessage() {
+function sendConditionalMsg() {
   var cost;
 
   switch (interactionCounter.allAction) {
@@ -605,6 +606,19 @@ function sendMessage() {
       delete msg.garage[1];
       break;
   }
+}
+
+/**
+ * sendDirectMsg(message, cost)
+ *
+ * Function for sending direct messages.
+ *
+ * message: the actual message text
+ * cost: the cost of applying whatever the message contains
+ */
+function sendDirectMsg(message, cost) {
+  messageString = message + " ";
+  messageReceived(cost);
 }
 
 /**
