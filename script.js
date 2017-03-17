@@ -632,7 +632,7 @@ function sendConditionalMsg() {
 
   switch (interactionCounter.allAction) {
     case 1:
-      sendDirectMsg("System", "Hello! Welcome aboard on your test edition of the newest <strong>Kimpson e7</strong> vehicle. You will see all your system and external messages here. Happy driving and enjoy your journey!");
+      sendDirectMsg("System", "Hello! Welcome aboard on your test edition of the newest <strong>Impson e7</strong> vehicle. You will see all your system and external messages here. Happy driving and enjoy your journey!");
       break;
     case 25:
       sendDirectMsg("Garage", "Hi " + playerName + "! General checkup needed. Cost: $", 500, 5);
