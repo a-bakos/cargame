@@ -92,7 +92,7 @@ function carEnergy() {
   if (timeRunning === true) {
     setTimeout(function() {
       // Automatically decrease the energy state:
-      energyState = energyState - 0.015;
+      energyState = energyState - 0.05;
       energyState = parseFloat(energyState);
 
       if (energyState > 100) {
@@ -172,7 +172,7 @@ function toggleLights(event) {
     // Increment light switch counter & decrement energy state:
     lightSwitchCounter++;
 
-    energyConsumption(1);
+    energyConsumption(1.25);
 
     for (var i = 0; i < vehicle.headLights.length; i++) {
       if (vehicle.headLights[i].classList.contains(vehicle.headLightsOn)) {
@@ -202,24 +202,24 @@ function toggleLights(event) {
 function batteryProblems() {
   switch(lightSwitchCounter) {
     case 4:
-      energyConsumption(2);
-      sendDirectMsg("System", "Warning! Please be aware that unnecessarily switching the lights on and off may cause damage in your car's battery and result in energy loss.");
+      energyConsumption(5);
+      sendDirectMsg("System", "Warning! Please be aware that unnecessarily switching the lights on and off may cause damage in your car's battery and occassianally result in significant energy losses.");
       console.log("Light switch - First warning message.");
       break;
     case 8:
-      energyConsumption(6);
+      energyConsumption(10);
       statusIconBattery.src = "img/battery-on.png";
       sendDirectMsg("System", "Battery problem! Lights switched on and off too many times.");
       console.log("Battery problem! Lights switched on and off too many times.");
       break;
     case 16:
-      energyConsumption(12);
+      energyConsumption(15);
       sendDirectMsg("System", "Battery error! Stop playing with the light switch!");
       console.log("Battery error! Stop playing with the light switch!");
       statusIconBattery.src = "img/battery-error.png";
       break;
     case 30:
-      energyConsumption(0);
+      energyConsumption(30);
       sendDirectMsg("System", "Warning! Critical battery condition! Say goodbye to your battery, mate.");
       console.log("Warning! Critical battery condition!");
       statusIconBattery.src = "img/battery-error.png";
@@ -242,7 +242,7 @@ var statusIconRightIndex = document.querySelector(".icon-right-index")
 function indicatorLights(event) {
   if (event.keyCode == vehicle.leftIndicatorsKey) {
 
-    energyConsumption(0.08);
+    energyConsumption(0.1);
 
     if (
       vehicle.leftIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
@@ -270,7 +270,7 @@ function indicatorLights(event) {
   // Right side indicators:
   if (event.keyCode == vehicle.rightIndicatorsKey) {
 
-    energyConsumption(0.08);
+    energyConsumption(0.1);
 
     if (
       vehicle.rightIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
@@ -303,7 +303,7 @@ function indicatorLights(event) {
 function moveLeft(event) {
   event.preventDefault();
   if (event.keyCode == 37) {
-    energyConsumption(0.03);
+    energyConsumption(0.05);
     vehicle.body.className = "vehicle";
     vehicle.body.classList.toggle(vehicle.moveLeftMotion);
     console.log("Move left");
@@ -313,7 +313,7 @@ function moveLeft(event) {
 function moveRight(event) {
   event.preventDefault();
   if (event.keyCode == 39) {
-    energyConsumption(0.03);
+    energyConsumption(0.05);
     vehicle.body.className = "vehicle";
     vehicle.body.classList.toggle(vehicle.moveRightMotion);
     console.log("Move right");
@@ -517,7 +517,7 @@ function displayDateTime() {
   var dateDisplay = document.querySelector(".clock-date");
   var timeDisplay = document.querySelector(".clock-time");
 
-  energyConsumption(0.01);
+  energyConsumption(0.02);
 
   setTimeout(function() {
     var date        = new Date();
@@ -609,9 +609,16 @@ function incrementTime() {
  */
 
 // User wallet:
-var userMoney = Number(2500);
+var userMoney = Number(1500);
 var userWallet = document.querySelector(".money-amount");
 userWallet.innerHTML = userMoney;
+
+function checkWallet(cost) {
+  if (cost > userMoney) {
+    sendDirectMsg("System", "Sorry, you have no funds.");
+
+  }
+}
 
 // The actual message text that the user will receive:
 var messageString;
@@ -650,23 +657,41 @@ function sendConditionalMsg() {
     case 1:
       sendDirectMsg("System", "Hello! Welcome aboard on your test edition of the newest <strong>Impson e7</strong> vehicle. You will see all your system and external messages here. Happy driving and enjoy your journey!");
       break;
-    case 15:
+    case 12:
       sendDirectMsg("System", "Even though your <strong>Impson e7</strong> runs mainly on autopilot and takes care of the safe journey, please always be aware of using your lights when necessary. Light switch button: <strong>L</strong>");
       break;
+    case 15:
+      sendDirectMsg("Garage", "Unfortunately we have been having issues with our central messaging engine. This means that at the moment your car is able to receive and respond to external spam messages. Sorry for the inconveniences caused. We might as well fix the problem at some point.");
+      break;
     case 25:
-      sendDirectMsg("Garage", "Hi " + playerName + "! General checkup needed. Cost: $", 500, 5);
+      sendDirectMsg("Garage", "Hi " + playerName + "! General checkup needed. Cost: $", 1500, 5);
       break;
     case 30:
-      sendDirectMsg("System", "You should always use your indicators when changing tracks.")
+      sendDirectMsg("System", "You should always use your indicators when changing tracks. Indicator keys: <strong>Q</strong> & <strong>E</strong>")
       break;
     case 35:
-      sendDirectMsg("Garage", "We would like to thank you for using our first test edition of the <strong>Impson e7</strong> vehicle. You will receive a decent amount of money and some energy charge from us as a reward.", -1000, 10);
+      sendDirectMsg("Garage", "We would like to thank you for using our first test edition of the <strong>Impson e7</strong> vehicle. You will receive a decent amount of money and some energy charge from us as a reward.", -1000, 5);
+      break;
+    case 40:
+      sendDirectMsg("Garage", "Hello dude, here's a bit of power to install on your system if ya' need it. Cost: $", 800, 5);
+      break;
+    case 45:
+      sendDirectMsg("System", "The system needs an update package from the garage. The package costs: $", 1200, 4);
+      break;
+    case 50:
+      sendDirectMsg("Garage", playerName + ", we hope you enjoy your new car! We always award our loyal customers, so we are sending you a small gift in the form of some money. :)", -500, 5);
+      break;
+    case 55:
+      sendDirectMsg("Garage", "We can provide you with the latest sat nav software. Loyal customers' price:", 2000, 10);
+      break;
+    case 65:
+      sendDirectMsg("Garage", "We are testing our newest build of spam filter and can send you a small update along with a small charge. Want it? $", 20, 2);
+      break;
+    case 70:
+      sendDirectMsg("Garage", "Our usual reward to you is on its way!", -500, 5);
       break;
     case 100:
-      sendDirectMsg("Garage", "Hey, can you checkup needed. Cost: $", 1500, 20);
-      break;
-    case 1000:
-      sendDirectMsg("Garage", "General checkup needed. Cost: $", 2500, 100);
+      sendDirectMsg("Garage", "Hey, can you checkup needed. Cost: $", 1500, 10);
       break;
   }
 }
@@ -876,6 +901,17 @@ function createMessage(cost, energyCharge) {
       msgActions.appendChild(acceptMsgBtn);
       msgActions.appendChild(deleteMsgBtn);
 
+  // See, whether the user has enough money. If not, hide the accept button.
+  // Also, the message cannot be left there to wait and accepted later when the
+  // user has gained enough funds.
+  if (msgContentCost.innerHTML > 0) {
+    if (msgContentCost.innerHTML > userMoney) {
+      hideElement(acceptMsgBtn);
+      deleteMsgBtn.classList.add("single-button");
+      msgReceivedAt.innerHTML = msgArrived + "<br>Not enough funds when received."
+    }
+  }
+
   /**
    * Message handlers
    */
@@ -995,8 +1031,8 @@ function deleteMsg(event) {
 // Function for setting the dashboard message notification icon back to base
 // state, aka "there is no message"
 function turnOffMsgNotification() {
+  energyConsumption(0.05);
   if (messageCounter == 0) {
-    energyConsumption(0.05);
     statusIconMessage.src = "img/message-off.png";
   }
 }
@@ -1031,7 +1067,7 @@ function loadMainframe() {
 
 // "Global" event listeners for counting user interactions:
 addEventListener("click", interactionCounter.incrementClicks, false);
-addEventListener("keydown", interactionCounter.incrementKeys, false);
+addEventListener("keyup", interactionCounter.incrementKeys, false);
 
 extraSunroof.addEventListener("change", sunroof, false);  // sunroof
 vehicle.body.addEventListener("click", cheatRoof, false); // cheatroof
