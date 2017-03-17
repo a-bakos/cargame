@@ -48,17 +48,39 @@
   width: 300px;
   font-size: 40px;
   text-align: center;
-  border: 5px solid blue;
-  
+  border: 5px solid $plate-color;
+  background-color: rgba(240,240,240,1);
+
   &:focus {
-    border: 5px solid blue;
-    box-shadow: 0 0 25px blue;
-  }
+    border: 5px solid $plate-color;
+    box-shadow: 0 0 25px $plate-color;
+    outline: none;
+    }
   }
 
 .main-screen { color: white; }
 
-.input-field {}
-.input-submit {}
+.input-submit {
+  margin-top: 1%;
+  width: 300px;
+  height: 50px;
+  background-color: $plate-color;
+  font: {
+    size: 40px;
+    family: $odometer-font;
+  }
+  border: none;
+
+  &:focus {
+    border: none;
+    background-color: $plate-color;
+    box-shadow: 0 0 25px $plate-color;
+    outline: none;
+    }
+}
 
 .player-name {  }
+
+.extras-section {
+font-size: 30px;
+}

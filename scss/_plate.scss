@@ -11,6 +11,22 @@
   @include no-select;
   }
 
+.plate-title {
+  margin: auto;
+  margin-top: 1%;
+  width: 250px;
+  text: {
+    align: center;
+    shadow: 0 0 5px black;
+    }
+  color: rgba(255,255,255,0.75);
+
+  a {
+    text-decoration: none;
+    color: rgba(255,200,200,0.75);
+    }
+  }
+
 // The actual plate
 .plate-base {
   margin: auto;
