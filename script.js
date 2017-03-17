@@ -201,6 +201,11 @@ function toggleLights(event) {
 
 function batteryProblems() {
   switch(lightSwitchCounter) {
+    case 4:
+      energyConsumption(2);
+      sendDirectMsg("System", "Warning! Please be aware that unnecessarily switching the lights on and off may cause damage in your car's battery and result in energy loss.");
+      console.log("Light switch - First warning message.");
+      break;
     case 8:
       energyConsumption(6);
       statusIconBattery.src = "img/battery-on.png";
@@ -214,9 +219,15 @@ function batteryProblems() {
       statusIconBattery.src = "img/battery-error.png";
       break;
     case 30:
-      energyConsumption(30);
+      energyConsumption(0);
       sendDirectMsg("System", "Warning! Critical battery condition! Say goodbye to your battery, mate.");
       console.log("Warning! Critical battery condition!");
+      statusIconBattery.src = "img/battery-error.png";
+      break;
+    case 40:
+      energyConsumption(50);
+      sendDirectMsg("System", "No words for your behaviour. Please take me back to the garage...");
+      console.log("Light switch - Final warning!");
       statusIconBattery.src = "img/battery-error.png";
       break;
   }
@@ -231,7 +242,7 @@ var statusIconRightIndex = document.querySelector(".icon-right-index")
 function indicatorLights(event) {
   if (event.keyCode == vehicle.leftIndicatorsKey) {
 
-    energyConsumption(0.05);
+    energyConsumption(0.08);
 
     if (
       vehicle.leftIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
@@ -259,7 +270,7 @@ function indicatorLights(event) {
   // Right side indicators:
   if (event.keyCode == vehicle.rightIndicatorsKey) {
 
-    energyConsumption(0.05);
+    energyConsumption(0.08);
 
     if (
       vehicle.rightIndicators[0].classList.contains(vehicle.frontIndicatorsOn) &&
@@ -292,7 +303,7 @@ function indicatorLights(event) {
 function moveLeft(event) {
   event.preventDefault();
   if (event.keyCode == 37) {
-    energyConsumption(0.02);
+    energyConsumption(0.03);
     vehicle.body.className = "vehicle";
     vehicle.body.classList.toggle(vehicle.moveLeftMotion);
     console.log("Move left");
@@ -302,7 +313,7 @@ function moveLeft(event) {
 function moveRight(event) {
   event.preventDefault();
   if (event.keyCode == 39) {
-    energyConsumption(0.02);
+    energyConsumption(0.03);
     vehicle.body.className = "vehicle";
     vehicle.body.classList.toggle(vehicle.moveRightMotion);
     console.log("Move right");
@@ -322,6 +333,9 @@ function sunroof() {
   if (extraSunroof.checked) {
     vehicle.body.appendChild(vehicle.sunroof);
     console.log("Extra sunroof added.");
+
+    userMoney = userMoney - 500;
+    userWallet.innerHTML = userMoney;
   }
   else {
     vehicle.body.removeChild(vehicle.sunroof);
@@ -503,6 +517,8 @@ function displayDateTime() {
   var dateDisplay = document.querySelector(".clock-date");
   var timeDisplay = document.querySelector(".clock-time");
 
+  energyConsumption(0.01);
+
   setTimeout(function() {
     var date        = new Date();
     // Set the day name
@@ -593,8 +609,8 @@ function incrementTime() {
  */
 
 // User wallet:
+var userMoney = Number(2500);
 var userWallet = document.querySelector(".money-amount");
-var userMoney = Number(5000);
 userWallet.innerHTML = userMoney;
 
 // The actual message text that the user will receive:
@@ -605,7 +621,7 @@ var messageString;
  */
 var msg = {
   random: [
-    "Dear driver, donate today to your favourite local fitting shop today! $",
+    "Dear driver, donate to your favourite local fitting shop today! $",
     "Hi, my name is Toby, I am selling personalized car insurance solutions, would you be interested in having one? Initial price: $",
     "Tired of paying all the monthly bills by yourself? Register with us and we will take care of the burden for you, now for just: $",
     "Get your amazing new ACME driver's seat today! It's such a delight to sit on while on the road driving. Price: $",
@@ -634,11 +650,20 @@ function sendConditionalMsg() {
     case 1:
       sendDirectMsg("System", "Hello! Welcome aboard on your test edition of the newest <strong>Impson e7</strong> vehicle. You will see all your system and external messages here. Happy driving and enjoy your journey!");
       break;
+    case 15:
+      sendDirectMsg("System", "Even though your <strong>Impson e7</strong> runs mainly on autopilot and takes care of the safe journey, please always be aware of using your lights when necessary. Light switch button: <strong>L</strong>");
+      break;
     case 25:
       sendDirectMsg("Garage", "Hi " + playerName + "! General checkup needed. Cost: $", 500, 5);
       break;
+    case 30:
+      sendDirectMsg("System", "You should always use your indicators when changing tracks.")
+      break;
+    case 35:
+      sendDirectMsg("Garage", "We would like to thank you for using our first test edition of the <strong>Impson e7</strong> vehicle. You will receive a decent amount of money and some energy charge from us as a reward.", -1000, 10);
+      break;
     case 100:
-      sendDirectMsg("Garage", "General checkup needed. Cost: $", 1500, 40);
+      sendDirectMsg("Garage", "Hey, can you checkup needed. Cost: $", 1500, 20);
       break;
     case 1000:
       sendDirectMsg("Garage", "General checkup needed. Cost: $", 2500, 100);
@@ -707,6 +732,10 @@ function receiveRandomMsg() {
  */
 function messageReceived(cost, energyCharge) {
   messageCounter++;
+
+  // Small energy consumption for receiving all kinds of messages:
+  energyConsumption(0.5);
+
   createMessage(cost, energyCharge);
   statusIconMessage.src = "img/message-on.png";
   console.log("New message received. Counter: " + messageCounter);
@@ -793,6 +822,10 @@ function createMessage(cost, energyCharge) {
   if (cost > 0) {
     msgContentCost.innerHTML = cost;
   }
+  else { // Hide positive amount of money (considered as gift money)
+    msgContentCost.innerHTML = cost;
+    hideElement(msgContentCost);
+  }
 
   // Conditionally displayed energy charge:
   if (energyCharge > 0) {
@@ -871,6 +904,8 @@ function acceptMsg(event) {
   var msgItem        = msgButtons.parentNode;
   var msgWall        = msgItem.parentNode;
 
+  energyConsumption(0.25);
+
   if (document.querySelector(".msg-energy-charge-container")) {
     var energyCharge = document.querySelector(".msg-energy-charge-amount").innerHTML;
     energyState = parseFloat(energyState) + parseFloat(energyCharge);
@@ -926,6 +961,8 @@ function deleteMsg(event) {
   var msgItem      = msgButtons.parentNode;
   var msgWall      = msgItem.parentNode;
 
+  energyConsumption(0.25);
+
   // Disable the action buttons after one is clicked
   acceptMsgBtn.setAttribute("disabled", "");
   deleteMsgBtn.setAttribute("disabled", "");
@@ -959,6 +996,7 @@ function deleteMsg(event) {
 // state, aka "there is no message"
 function turnOffMsgNotification() {
   if (messageCounter == 0) {
+    energyConsumption(0.05);
     statusIconMessage.src = "img/message-off.png";
   }
 }
