@@ -203,7 +203,7 @@ function batteryProblems() {
   switch(lightSwitchCounter) {
     case 4:
       energyConsumption(5);
-      sendDirectMsg("System", "Warning! Please be aware that unnecessarily switching the lights on and off may cause damage in your car's battery and occassianally result in significant energy losses.");
+      sendDirectMsg("System", "Warning! Please be aware that unnecessarily switching the lights on and off may cause damage in your car's battery and occassionally result in significant energy losses.");
       console.log("Light switch - First warning message.");
       break;
     case 8:
