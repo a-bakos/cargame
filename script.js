@@ -959,7 +959,7 @@ function acceptMsg(event) {
 
   // Indicate the click by setting a different styling on the button:
   // (This will be replaced with a CSS class in the stylesheet.)
-  acceptMsgBtn.style.backgroundColor = "green";
+  acceptMsgBtn.classList.add("msg-accepted");
 
   // Show a message to the user before completely removing the .msg-item:
   msgContainer.innerHTML = "<p class=\"msg-action-response\"><img class=\"status-icon icon-accepted\" src=\"img/accepted.png\">Message accepted.</p>";
@@ -1011,7 +1011,7 @@ function deleteMsg(event) {
 
   // Indicate the click by setting a different styling on the button:
   // (This will be replaced with a CSS class in the stylesheet.)
-  deleteMsgBtn.style.backgroundColor = "red";
+  deleteMsgBtn.classList.add("msg-deleted");
 
   // Show a message to the user before completely removing the .msg-item:
   msgContainer.innerHTML = "<p class=\"msg-action-response\"><img class=\"status-icon icon-deleted\" src=\"img/deleted.png\">Message deleted.</p>";
