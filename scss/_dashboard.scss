@@ -2,13 +2,12 @@
  * Dashboard
  */
 
-.dashboard-area { @include no-select; }
-
 .dashboard {
   padding: {
     top: 15px;
     bottom: 15px;
     }
+
   border: {
     top: 1px solid rgba(255,255,255,0.15);
     radius: 25px;
@@ -20,13 +19,11 @@
     inset 0 25px 15px 0 rgba(0,0,0,0.3), // upper shadow line
     inset 0 -30px 30px 0 rgba(42,38,44,1),
     inset 0 0 30px 0 rgba(0,0,0,1),
-    
+
     0 15px 50px 0 rgba(235,159,76,0.3);
 
-  font: {
-    family: $odometer-font;
-    }
   color: $dashboard-text;
+  font-family: $odometer-font;
   text: {
     align: center;
     shadow:
@@ -35,11 +32,14 @@
     }
 }
 
+// The areas on the dashboard that are displayed in inverse colors,
+// such as the ODO text and the current time
 .inverse-disp {
   padding: {
     left: 2px;
     right: 2px;
   }
+
   background-color: rgba(235,159,76,0.85);
   border-radius: 2px;
   color: darken($dash-display-bg, 5%);
@@ -73,7 +73,8 @@
     left: auto;
     right: auto;
     }
-  border-top: 1px solid  rgba(235,159,76,0.35);
+
+  border-top: 1px solid rgba(235,159,76,0.35);
   }
 
 .odometer {
@@ -81,45 +82,49 @@
     left: 10px;
     right: 10px;
     }
+
   font-size: 36px;
   }
 
 /**
  * Energy area
  */
+
 .energy-area {
   width: 75%;
   margin: {
     left: auto;
     right: auto;
     }
+
   border-bottom: 1px solid rgba(235,159,76,0.35);
   }
 
 /**
  * Status icons
  */
+
 .status-icons-area {
   width: 100%;
   margin: auto;
   text-align: center;
   }
 
-.status-icon  { width: 25px; }
+.status-icon    { width: 25px; }
 
-.icon-driver  { width: 14px; }
-.icon-wifi    { width: 14px; }
-.icon-network { width: 14px; }
+.icon-driver    { width: 14px; }
+.icon-wifi      { width: 14px; }
+.icon-network   { width: 14px; }
 .icon-bluetooth { width: 14px; }
-.icon-message { width: 14px; }
-.icon-energy  { width: 20px; }
+.icon-message   { width: 14px; }
+.icon-energy    { width: 20px; }
 
 .icon-left-index,
 .icon-right-index {
   width: 16px;
   }
 
-.icon-lights  {}
-.icon-engine  {}
-.icon-battery { width: 18px; }
-.icon-doors   { width: 20px; }
+.icon-lights    {}
+.icon-engine    {}
+.icon-battery   { width: 18px; }
+.icon-doors     { width: 20px; }

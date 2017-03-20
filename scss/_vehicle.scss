@@ -10,11 +10,14 @@
 
   @include car-color(background-color, 1);
   @include black(border-color, 0.65);
-  border-radius: 15px;
-  border-top-right-radius: 22px;
-  border-bottom-right-radius: 22px;
-  border-width: 1px;
-  border-style: solid;
+
+  border: {
+    radius: 15px;
+    top-right-radius: 22px;
+    bottom-right-radius: 22px;
+    width: 1px;
+    style: solid;
+    }
   box-shadow:
     inset 0 0 5px rgba(0,0,0,0.5),
     inset -15px 0 10px rgba(0,0,0,0.5),
@@ -37,12 +40,15 @@
   left: 6px;
   width: 80px;
   height: 54px;
+
   background-color: $glass-color;
-  border-radius: 15px;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
-  border-right: 2px solid rgba(0,0,0,0.75);
-  border-left: 1px solid rgba(0,0,0,0.75);
+  border: {
+    radius: 15px;
+    bottom-left-radius: 10px;
+    top-left-radius: 10px;
+    right: 2px solid rgba(0,0,0,0.75);
+    left: 1px solid rgba(0,0,0,0.75);
+    }
   box-shadow:
     inset -5px 0 10px rgba(0,0,0,0.5),
     inset 5px 0 10px rgba(0,0,0,0.5),
@@ -66,11 +72,13 @@
   height: 50px;
 
   @include car-color(background-color, 1);
-  border-radius: 15px;
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
-  border-right: 1px solid rgba(0,0,0,0.5);
-  border-left: 1px solid rgba(0,0,0,0.85);
+  border: {
+    radius: 15px;
+    bottom-left-radius: 10px;
+    top-left-radius: 10px;
+    right: 1px solid rgba(0,0,0,0.5);
+    left: 1px solid rgba(0,0,0,0.85);
+    }
   box-shadow:
     inset 0 0 25px rgba(0,0,0,0.5),
     inset -5px 0 5px 0 rgba(0,0,0,0.25),
@@ -96,22 +104,26 @@
   }
 
 .vehicle-left-door {
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 10px;
+  border: {
+    top-left-radius: 5px;
+    bottom-left-radius: 5px;
+    bottom-right-radius: 10px;
+    }
   }
 
 .vehicle-right-door {
   top: 56px;
 
-  border-bottom-left-radius: 5px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 10px;
+  border: {
+    bottom-left-radius: 5px;
+    top-left-radius: 5px;
+    top-right-radius: 10px;
+    }
   }
 
 // This animation is for a possible later use.
-.open-left-door { animation: open-left-door 1s ease-out infinite forwards; }
-.open-right-door { animation: open-right-door 1s ease-out infinite forwards; }
+.open-left-door   { animation: open-left-door 1s ease-out infinite forwards; }
+.open-right-door  { animation: open-right-door 1s ease-out infinite forwards; }
 
 @keyframes open-left-door {
   10% {
@@ -153,16 +165,20 @@
 .vehicle-left-mirror {
   top: -6px;
 
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 50%;
-  border-bottom-right-radius: 50%;
+  border: {
+    top-right-radius: 10px;
+    bottom-left-radius: 50%;
+    bottom-right-radius: 50%;
+    }
   }
 .vehicle-right-mirror {
   top: -2px;
 
-  border-bottom-right-radius: 10px;
-  border-top-left-radius: 50%;
-  border-top-right-radius: 50%;
+  border: {
+    bottom-right-radius: 10px;
+    top-left-radius: 50%;
+    top-right-radius: 50%;
+    }
   }
 
 .vehicle-headlights {
@@ -187,13 +203,17 @@
 
 .headlights-left {
   top: 3px;
-  border-top-right-radius: 15px;
-  border-bottom-left-radius: 5px;
+  border: {
+    top-right-radius: 15px;
+    bottom-left-radius: 5px;
+    }
   }
 .headlights-right {
   top: 40px;
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 5px;
+  border: {
+    bottom-right-radius: 15px;
+    bottom-left-radius: 5px;
+    }
   }
 
 .vehicle-taillights {
@@ -234,18 +254,9 @@
   @include black(background-color, 0);
   }
 
-  // The ON state of the rear indicators. Applied by JS
-  .rear-indicators_on {
-    animation: rear-indicators_on 1s ease infinite;
-    }
-  @keyframes rear-indicators_on {
-    0% { background-color: transparent; }
-    50% {
-      @include car-indicators(background-color);
-      box-shadow: -10px 0 40px 8px $color-orange;
-      }
-    100% { background-color: transparent; }
-    }
+// The ON state of the rear indicators. Applied by JS
+.rear-indicators_on { animation: rear-indicators_on 1s ease infinite; }
+
 
 .rear-indicator-left {
   top: 8px;
@@ -269,16 +280,8 @@
   @include black(background-color, 0.25);
   }
 
-  // The ON state of the front indicators. Applied by JS
-  .front-indicators_on {
-    animation: front-indicators_on 1s ease infinite;
-    }
-  @keyframes front-indicators_on {
-    50% {
-      @include car-indicators(background-color);
-      box-shadow: 25px 0 50px 10px $color-orange;
-      }
-    }
+// The ON state of the front indicators. Applied by JS
+.front-indicators_on { animation: front-indicators_on 1s ease infinite; }
 
 .front-indicator-left {
   top: 8px;

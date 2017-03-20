@@ -7,37 +7,32 @@
 body {
   margin: auto;
   height: 100vh;
-  //overflow: hidden;
-  overflow-x: hidden;
+
   background-color: $bg-color;
   font-size: 20px;
-  @include no-select;
+  overflow-x: hidden;
+  @include no-select; // prevent all user selection
   }
 
 .gameframe {
+  left: 0;
   width: 120%;
   height: 225px;
-  left: 0;
-  padding-top: 0px;
   margin: auto;
+  padding-top: 0px;
 
-  @include grass-green(background-color, 1);
   box-shadow: inset -20px 0 50px $color-dark-green;
+  @include grass-green(background-color, 1);
 }
 
-.mainframe {
-  animation: load-up $duration ease-in;
-}
-
-@keyframes load-up {
-  0%    { opacity: 0; }
-  100%  { opacity: 1; }
-}
+.mainframe { animation: load-up $duration ease-in; }
 
 p {
   width: $hpc;
-   font-family: $general-text;
-  font-size: 20px;
+  font: {
+    family: $general-text;
+    size: 20px;
+    }
   }
 
 .hide-element {
@@ -46,28 +41,29 @@ p {
   }
 
 h2 {
-  font-size: 16px;
-  font-weight: bold;
-  line-height: normal;
   margin: 0;
+
+  font: {
+    size: 16px;
+    weight: bold;
+    }
+  line-height: normal;
   }
 
 /* ----------< Mouse selection >----------> */
 
 ::-moz-selection { /* Code for Firefox */
-  color: black;
+  color: $color-black;
   background: $plate-color;
   }
 ::selection {
-  color: black;
+  color: $color-black;
   background: $plate-color;
   }
 
 /* ----------< Scroll bar styling >----------> */
 
-::-webkit-scrollbar {
-    width: 12px;
-    }
+::-webkit-scrollbar { width: 12px; }
  
 ::-webkit-scrollbar-track {
     background: $dash-display-bg;

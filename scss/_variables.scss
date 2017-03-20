@@ -1,7 +1,15 @@
-// For debugging or testing purposes.
+// For debugging or testing purposes
 @mixin debug {
   outline: 1px solid red!important;
   }
+
+// Preventing user selection
+@mixin no-select {
+  user-select: none;
+  }
+
+
+// Variables
 
 $duration: 1000ms;
 
@@ -11,26 +19,29 @@ $hpx: 100px;  // Hundred pixel
 
 // Colors
 
-$bg-color:            rgba(66,46,47,1); //wheat; // main bg + some elements use it, like the holes on the license plate
-$main-screen-color:   transparent;//rgb(200,200,200);
+$bg-color:            rgba(66,46,47,1);
+$main-screen-color:   transparent;
 
 $color-black:         rgba(0,0,0,1);
 $color-white:         rgba(255,255,255,1);
+
 $color-red:           rgba(165,0,0,1);
 $color-orange:        rgba(254,147,1,1);
 $color-light-yellow:  rgb(255,255,159);     // color of the car's front lights
+
 $color-green:         rgb(69,84,27);
 $color-mid-green:     rgb(19,27,6);
 $color-dark-green:    rgb(19,27,6);
 
+// Lamp post light colors:
 $color-lamp-yellow:   rgba(224,94,7,1);
 $color-lamp-orange:   rgba(255,180,66,1);
 
-$glass-color:         rgb(5,50,50);
-$plate-color:         rgb(245,156,51);
+$glass-color:         rgb(5,50,50);         // color of the car's glas
+$plate-color:         rgb(245,156,51);      // declared as the plate's text color
 
-$dash-display-bg:     rgb(69,62,61);
-$dashboard-text:      rgba(235,159,76,0.95);
+$dash-display-bg:     rgb(69,62,61);            // dashboard + msg wall background
+$dashboard-text:      rgba(235,159,76,0.95);    // dashboard's text color
 
 /**
  * Let's use interpolation on colors, so they aren't dependent on individual
@@ -81,8 +92,8 @@ $dashboard-text:      rgba(235,159,76,0.95);
   src: url("fonts/seasans.ttf") format("truetype");
   }
 
-$plate-font: "Zzyzx", "Seattle Sans", sans-serif;
-$odometer-font: 'VT323', monospace;
-$main-display-bold: 'Luckiest Guy', cursive;
-$small-heading: 'Teko', sans-serif;
-$general-text: 'Ubuntu Condensed', sans-serif;
+$plate-font:          'Zzyzx', 'Seattle Sans', sans-serif;  // The fontface on the plate
+$odometer-font:       'VT323', monospace;                   // Odometer's fontface
+$main-display-bold:   'Luckiest Guy', cursive;              // Fancy fat fontface on main scr
+$small-heading:       'Teko', sans-serif;                   // 
+$general-text:        'Ubuntu Condensed', sans-serif;       // 

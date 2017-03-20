@@ -1,9 +1,9 @@
 .lamp-post {
+  top: 15px;
+  right: -3000px;
   position: relative;
   width: 50px;
   height: 60px;
-  top: 15px;
-  right: -3000px;
   z-index: 1;
   }
 
@@ -13,10 +13,14 @@
   height: 40px;
 
   background: rgb(30,30,30);
-  border: 5px solid rgba(0,0,0,0.15);
-  border-radius: 15px;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
+  border: {
+    style: solid;
+    width: 5px;
+    color: rgba(0,0,0,0.15);
+    radius: 15px;
+    bottom-left-radius: 5px;
+    bottom-right-radius: 5px;
+    }
   box-shadow: 0 35px 175px 25px $color-lamp-orange;
   }
 
