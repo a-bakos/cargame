@@ -691,7 +691,13 @@ function sendConditionalMsg() {
       sendDirectMsg("Garage", "Our usual reward to you is on its way!", -500, 5);
       break;
     case 100:
-      sendDirectMsg("Garage", "Hey, can you checkup needed. Cost: $", 1500, 10);
+      sendDirectMsg("Garage", "Hey, some checkup needed. Cost: $", 1500, 10);
+      break;
+    case 115:
+      sendDirectMsg("System", "The system has requested a software update.", 752, 8);
+      break;
+    case 120:
+      sendDirectMsg("Garage", "Here's the first half of the refund we owed you. Thanks, g'day!", -1534, 15);
       break;
   }
 }
