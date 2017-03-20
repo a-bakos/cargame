@@ -45,6 +45,7 @@
 .msg-wall {
   width: 95%;
   height: 300px;
+  border-radius: 4px;
   overflow-y: scroll;
   margin: auto;
   background-color: transparent;
@@ -60,7 +61,7 @@
   margin: {
     top: 1%;
     bottom: 1%;
-    //left: auto;
+    left: 4px;
     //right: auto;
     }
   padding: {

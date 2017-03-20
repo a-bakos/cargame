@@ -11,6 +11,7 @@ body {
   overflow-x: hidden;
   background-color: $bg-color;
   font-size: 20px;
+  @include no-select;
   }
 
 .gameframe {
@@ -50,3 +51,39 @@ h2 {
   line-height: normal;
   margin: 0;
   }
+
+/* ----------< Mouse selection >----------> */
+
+::-moz-selection { /* Code for Firefox */
+  color: black;
+  background: $plate-color;
+  }
+::selection {
+  color: black;
+  background: $plate-color;
+  }
+
+/* ----------< Scroll bar styling >----------> */
+
+::-webkit-scrollbar {
+    width: 12px;
+    }
+ 
+::-webkit-scrollbar-track {
+    background: $dash-display-bg;
+    box-shadow: 0 0 3px rgba(0,0,0,0.85) inset;
+    border-radius: 4px;
+    }
+ 
+::-webkit-scrollbar-thumb {
+    background: $dashboard-text;
+    border-radius: 4px;
+    box-shadow:
+        0 0 3px rgba(0,0,0,0.5),
+        0 0 3px rgba(0,0,0,0.5) inset;
+    }
+
+::-webkit-scrollbar-thumb:hover {
+    border: 1px solid rgba(0,0,0,0.5);
+    box-shadow: 0 0 5px rgba(0,0,0,0.5) inset;
+    }

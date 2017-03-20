@@ -21,11 +21,12 @@
   color: white;
   text-align: center;
   background: $main-screen-color;
+  background-image: repeating-linear-gradient(to left, transparent 1px, rgba(0,0,0,0.25) 15%);
   border: 10px solid $bg-color;
-  border-radius: 20px;
   }
 
 .main-screen-title  {
+  background: rgba(255,255,255,0.05);
   font: {
     family: $main-display-bold;
     size: 60px;
@@ -35,6 +36,15 @@
     0 2px 0 rgb(120,120,120),
     0 6px 0 black;
   letter-spacing: 5px;
+  padding: {
+    top: 1%;
+    bottom: 1%;
+  }
+  margin: {
+    top: 0;
+    bottom: 2%;
+    }
+  line-height: 1em;
   }
 
 .main-screen-subtitle {
@@ -50,6 +60,7 @@
   text-align: center;
   border: 5px solid $plate-color;
   background-color: rgba(240,240,240,1);
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
 
   &:focus {
     border: 5px solid $plate-color;
@@ -69,7 +80,11 @@
     size: 40px;
     family: $odometer-font;
   }
+  text-shadow:
+    1px 1px 0 $plate-color,
+    0 0 8px rgba(0,0,0,0.5);
   border: none;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
 
   &:focus {
     border: none;
@@ -82,5 +97,35 @@
 .player-name {  }
 
 .extras-section {
-font-size: 30px;
-}
+  text-shadow: 0 0 5px rgba(0,0,0,0.75);
+  font-size: 30px;
+  font-family: $main-display-bold;
+  }
+
+.cheatsheet {
+  h2 {
+    letter-spacing: 2px;
+    font-family: $main-display-bold;
+    font-size: 2em;
+    background: rgba(255,255,255,0.05);
+    text-shadow: 0 0 5px rgba(0,0,0,0.75);
+  }
+  p {
+    margin: {
+      top: 0.5%;
+      bottom: 0.5%;
+      }
+    font-size: 1.15em;
+    background: rgba(255,255,255,0.05);
+    text-shadow: 0 0 5px rgba(0,0,0,0.75);
+    line-height: 1.25em;
+    transition: $duration / 3;
+
+    &:hover {
+      color: white;
+      background: rgba(245,156,51,0.75);
+      }
+    }
+
+    > :first-child { margin-top: 2%; }
+  }
