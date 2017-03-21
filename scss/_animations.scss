@@ -118,3 +118,35 @@ $pothole-anim: 13s;
     }
   100% { background-color: transparent; }
   }
+
+/**
+ * Open left and right doors
+ */
+.open-left-door   { animation: open-left-door 1s ease-out 1 forwards; }
+.open-right-door  { animation: open-right-door 1s ease-out 1 forwards; }
+
+@keyframes open-left-door {
+  10% {
+    border-bottom: 1px solid transparent;
+    transform: translateY(-3px);
+    }
+  11% { border-bottom: 1px solid rgb(5,50,50); }
+  100% {
+    transform: translateY(-2px) translateX(-2px) rotate(70deg);
+    transform-origin: bottom right;
+    border-bottom: 1px solid rgb(5,50,50);
+    }
+  }
+
+@keyframes open-right-door {
+  10% {
+    border-bottom: 1px solid transparent;
+    transform: translateY(3px);
+    }
+  11% { border-bottom: 1px solid rgb(5,50,50); }
+  100% {
+    transform: translateX(-2px) rotate(-70deg);
+    transform-origin: bottom right;
+    border-bottom: 1px solid rgb(5,50,50);
+    }
+  }

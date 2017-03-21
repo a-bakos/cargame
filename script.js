@@ -30,6 +30,11 @@ var vehicle = {
   moveRightKey:       39,
   moveLeftMotion:     "move-left",  // CSS class to toggle
   moveRightMotion:    "move-right", // CSS class to toggle
+
+  openLeftDoorKey:    65,
+  openRightDoorKey:   68,
+  leftDoorAnimation:  "open-left-door",
+  rightDoorAnimation: "open-right-door"
 };
 
 // User interaction counters:
@@ -74,7 +79,7 @@ var statusIconBattery     = document.querySelector(".icon-battery");
 var statusIconLights      = document.querySelector(".icon-lights");
 var statusIconEngine      = document.querySelector(".icon-engine");
 var statusIconMessage     = document.querySelector(".icon-message");
-//var statusIconDoors       = document.querySelector(".icon-doors");
+var statusIconDoors       = document.querySelector(".icon-doors");
 //var statusIconRighttIndex = document.querySelector(".icon-right-index");
 
 /**
@@ -148,9 +153,10 @@ function energyConsumption(amount) {
   }
 }
 
-// test state
+/**
+ * This function, when invoked, displays the game over screen.
+ */
 function gameOver() {
-  // GAME OVER SCREEN
   energyDisplay.innerHTML = "XXX";
   timeRunning = false;
   hideElement(mainframe);
@@ -197,6 +203,60 @@ function toggleLights(event) {
       }
     }
     batteryProblems();
+  }
+}
+
+/**
+ * Functions for opening/toggling the left and right doors of the car.
+ */
+var leftDoor = document.querySelector(".vehicle-left-door");
+var rightDoor = document.querySelector(".vehicle-right-door");
+
+// Left door
+function openLeftDoor(event) {
+  if (event.keyCode == vehicle.openLeftDoorKey) {
+    if (leftDoor.classList.contains(vehicle.leftDoorAnimation)) {
+      leftDoor.classList.remove(vehicle.leftDoorAnimation);
+
+      // Check if the other door is open & apply the dashboard icon accordingly
+      if (rightDoor.classList.contains(vehicle.rightDoorAnimation)) {
+        statusIconDoors.src = "img/doors-on.png";
+      }
+      else {
+        statusIconDoors.src = "img/doors-off.png";
+      }
+
+      console.log("Left door closed.");
+    }
+    else {
+      leftDoor.classList.add(vehicle.leftDoorAnimation);
+      statusIconDoors.src = "img/doors-on.png";
+      console.log("Left door opened.");
+    }
+  }
+}
+
+// Right door
+function openRightDoor(event) {
+  if (event.keyCode == vehicle.openRightDoorKey) {
+    if (rightDoor.classList.contains(vehicle.rightDoorAnimation)) {
+      rightDoor.classList.remove(vehicle.rightDoorAnimation);
+
+      // Check if the other door is open & apply the dashboard icon accordingly
+      if (leftDoor.classList.contains(vehicle.leftDoorAnimation)) {
+        statusIconDoors.src = "img/doors-on.png";
+      }
+      else {
+        statusIconDoors.src = "img/doors-off.png";
+      }
+
+      console.log("Right door closed.");
+    }
+    else {
+      rightDoor.classList.add(vehicle.rightDoorAnimation);
+      statusIconDoors.src = "img/doors-on.png";
+      console.log("Right door opened.");
+    }
   }
 }
 
@@ -1066,6 +1126,8 @@ function loadMainframe() {
     addEventListener("keydown", indicatorLights, false);  // indicators
     addEventListener("keydown", moveLeft, false);         // move left
     addEventListener("keydown", moveRight, false);        // move right
+    addEventListener("keydown", openLeftDoor, false);     // open left door
+    addEventListener("keydown", openRightDoor, false);    // open right door
 
     getPlateData();     // Print plate data to the console
     receiveRandomMsg(); // Start receiving spam messages

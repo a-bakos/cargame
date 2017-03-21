@@ -121,36 +121,6 @@
     }
   }
 
-// This animation is for a possible later use.
-.open-left-door   { animation: open-left-door 1s ease-out infinite forwards; }
-.open-right-door  { animation: open-right-door 1s ease-out infinite forwards; }
-
-@keyframes open-left-door {
-  10% {
-    border-bottom: 1px solid transparent;
-    transform: translateY(-3px);
-    }
-  11% { border-bottom: 1px solid rgb(5,50,50); }
-  100% {
-    transform: translateY(-2px) translateX(-2px) rotate(70deg);
-    transform-origin: bottom right;
-    border-bottom: 1px solid rgb(5,50,50);
-    }
-  }
-
-@keyframes open-right-door {
-  10% {
-    border-bottom: 1px solid transparent;
-    transform: translateY(3px);
-    }
-  11% { border-bottom: 1px solid rgb(5,50,50); }
-  100% {
-    transform: translateX(-2px) rotate(-70deg);
-    transform-origin: bottom right;
-    border-bottom: 1px solid rgb(5,50,50);
-    }
-  }
-
 .vehicle-mirrors {
   position: absolute;
   left: 22px;
