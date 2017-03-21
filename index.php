@@ -146,9 +146,10 @@
 
     <section class="gameover-screen hide-element">
       <h2 class="main-screen-title">Out of energy!</h2>
+
       <!-- Restart the game -->
       <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
-        <input name="" type="submit" value="Restart!">
+        <input name="" type="submit" value="Restart!" class="input-submit">
       </form>
     </section>
 

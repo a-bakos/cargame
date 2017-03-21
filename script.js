@@ -151,13 +151,14 @@ function energyConsumption(amount) {
 // test state
 function gameOver() {
   // GAME OVER SCREEN
-    energyDisplay.innerHTML = "XXX";
-    timeRunning = false;
-    hideElement(mainframe);
-    //removeEventListener();
-    var gameOverScreen = document.createElement("section");
-    gameOverScreen.classList.add("game-over-screen");
-    document.body.appendChild(gameOverScreen);
+  energyDisplay.innerHTML = "XXX";
+  timeRunning = false;
+  hideElement(mainframe);
+
+  var gameoverScreen = document.querySelector(".gameover-screen");
+  gameoverScreen.classList.remove("hide-element");
+
+  //removeEventListener();
 }
 
 /**
