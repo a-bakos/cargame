@@ -84,7 +84,7 @@
                 <ul class="msg-wall">
                 </ul>
               </section>
-            </td>
+            </td> <!-- message wall -->
 
             <td class="dashboard-area">
               <div class="dashboard">
@@ -125,7 +125,7 @@
                   <img class="status-icon icon-right-index" src="img/index-right-off.png" title="Right indicators">
                 </div>
               </div>
-            </td>
+            </td> <!-- dashboard -->
 
             <td>
               <section class="license-plate">
@@ -137,12 +137,21 @@
               <p class="plate-title">Your license plate<br>
                 <a href="http://www.worldlicenceplates.com/usa/US_CAXX.html" target="_blank">(based on a real design)</a>
               </p>
-            </td>
+            </td> <!-- license plate -->
           </tr>
         </table>
         </section>
       </section>
+    </section> <!-- mainframe -->
+
+    <section class="gameover-screen hide-element">
+      <h2 class="main-screen-title">Out of energy!</h2>
+      <!-- Restart the game -->
+      <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <input name="" type="submit" value="Restart!">
+      </form>
     </section>
+
     <script src="latinise.min.js"></script>
     <script src="script.js"></script>
   </body>
