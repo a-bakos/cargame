@@ -21,7 +21,7 @@
         <input type="checkbox" class="extra-sunroof" id="extra-sunroof">
       </div>
 
-      <p class="main-screen-text"></p>
+      <p class="input-info">Enter player name up to 12 characters.</p>
       <input type="text" maxlength="10" placeholder="Playername" class="player-name input-field" autofocus><br>
       <button type="submit" class="player-name input-submit" id="enter-player-name">Start!</button>
 
@@ -31,6 +31,7 @@
         <p>Navigate the car with the left and right arrows.</p>
         <p>Press L to turn the lights on/off.</p>
         <p>Press Q and E to toggle the left and right indicator lights.</p>
+        <p>Open the doors with the A and D buttons.</p>
       </div>
     </section>
 

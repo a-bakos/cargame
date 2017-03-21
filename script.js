@@ -519,8 +519,9 @@ function checkPlayerName() {
     // Instead of the temporary alert, a text node insertion would be a better
     // solution that tells the user what's wrong. Also appending additional
     // "error" CSS class to the input field.
-    alert("Incorrect player name input. Please use only letters and numbers.");
-    console.log("Incorrect player name input.");
+    var inputInfo = document.querySelector(".input-info");
+    inputInfo.innerHTML = "Use letters and numbers or default name."
+    console.log("Please use letters and numbers.");
     setDefaultPlateData();
 
     // Delete the value inside and set focus on the field:
@@ -670,7 +671,7 @@ function incrementTime() {
  */
 
 // User wallet:
-var userMoney = Number(1500);
+var userMoney = Number(2500);
 var userWallet = document.querySelector(".money-amount");
 userWallet.innerHTML = userMoney;
 

@@ -49,10 +49,15 @@
   }
 
 .main-screen-subtitle { font-size: 40px; }
-.main-screen-text   {}
 
 // Player name input
+.input-info {
+  font-size: 1em;
+  margin-bottom: 5px;
+  }
+
 .input-field {
+  margin-top: 0;
   width: 300px;
 
   background-color: rgba(240,240,240,1);
