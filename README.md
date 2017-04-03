@@ -1,7 +1,8 @@
 
 # Dashboard Driver
 #### JS study project
-_(Work in progress)_
+
+
 
 ![Dashboard Driver](photo-main.png)
 
@@ -10,3 +11,5 @@ _(Work in progress)_
 ![Dashboard Driver](photo-indicator.png)
 
 ![Dashboard Driver](photo-plate.png)
+
+![Message wall](photo-message-wall.png)
